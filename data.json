@@ -1,0 +1,206 @@
+{
+  "personal": {
+    "name": "Duong Thanh Hop",
+    "nickname": "DUTHAHO",
+    "title": "Solution Architect",
+    "location": "Da Nang, Vietnam",
+    "description": "Building scalable systems & leading engineering teams for a decade.",
+    "about": {
+      "intro": "Nearly a decade of crafting software that scales.",
+      "paragraphs": [
+        "I'm a <strong>Solution Architect</strong> passionate about building systems that handle millions of requests while remaining maintainable and elegant. From AAA mobile games at Gameloft to AI-powered recruitment at Paradox, I've led teams and architected solutions across diverse domains.",
+        "Active contributor to open-source, technical writer, and perpetual learner. I believe great architecture emerges from understanding both the code and the people who write it."
+      ],
+      "principles": [
+        "SOLID over clever",
+        "Scalability from day one",
+        "Clean code is kind code",
+        "Mentor, don't gatekeep"
+      ]
+    }
+  },
+  "stats": [
+    { "value": "10+", "label": "years exp" },
+    { "value": "180+", "label": "github stars" },
+    { "value": "1M+", "label": "daily requests" }
+  ],
+  "coreSkills": [
+    { "name": "Cloud Architecture", "type": "arch" },
+    { "name": "System Design", "type": "sys" },
+    { "name": "Full-Stack Dev", "type": "full" },
+    { "name": "Tech Leadership", "type": "lead" }
+  ],
+  "techStack": [
+    "Python", "Django", "FastAPI",
+    "Node.js", "React", "Vue.js",
+    "TypeScript", "PostgreSQL", "MongoDB",
+    "Docker", "AWS", "Kubernetes"
+  ],
+  "experience": [
+    {
+      "title": "Solution Architect",
+      "company": "Paradox",
+      "url": "https://paradox.ai/",
+      "period": "2020 - Present",
+      "status": "current",
+      "summary": "Leading architectural decisions for AI-powered recruitment platform serving world's best talent acquisition teams.",
+      "achievements": [
+        "Architected microservices handling <strong>1M+ daily conversations</strong>",
+        "Reduced API response time by <strong>40%</strong> through optimization",
+        "Led monolith to microservices migration, <strong>60% faster deployments</strong>",
+        "Designed <strong>50+ REST API endpoints</strong> with OpenAPI specs",
+        "Mentored team of <strong>8+ developers</strong> on best practices"
+      ],
+      "stack": ["Python", "Django", "Vue.js", "MySQL", "Redis", "Docker", "AWS"]
+    },
+    {
+      "title": "Senior Full-Stack Engineer",
+      "company": "Peddler",
+      "url": "https://www.peddler.com/en/",
+      "period": "2019 - 2020",
+      "summary": "Built social marketplace platform for large-scale data analysis and visualization.",
+      "achievements": [
+        "NoSQL schema supporting <strong>100K+ products</strong> and reviews",
+        "RESTful APIs handling <strong>500+ requests/second</strong>",
+        "Elasticsearch integration, <strong>70% faster search</strong>",
+        "Achieved <strong>95%+ test coverage</strong>"
+      ],
+      "stack": ["Node.js", "MongoDB", "React", "Elasticsearch", "Docker"]
+    },
+    {
+      "title": "Co-Founder & Tech Lead",
+      "company": "HT Active",
+      "url": "http://www.htactive.com/",
+      "period": "2018 - 2019",
+      "summary": "Led engineering teams delivering 20+ web applications across multiple frameworks.",
+      "achievements": [
+        "Led team of <strong>10+ developers</strong> across client projects",
+        "Established coding standards, <strong>45% fewer bugs</strong>",
+        "Implemented Agile/Scrum, <strong>30% faster delivery</strong>",
+        "Onboarded <strong>15+ developers</strong>"
+      ],
+      "stack": ["Node.js", "PHP", "Django", "React", "Vue.js", "MongoDB"]
+    },
+    {
+      "title": "Full-Stack Developer",
+      "company": "VNPT",
+      "url": "https://vnptit.vn/",
+      "period": "2017 - 2018",
+      "summary": "Built healthcare systems integrated with medical devices and hospital information systems.",
+      "achievements": [
+        "Desktop app handling <strong>1000+ patient records</strong> daily",
+        "Integrated with HIS, RIS and medical imaging devices",
+        "License management for <strong>50+ hospitals</strong>"
+      ],
+      "stack": [".NET", "C#", "WPF", "React", "SQL Server"]
+    },
+    {
+      "title": "Game Developer & Team Lead",
+      "company": "Gameloft",
+      "url": "https://www.gameloft.com/en/",
+      "period": "2013 - 2017",
+      "badge": "Started Here",
+      "summary": "Led development of AAA mobile games with millions of downloads worldwide.",
+      "achievements": [
+        "Managed <strong>8 developers</strong> on Asphalt 8, World At Arms, CityMania",
+        "Optimized games to <strong>60 FPS</strong> on low-end devices",
+        "Built Python tools saving <strong>100+ hours/month</strong>",
+        "Division-wide C++ coaching"
+      ],
+      "stack": ["C++", "Unity", "Python", "OpenGL", "Game Physics"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "js-quiz",
+      "description": "The JavaScript quiz for learning. Test and improve your JS knowledge from closures to async patterns.",
+      "url": "https://github.com/duthaho/js-quiz",
+      "stars": 119,
+      "forks": 11,
+      "featured": true
+    },
+    {
+      "name": "bookmark",
+      "description": "A reading list for the programmer. Curated resources and articles.",
+      "url": "https://github.com/duthaho/bookmark",
+      "stars": 32,
+      "forks": 1
+    },
+    {
+      "name": "claudekit",
+      "description": "Open-source AI dev toolkit with 27+ commands and 7 modes for Claude.",
+      "url": "https://github.com/duthaho/claudekit",
+      "stars": 13,
+      "forks": 13
+    },
+    {
+      "name": "nongdocon",
+      "description": "Vietnamese alcohol content measurement tool.",
+      "url": "https://github.com/duthaho/nongdocon",
+      "stars": 12,
+      "forks": 6
+    },
+    {
+      "name": "copilot-instructions",
+      "description": "Best practices and coding rules for AI-assisted development.",
+      "url": "https://github.com/duthaho/copilot-instructions",
+      "stars": 3,
+      "forks": 2
+    },
+    {
+      "name": "python-design-patterns",
+      "description": "Python Design Patterns learning repository.",
+      "url": "https://github.com/duthaho/python-design-patterns",
+      "stars": 1
+    }
+  ],
+  "articles": [
+    {
+      "title": "System Design: \"Ngày này năm xưa\"",
+      "excerpt": "Optimization of date-based queries in system design interviews...",
+      "url": "https://duthaho.substack.com/p/toi-i-phong-van-bai-toan-ngay-nay"
+    },
+    {
+      "title": "System Design: Bulk Download",
+      "excerpt": "Technical challenges of implementing large-scale file downloads...",
+      "url": "https://duthaho.substack.com/p/toi-i-phong-van-bai-toan-bulk-download"
+    },
+    {
+      "title": "System Design: Unique ID",
+      "excerpt": "Distributed unique ID generation for high-scale platforms...",
+      "url": "https://duthaho.substack.com/p/toi-i-phong-van-bai-toan-unique-id"
+    },
+    {
+      "title": "System Design: Soft Delete",
+      "excerpt": "Soft deletion strategies for large e-commerce order tables...",
+      "url": "https://duthaho.substack.com/p/toi-i-phong-van-system-design-ve"
+    }
+  ],
+  "social": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/duthaho",
+      "icon": "github"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/duthaho",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Substack",
+      "url": "https://duthaho.substack.com/",
+      "icon": "substack"
+    },
+    {
+      "name": "Blog",
+      "url": "https://duthaho.github.io/blog/",
+      "icon": "globe"
+    }
+  ],
+  "footer": {
+    "copyright": "duthaho",
+    "year": 2025,
+    "badge": "Arctic Code Vault Contributor"
+  }
+}
