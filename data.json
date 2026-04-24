@@ -113,67 +113,66 @@
   "projects": [
     {
       "name": "js-quiz",
-      "description": "The JavaScript quiz for learning. Test and improve your JS knowledge from closures to async patterns.",
+      "description": "The javascript quiz for learning",
       "url": "https://github.com/duthaho/js-quiz",
-      "stars": 119,
+      "stars": 116,
       "forks": 11,
       "featured": true
     },
     {
+      "name": "claudekit",
+      "description": "The open-source AI dev toolkit for Claude Code. Ship faster with 27+ commands, 7 modes, and 34+ skills. Free forever.",
+      "url": "https://github.com/duthaho/claudekit",
+      "stars": 87,
+      "forks": 54
+    },
+    {
       "name": "bookmark",
-      "description": "A reading list for the programmer. Curated resources and articles.",
+      "description": "A reading list for the programmer",
       "url": "https://github.com/duthaho/bookmark",
       "stars": 32,
       "forks": 1
     },
     {
-      "name": "claudekit",
-      "description": "Open-source AI dev toolkit with 27+ commands and 7 modes for Claude.",
-      "url": "https://github.com/duthaho/claudekit",
-      "stars": 13,
-      "forks": 13
-    },
-    {
       "name": "nongdocon",
-      "description": "Vietnamese alcohol content measurement tool.",
+      "description": "Theo nghị định 000 biết của CP, tool dùng để đo nồng độ cồn cho các bợm nhậu",
       "url": "https://github.com/duthaho/nongdocon",
       "stars": 12,
       "forks": 6
     },
     {
       "name": "copilot-instructions",
-      "description": "Best practices and coding rules for AI-assisted development.",
+      "description": "A comprehensive codebase of best practices, coding rules, and workflow automation for AI-assisted development with GitHub Copilot. Includes DDD, Clean Architecture, testing, commit conventions, and more. Reference implementation for modern Python backend projects.",
       "url": "https://github.com/duthaho/copilot-instructions",
-      "stars": 3,
-      "forks": 2
-    },
-    {
-      "name": "python-design-patterns",
-      "description": "Python Design Patterns learning repository.",
-      "url": "https://github.com/duthaho/python-design-patterns",
-      "stars": 1
+      "stars": 6,
+      "forks": 3
     }
   ],
   "articles": [
     {
-      "title": "System Design: \"Ngày này năm xưa\"",
-      "excerpt": "Optimization of date-based queries in system design interviews...",
-      "url": "https://duthaho.substack.com/p/toi-i-phong-van-bai-toan-ngay-nay"
+      "title": "Karpathy vừa mô tả đúng thứ tôi đã thất bại khi xây — và lý do tôi sẽ thử lại",
+      "excerpt": "Andrej Karpathy post một gist về pattern xây personal knowledge base bằng LLM. Đọc xong mình ngồi im — ông đặt tên đúng cho vấn đề mình loay hoay hai năm trước.",
+      "url": "https://duthaho.dev/llm-wiki.html"
     },
     {
-      "title": "System Design: Bulk Download",
-      "excerpt": "Technical challenges of implementing large-scale file downloads...",
-      "url": "https://duthaho.substack.com/p/toi-i-phong-van-bai-toan-bulk-download"
+      "title": "Claude không đếm tin nhắn — nó đếm token. Và tôi đã dùng sai từ đầu.",
+      "excerpt": "10 thói quen giúp hết cảnh bị limit giữa chừng — đọc xong mình nhận ra mình đang lãng phí token theo ít nhất ba cách khác nhau.",
+      "url": "https://duthaho.dev/claude-token-habits.html"
     },
     {
-      "title": "System Design: Unique ID",
-      "excerpt": "Distributed unique ID generation for high-scale platforms...",
-      "url": "https://duthaho.substack.com/p/toi-i-phong-van-bai-toan-unique-id"
+      "title": "Hai dòng code ẩn khiến Claude Code ngốn token gấp bốn lần",
+      "excerpt": "Một người dùng Reddit reverse-engineer minified source, tìm ra bug caching khiến token drain, và patch bằng đúng hai dòng.",
+      "url": "https://duthaho.dev/claude-code-token-drain.html"
     },
     {
-      "title": "System Design: Soft Delete",
-      "excerpt": "Soft deletion strategies for large e-commerce order tables...",
-      "url": "https://duthaho.substack.com/p/toi-i-phong-van-system-design-ve"
+      "title": "AI không phải phép màu — nhưng ai đó đang cố làm bạn quên điều đó",
+      "excerpt": "Đọc một bài khá nặng tay về hype AI, có chỗ đồng ý, có chỗ không. Viết lại theo góc nhìn của người đang xây sản phẩm thật.",
+      "url": "https://duthaho.dev/ai-hype.html"
+    },
+    {
+      "title": "Claude không biết mình đang nghĩ gì — và điều đó đáng lo hơn bạn nghĩ",
+      "excerpt": "Anthropic vừa công bố loạt nghiên cứu về cách Claude thực sự vận hành bên trong. Không phải cách nó tự mô tả. Mà là cách nó thực sự hoạt động.",
+      "url": "https://duthaho.dev/claude-interpretability.html"
     }
   ],
   "social": [
@@ -194,7 +193,7 @@
     },
     {
       "name": "Blog",
-      "url": "https://duthaho.github.io/blog/",
+      "url": "https://duthaho.dev/",
       "icon": "globe"
     }
   ],

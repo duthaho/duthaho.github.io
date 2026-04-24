@@ -31,10 +31,10 @@ Simply open `index.html` in any modern web browser:
 
 ```bash
 # Clone the repository
-git clone https://github.com/duthaho/cv.git
+git clone https://github.com/duthaho/duthaho.github.io
 
 # Navigate to directory
-cd cv
+cd duthaho.github.io
 
 # Open in browser (or double-click index.html)
 open index.html  # macOS
@@ -242,7 +242,7 @@ Edit CSS variables in `styles.css`:
 
 ## Live Demo
 
-Visit the live version: [https://duthaho.github.io/cv/](https://duthaho.github.io/cv/)
+Visit the live version: [https://about.duthaho.dev/](https://about.duthaho.dev/)
 
 ## Browser Support
 
