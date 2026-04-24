@@ -139,13 +139,6 @@
       "url": "https://github.com/duthaho/nongdocon",
       "stars": 12,
       "forks": 6
-    },
-    {
-      "name": "copilot-instructions",
-      "description": "A comprehensive codebase of best practices, coding rules, and workflow automation for AI-assisted development with GitHub Copilot. Includes DDD, Clean Architecture, testing, commit conventions, and more. Reference implementation for modern Python backend projects.",
-      "url": "https://github.com/duthaho/copilot-instructions",
-      "stars": 6,
-      "forks": 3
     }
   ],
   "articles": [
