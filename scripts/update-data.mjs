@@ -6,7 +6,7 @@ const BLOG_URL = process.env.BLOG_URL || 'https://duthaho.dev/';
 const TOKEN = process.env.GITHUB_TOKEN;
 const DATA_PATH = new URL('../data.json', import.meta.url);
 
-const PROJECT_COUNT = 5;
+const PROJECT_COUNT = 4;
 const ARTICLE_COUNT = 5;
 const EXCLUDE_REPOS = new Set(['duthaho.github.io', 'duthaho.dev']);
 
