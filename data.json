@@ -33,7 +33,7 @@
   "techStack": [
     "Python", "Django", "FastAPI",
     "Node.js", "React", "Vue.js",
-    "TypeScript", "PostgreSQL", "MongoDB",
+    "TypeScript", "MySQL", "MongoDB",
     "Docker", "AWS", "Kubernetes"
   ],
   "experience": [
