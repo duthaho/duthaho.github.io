@@ -4,37 +4,38 @@
     "nickname": "DUTHAHO",
     "title": "Solution Architect",
     "location": "Da Nang, Vietnam",
-    "description": "Building scalable systems & leading engineering teams for a decade.",
+    "description": "From AAA mobile titles to AI-powered recruitment — designing systems that scale, and the teams that ship them.",
     "about": {
       "intro": "Nearly a decade of crafting software that scales.",
       "paragraphs": [
-        "I'm a <strong>Solution Architect</strong> passionate about building systems that handle millions of requests while remaining maintainable and elegant. From AAA mobile games at Gameloft to AI-powered recruitment at Paradox, I've led teams and architected solutions across diverse domains.",
-        "Active contributor to open-source, technical writer, and perpetual learner. I believe great architecture emerges from understanding both the code and the people who write it."
+        "I'm a <strong>Solution Architect</strong> who keeps both eyes on the machine and the room. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox, I've designed platforms that handle millions of requests and led the teams that own them long after the diagrams are filed away.",
+        "My work tends to live at the intersection of <strong>system design</strong> and <strong>team design</strong> — drawing the architecture, writing the playbooks, and coaching the engineers who'll inherit it. Good systems aren't shipped, they're inherited; I optimize for the engineer reading this code on a bad Wednesday.",
+        "Outside the day job I write essays at <strong>duthaho.dev</strong>, contribute to open-source AI tooling, and treat every codebase as a teaching artifact. The strongest architectures, in my experience, emerge from understanding both the code and the people who write it."
       ],
       "principles": [
         "SOLID over clever",
         "Scalability from day one",
+        "Boring tech, careful choices",
         "Clean code is kind code",
         "Mentor, don't gatekeep"
       ]
     }
   },
   "stats": [
-    { "value": "10+", "label": "years exp" },
-    { "value": "180+", "label": "github stars" },
-    { "value": "1M+", "label": "daily requests" }
+    { "value": "10+", "label": "years in practice" },
+    { "value": "1M+", "label": "daily requests served" },
+    { "value": "180+", "label": "open-source stars" }
   ],
   "coreSkills": [
-    { "name": "Cloud Architecture", "type": "arch" },
-    { "name": "System Design", "type": "sys" },
-    { "name": "Full-Stack Dev", "type": "full" },
-    { "name": "Tech Leadership", "type": "lead" }
+    { "name": "Distributed Systems", "type": "arch" },
+    { "name": "Platform Architecture", "type": "sys" },
+    { "name": "Full-Stack Engineering", "type": "full" },
+    { "name": "Engineering Leadership", "type": "lead" }
   ],
   "techStack": [
-    "Python", "Django", "FastAPI",
-    "Node.js", "React", "Vue.js",
-    "TypeScript", "MySQL", "MongoDB",
-    "Docker", "AWS", "Kubernetes"
+    "Python", "TypeScript", "Django", "FastAPI",
+    "Node.js", "React", "Vue.js", "MongoDB",
+    "MySQL", "Redis", "Docker", "AWS"
   ],
   "experience": [
     {
@@ -43,13 +44,13 @@
       "url": "https://paradox.ai/",
       "period": "2020 - Present",
       "status": "current",
-      "summary": "Leading architectural decisions for AI-powered recruitment platform serving world's best talent acquisition teams.",
+      "summary": "Leading architectural decisions for an AI-powered recruitment platform serving the world's leading talent acquisition teams.",
       "achievements": [
-        "Architected microservices handling <strong>1M+ daily conversations</strong>",
-        "Reduced API response time by <strong>40%</strong> through optimization",
-        "Led monolith to microservices migration, <strong>60% faster deployments</strong>",
-        "Designed <strong>50+ REST API endpoints</strong> with OpenAPI specs",
-        "Mentored team of <strong>8+ developers</strong> on best practices"
+        "Architected microservices serving <strong>1M+ daily candidate conversations</strong>",
+        "Cut API p95 latency by <strong>40%</strong> through query optimization and strategic caching",
+        "Led monolith-to-microservices migration — <strong>60% faster deploys</strong> with isolated blast radius",
+        "Designed <strong>50+ REST endpoints</strong> with OpenAPI specs and contract testing",
+        "Mentored a team of <strong>8+ engineers</strong> on system design, code review, and trade-off thinking"
       ],
       "stack": ["Python", "Django", "Vue.js", "MySQL", "Redis", "Docker", "AWS"]
     },
@@ -58,12 +59,12 @@
       "company": "Peddler",
       "url": "https://www.peddler.com/en/",
       "period": "2019 - 2020",
-      "summary": "Built social marketplace platform for large-scale data analysis and visualization.",
+      "summary": "Built a social marketplace platform — product catalog, search, reviews, and the data pipeline behind them.",
       "achievements": [
-        "NoSQL schema supporting <strong>100K+ products</strong> and reviews",
-        "RESTful APIs handling <strong>500+ requests/second</strong>",
-        "Elasticsearch integration, <strong>70% faster search</strong>",
-        "Achieved <strong>95%+ test coverage</strong>"
+        "Designed NoSQL schema indexing <strong>100K+ products</strong> with reviews and ratings",
+        "Built REST APIs sustaining <strong>500+ requests/second</strong> at peak traffic",
+        "Integrated Elasticsearch for full-text discovery — <strong>70% faster search</strong>",
+        "Drove test culture to <strong>95%+ coverage</strong> across the codebase"
       ],
       "stack": ["Node.js", "MongoDB", "React", "Elasticsearch", "Docker"]
     },
@@ -72,12 +73,12 @@
       "company": "HT Active",
       "url": "http://www.htactive.com/",
       "period": "2018 - 2019",
-      "summary": "Led engineering teams delivering 20+ web applications across multiple frameworks.",
+      "summary": "Co-founded an engineering studio delivering 20+ web applications across diverse frameworks for global clients.",
       "achievements": [
-        "Led team of <strong>10+ developers</strong> across client projects",
-        "Established coding standards, <strong>45% fewer bugs</strong>",
-        "Implemented Agile/Scrum, <strong>30% faster delivery</strong>",
-        "Onboarded <strong>15+ developers</strong>"
+        "Led <strong>10+ engineers</strong> across concurrent client engagements",
+        "Authored coding standards and review process — <strong>45% fewer production bugs</strong>",
+        "Introduced Agile/Scrum cadence — <strong>30% faster delivery</strong> on fixed-scope work",
+        "Onboarded and grew <strong>15+ engineers</strong> from junior to mid-level"
       ],
       "stack": ["Node.js", "PHP", "Django", "React", "Vue.js", "MongoDB"]
     },
@@ -88,9 +89,9 @@
       "period": "2017 - 2018",
       "summary": "Built healthcare systems integrated with medical devices and hospital information systems.",
       "achievements": [
-        "Desktop app handling <strong>1000+ patient records</strong> daily",
-        "Integrated with HIS, RIS and medical imaging devices",
-        "License management for <strong>50+ hospitals</strong>"
+        "Built desktop application processing <strong>1000+ patient records</strong> daily",
+        "Integrated with HIS, RIS, and DICOM-compliant medical imaging devices",
+        "Designed licensing and deployment system serving <strong>50+ hospitals</strong>"
       ],
       "stack": [".NET", "C#", "WPF", "React", "SQL Server"]
     },
@@ -100,12 +101,12 @@
       "url": "https://www.gameloft.com/en/",
       "period": "2013 - 2017",
       "badge": "Started Here",
-      "summary": "Led development of AAA mobile games with millions of downloads worldwide.",
+      "summary": "Led development on AAA mobile titles — Asphalt 8, World At Arms, and CityMania — with millions of downloads worldwide.",
       "achievements": [
-        "Managed <strong>8 developers</strong> on Asphalt 8, World At Arms, CityMania",
-        "Optimized games to <strong>60 FPS</strong> on low-end devices",
-        "Built Python tools saving <strong>100+ hours/month</strong>",
-        "Division-wide C++ coaching"
+        "Led <strong>8 engineers</strong> across Asphalt 8, World At Arms, and CityMania",
+        "Optimized rendering and physics to a steady <strong>60 FPS</strong> on low-end Android",
+        "Built Python automation tooling — saved <strong>100+ engineer-hours per month</strong>",
+        "Delivered division-wide C++ coaching across active game projects"
       ],
       "stack": ["C++", "Unity", "Python", "OpenGL", "Game Physics"]
     }
@@ -115,7 +116,7 @@
       "name": "js-quiz",
       "description": "The javascript quiz for learning",
       "url": "https://github.com/duthaho/js-quiz",
-      "stars": 116,
+      "stars": 115,
       "forks": 11,
       "featured": true
     },
@@ -143,29 +144,29 @@
   ],
   "articles": [
     {
+      "title": "Tôi đọc source code bị leak của Claude Code — và nhận ra mình đang build agent sai từ đầu",
+      "excerpt": "Khi Claude Code bị leak, mọi người chú ý đến drama xung quanh vụ leak. Mình chú ý đến harness. Đọc kỹ phần đó, mình thấy mình đang nhìn vào một production agentic system thật sự được vận hành ở scale lớn — và hầu hết những thứ mình tự làm từ trước đến nay đều thiếu những thành phần quan trọng.",
+      "url": "https://duthaho.dev/agentic-patterns.html"
+    },
+    {
       "title": "Karpathy vừa mô tả đúng thứ tôi đã thất bại khi xây — và lý do tôi sẽ thử lại",
-      "excerpt": "Andrej Karpathy post một gist về pattern xây personal knowledge base bằng LLM. Đọc xong mình ngồi im — ông đặt tên đúng cho vấn đề mình loay hoay hai năm trước.",
+      "excerpt": "Andrej Karpathy vừa post một gist về pattern xây personal knowledge base bằng LLM. Đọc xong mình ngồi im một lúc — không phải vì ý tưởng mới, mà vì ông đặt tên đúng cho vấn đề mình đã loay hoay với nó mà không biết gọi là gì.",
       "url": "https://duthaho.dev/llm-wiki.html"
     },
     {
       "title": "Claude không đếm tin nhắn — nó đếm token. Và tôi đã dùng sai từ đầu.",
-      "excerpt": "10 thói quen giúp hết cảnh bị limit giữa chừng — đọc xong mình nhận ra mình đang lãng phí token theo ít nhất ba cách khác nhau.",
+      "excerpt": "Một thread trên X của @0x_kaize về 10 thói quen giúp hết cảnh bị limit giữa chừng. Đọc xong mình nhận ra mình đang lãng phí token theo ít nhất ba cách khác nhau — mỗi ngày, không biết từ bao giờ.",
       "url": "https://duthaho.dev/claude-token-habits.html"
     },
     {
-      "title": "Hai dòng code ẩn khiến Claude Code ngốn token gấp bốn lần",
-      "excerpt": "Một người dùng Reddit reverse-engineer minified source, tìm ra bug caching khiến token drain, và patch bằng đúng hai dòng.",
+      "title": "Hai dòng code ẩn khiến Claude Code ngốn token gấp 4 lần — và cái kết không ai ngờ",
+      "excerpt": "Một người dùng Reddit reverse-engineer minified source code của Claude Code, tìm ra bug caching khiến token drain về đêm, và patch nó bằng đúng hai dòng.",
       "url": "https://duthaho.dev/claude-code-token-drain.html"
     },
     {
-      "title": "AI không phải phép màu — nhưng ai đó đang cố làm bạn quên điều đó",
-      "excerpt": "Đọc một bài khá nặng tay về hype AI, có chỗ đồng ý, có chỗ không. Viết lại theo góc nhìn của người đang xây sản phẩm thật.",
+      "title": "AI không phải phép màu — nhưng bạn đang bị ai đó cố tình làm bạn quên điều đó",
+      "excerpt": "Đọc một bài khá nặng tay về hype AI, có chỗ đồng ý, có chỗ không. Viết lại theo góc nhìn của người đang xây sản phẩm thật bằng AI thật.",
       "url": "https://duthaho.dev/ai-hype.html"
-    },
-    {
-      "title": "Claude không biết mình đang nghĩ gì — và điều đó đáng lo hơn bạn nghĩ",
-      "excerpt": "Anthropic vừa công bố loạt nghiên cứu về cách Claude thực sự vận hành bên trong. Không phải cách nó tự mô tả. Mà là cách nó thực sự hoạt động.",
-      "url": "https://duthaho.dev/claude-interpretability.html"
     }
   ],
   "social": [
@@ -192,7 +193,7 @@
   ],
   "footer": {
     "copyright": "duthaho",
-    "year": 2025,
+    "year": 2026,
     "badge": "Arctic Code Vault Contributor"
   }
 }

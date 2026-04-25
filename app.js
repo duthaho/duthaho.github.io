@@ -1,242 +1,243 @@
 /**
- * DUTHAHO CV - Dynamic Content Loader
+ * DUTHAHO — An Architect's Monograph
  * Loads CV data from data.json and renders it to the page
  */
 
-(function() {
+(function () {
     'use strict';
-
-    // ==========================================================================
-    // Data Fetching
-    // ==========================================================================
 
     async function loadData() {
         try {
             const response = await fetch('data.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data;
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return await response.json();
         } catch (error) {
             console.error('Failed to load CV data:', error);
-            document.getElementById('loading').innerHTML = `
-                <div class="loading__error">
-                    <p>Failed to load CV data</p>
-                    <button onclick="location.reload()">Retry</button>
-                </div>
-            `;
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.innerHTML = `
+                    <div class="loading__error">
+                        <p>The plate failed to load.</p>
+                        <button onclick="location.reload()">Reset</button>
+                    </div>
+                `;
+            }
             throw error;
         }
     }
 
-    // ==========================================================================
-    // Render Functions
-    // ==========================================================================
+    // ------------------------------------------------------------
+    // Overture (Hero)
+    // ------------------------------------------------------------
 
-    function renderHero(data) {
-        const { personal, stats } = data;
+    function renderOverture(data) {
+        const { personal } = data;
 
-        // Update page title
-        document.title = `${personal.nickname} // ${personal.title}`;
+        document.title = `${personal.nickname} — ${personal.title} / A Monograph`;
 
-        // Hero content
-        document.getElementById('hero-title').textContent = personal.title;
-        document.getElementById('hero-name').textContent = personal.name;
-        document.getElementById('hero-description').innerHTML = `
-            ${personal.description}
-            <br>Based in <span class="highlight">${personal.location}</span>.
-        `;
-
-        // Stats
-        const statsHtml = stats.map(stat => `
-            <div class="stat">
-                <span class="stat__value">${stat.value}</span>
-                <span class="stat__label">${stat.label}</span>
-            </div>
-        `).join('');
-        document.getElementById('hero-stats').innerHTML = statsHtml;
+        // Plate footer location
+        const plateFootLoc = document.getElementById('plate-foot-loc');
+        if (plateFootLoc) plateFootLoc.textContent = personal.location.split(',')[0];
     }
 
-    function renderSkills(data) {
+    function renderPlate(data) {
         const { coreSkills, techStack } = data;
+        const { principles } = data.personal.about;
 
-        // Core skills
-        const coreSkillsHtml = coreSkills.map(skill => `
-            <span class="terminal__tag terminal__tag--${skill.type}">${skill.name}</span>
-        `).join('');
-        document.getElementById('core-skills').innerHTML = coreSkillsHtml;
+        document.getElementById('plate-skills').innerHTML = coreSkills
+            .map(s => `<li data-type="${s.type}">${s.name}</li>`)
+            .join('');
 
-        // Tech stack
-        const techStackHtml = techStack.map(tech => `<span>${tech}</span>`).join('');
-        document.getElementById('tech-stack').innerHTML = techStackHtml;
+        document.getElementById('plate-principles').innerHTML = principles
+            .map(p => `<li><span>${p}</span></li>`)
+            .join('');
+
+        document.getElementById('plate-stack').innerHTML = techStack
+            .map(t => `<li>${t}</li>`)
+            .join('');
     }
+
+    // ------------------------------------------------------------
+    // About — essay with drop cap
+    // ------------------------------------------------------------
 
     function renderAbout(data) {
         const { about } = data.personal;
 
-        // About text
-        const aboutTextHtml = `
-            <p class="about__intro">
-                <span class="about__quote">"</span>
-                ${about.intro}
-            </p>
-            ${about.paragraphs.map(p => `<p>${p}</p>`).join('')}
-        `;
-        document.getElementById('about-text').innerHTML = aboutTextHtml;
+        // First letter governs the lead-in: narrow letters (I, l, 1) get a first-word
+        // lede; everything else gets a classic drop cap.
+        const NARROW_INITIAL = /^['"]?[Il1]/;
 
-        // Principles
-        const principlesHtml = about.principles.map(principle => `
-            <li><span class="about__bullet">></span> ${principle}</li>
-        `).join('');
-        document.getElementById('about-principles').innerHTML = principlesHtml;
+        const decorateFirst = (html) => {
+            const stripped = html.replace(/^<[^>]+>/, '');
+            if (NARROW_INITIAL.test(stripped)) {
+                const m = html.match(/^(<[^>]+>)?(\S+)(\s+)([\s\S]*)$/);
+                if (m) {
+                    const lead = m[1] || '';
+                    return `<p class="essay__has-lede">${lead}<span class="essay__lede">${m[2]}</span>${m[3]}${m[4]}</p>`;
+                }
+            }
+            return `<p class="essay__has-dropcap">${html}</p>`;
+        };
+
+        document.getElementById('about-body').innerHTML = about.paragraphs
+            .map((p, i) => (i === 0 ? decorateFirst(p) : `<p>${p}</p>`))
+            .join('');
     }
 
-    function renderExperience(data) {
+    // ------------------------------------------------------------
+    // Practice — ledger of experience
+    // ------------------------------------------------------------
+
+    function renderPractice(data) {
         const { experience } = data;
 
-        const experienceHtml = experience.map((job, index) => {
-            const isLast = index === experience.length - 1;
-            const statusBadge = job.status === 'current'
-                ? '<span class="job__status job__status--active">CURRENT</span>'
+        document.getElementById('practice-ledger').innerHTML = experience.map(job => {
+            const status = job.status === 'current'
+                ? '<span class="ledger__date-status">Current</span>'
                 : '';
             const badge = job.badge
-                ? `<span class="job__badge">${job.badge}</span>`
+                ? `<span class="ledger__date-status ledger__date-status--badge">${job.badge}</span>`
+                : '';
+            const period = job.period
+                .replace(/Present/i, 'Present')
+                .replace(/-/g, '—');
+
+            return `
+                <li class="ledger__item">
+                    <div class="ledger__date">
+                        <span class="ledger__date-period">${period}</span>
+                        ${status}${badge}
+                    </div>
+                    <div class="ledger__body">
+                        <h3 class="ledger__role">${job.title}</h3>
+                        <a href="${job.url}" class="ledger__company" target="_blank" rel="noopener">${job.company}</a>
+                        <p class="ledger__summary">${job.summary}</p>
+                        <div class="ledger__row">
+                            <span class="ledger__row-label">Notes</span>
+                            <ol class="ledger__achievements">
+                                ${job.achievements.map(a => `<li><span>${a}</span></li>`).join('')}
+                            </ol>
+                        </div>
+                        <div class="ledger__row">
+                            <span class="ledger__row-label">Stack</span>
+                            <ul class="ledger__stack">
+                                ${job.stack.map(s => `<li>${s}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            `;
+        }).join('');
+    }
+
+    // ------------------------------------------------------------
+    // Artifacts (Projects)
+    // ------------------------------------------------------------
+
+    function renderArtifacts(data) {
+        const { projects } = data;
+
+        document.getElementById('artifacts-grid').innerHTML = projects.map((project, i) => {
+            const featured = project.featured;
+            const stats = [];
+            if (project.stars) {
+                stats.push(`<span><svg class="artifact__stat-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-star"/></svg>${project.stars}</span>`);
+            }
+            if (project.forks) {
+                stats.push(`<span><svg class="artifact__stat-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-fork"/></svg>${project.forks}</span>`);
+            }
+
+            const id = `A·${String(i + 1).padStart(2, '0')}`;
+            const label = featured
+                ? '<span class="artifact__label">Featured</span>'
                 : '';
 
             return `
-                <article class="job">
-                    <div class="job__marker">
-                        <div class="job__dot"></div>
-                        ${!isLast ? '<div class="job__line"></div>' : ''}
-                    </div>
-                    <div class="job__content">
-                        <header class="job__header">
-                            <div class="job__meta">
-                                <span class="job__date">${job.period}</span>
-                                ${statusBadge}
-                                ${badge}
-                            </div>
-                            <h3 class="job__title">${job.title}</h3>
-                            <a href="${job.url}" class="job__company" target="_blank" rel="noopener">@ ${job.company}</a>
-                        </header>
-                        <div class="job__description">
-                            <p class="job__summary">${job.summary}</p>
-                            <ul class="job__achievements">
-                                ${job.achievements.map(a => `<li>${a}</li>`).join('')}
-                            </ul>
-                            <div class="job__stack">
-                                ${job.stack.map(s => `<span>${s}</span>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            `;
-        }).join('');
-
-        document.getElementById('experience-timeline').innerHTML = experienceHtml;
-    }
-
-    function renderProjects(data) {
-        const { projects } = data;
-
-        const projectsHtml = projects.map(project => {
-            const isFeatured = project.featured;
-            const statsHtml = [];
-
-            if (project.stars) {
-                statsHtml.push(`<span class="project__stat">${project.stars} stars</span>`);
-            }
-            if (project.forks) {
-                statsHtml.push(`<span class="project__stat">${project.forks} forks</span>`);
-            }
-
-            return `
-                <article class="project ${isFeatured ? 'project--featured' : ''}">
-                    <div class="project__content">
-                        ${isFeatured ? '<span class="project__label">Featured</span>' : ''}
-                        <h3 class="project__title">${project.name}</h3>
-                        <p class="project__description">${project.description}</p>
-                        ${statsHtml.length ? `<div class="project__stats">${statsHtml.join('')}</div>` : ''}
-                        <a href="${project.url}" class="project__link" target="_blank" rel="noopener">
-                            ${isFeatured ? 'View on GitHub' : 'View'}
-                            ${isFeatured ? `
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5"/>
-                                </svg>
-                            ` : ''}
+                <article class="artifact ${featured ? 'artifact--featured' : ''}">
+                    <header class="artifact__head">
+                        <span class="artifact__id">PLATE ${id}</span>
+                        ${label}
+                    </header>
+                    <h3 class="artifact__title">${project.name}</h3>
+                    <p class="artifact__desc">${project.description}</p>
+                    <footer class="artifact__foot">
+                        <div class="artifact__stats">${stats.join('') || '<span>—</span>'}</div>
+                        <a href="${project.url}" class="artifact__link" target="_blank" rel="noopener">
+                            <span>View</span>
+                            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
                         </a>
-                    </div>
+                    </footer>
                 </article>
             `;
         }).join('');
-
-        document.getElementById('projects-grid').innerHTML = projectsHtml;
     }
 
-    function renderArticles(data) {
+    // ------------------------------------------------------------
+    // Essays (Writing)
+    // ------------------------------------------------------------
+
+    function renderEssays(data) {
         const { articles } = data;
 
-        const articlesHtml = articles.map((article, index) => `
-            <a href="${article.url}" class="article" target="_blank" rel="noopener">
-                <span class="article__number">${String(index + 1).padStart(2, '0')}</span>
-                <div class="article__content">
-                    <h3 class="article__title">${article.title}</h3>
-                    <p class="article__excerpt">${article.excerpt}</p>
-                </div>
-                <span class="article__arrow">></span>
-            </a>
+        document.getElementById('essays-list').innerHTML = articles.map((article, i) => `
+            <li class="essays__item">
+                <a href="${article.url}" target="_blank" rel="noopener" style="display:contents;">
+                    <span class="essays__index">№ ${String(i + 1).padStart(2, '0')}</span>
+                    <div class="essays__content">
+                        <h3 class="essays__title">${article.title}</h3>
+                        <p class="essays__excerpt">${article.excerpt}</p>
+                    </div>
+                    <span class="essays__arrow">→</span>
+                </a>
+            </li>
         `).join('');
-
-        document.getElementById('articles-list').innerHTML = articlesHtml;
     }
 
-    function renderSocial(data) {
+    // ------------------------------------------------------------
+    // Correspondence (Connect)
+    // ------------------------------------------------------------
+
+    function renderCorrespondence(data) {
         const { social } = data;
 
-        const socialHtml = social.map(link => `
-            <a href="${link.url}" class="connect__link" target="_blank" rel="noopener">
-                <span class="connect__link-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                        <use href="#icon-${link.icon}"></use>
-                    </svg>
-                </span>
-                <span>${link.name}</span>
-            </a>
+        document.getElementById('correspondence-handles').innerHTML = social.map(link => `
+            <li>
+                <a href="${link.url}" class="handle" target="_blank" rel="noopener">
+                    <svg class="handle__icon" viewBox="0 0 24 24"><use href="#icon-${link.icon}"></use></svg>
+                    <span class="handle__name">${link.name}</span>
+                </a>
+            </li>
         `).join('');
-
-        document.getElementById('connect-links').innerHTML = socialHtml;
     }
 
-    function renderFooter(data) {
+    // ------------------------------------------------------------
+    // Colophon (Footer)
+    // ------------------------------------------------------------
+
+    function renderColophon(data) {
         const { footer, personal } = data;
-
-        document.getElementById('footer-copyright').textContent = `${footer.copyright} © ${footer.year}`;
-        document.getElementById('footer-location').textContent = personal.location;
-        document.getElementById('footer-badge').textContent = footer.badge;
+        document.getElementById('colophon-loc').textContent = personal.location;
+        document.getElementById('colophon-badge').textContent = footer.badge;
+        document.getElementById('colophon-copy').textContent = `© ${footer.copyright} · ${footer.year}`;
     }
 
-    // ==========================================================================
-    // Animations & Interactions
-    // ==========================================================================
+    // ------------------------------------------------------------
+    // Animations & interactions
+    // ------------------------------------------------------------
 
     function initAnimations() {
-        // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
                 if (target) {
+                    e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -244,71 +245,45 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-        // Observe elements for animation
-        document.querySelectorAll('.job, .project, .article, .section__header').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll(
+            '.chapter__head, .ledger__item, .artifact, .essays__item'
+        ).forEach(el => observer.observe(el));
     }
 
-    function initTypingEffect(nickname) {
-        const navCommand = document.querySelector('.nav__command');
-        const text = `cd ~/${nickname.toLowerCase()}`;
-
-        if (navCommand) {
-            navCommand.textContent = '';
-            let i = 0;
-
-            const typeWriter = () => {
-                if (i < text.length) {
-                    navCommand.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
-                }
-            };
-
-            setTimeout(typeWriter, 500);
-        }
-    }
-
-    // ==========================================================================
-    // Initialize App
-    // ==========================================================================
+    // ------------------------------------------------------------
+    // Init
+    // ------------------------------------------------------------
 
     async function init() {
         try {
             const data = await loadData();
 
-            // Render all sections
-            renderHero(data);
-            renderSkills(data);
+            renderOverture(data);
+            renderPlate(data);
             renderAbout(data);
-            renderExperience(data);
-            renderProjects(data);
-            renderArticles(data);
-            renderSocial(data);
-            renderFooter(data);
+            renderPractice(data);
+            renderArtifacts(data);
+            renderEssays(data);
+            renderCorrespondence(data);
+            renderColophon(data);
 
-            // Hide loading screen
             const loading = document.getElementById('loading');
-            loading.classList.add('loading--hidden');
-            setTimeout(() => loading.remove(), 300);
+            if (loading) {
+                loading.classList.add('loading--hidden');
+                setTimeout(() => loading.remove(), 700);
+            }
 
-            // Initialize animations
             initAnimations();
-            initTypingEffect(data.personal.nickname);
-
         } catch (error) {
-            console.error('Failed to initialize CV:', error);
+            console.error('Failed to initialize:', error);
         }
     }
 
-    // Start app when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-
 })();

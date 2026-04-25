@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 const USER = process.env.GITHUB_USER || 'duthaho';
 const BLOG_URL = process.env.BLOG_URL || 'https://duthaho.dev/';
+const FEED_URL = new URL('feed.xml', BLOG_URL).href;
 const TOKEN = process.env.GITHUB_TOKEN;
 const DATA_PATH = new URL('../data.json', import.meta.url);
 
@@ -44,21 +45,30 @@ const decode = s => s.replace(/&(amp|lt|gt|quot|#39|apos);/g, m => ENTITIES[m]);
 const stripTags = s => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
 
 async function fetchArticles() {
-  const res = await fetch(BLOG_URL, { headers: { 'User-Agent': 'duthaho-about-updater' } });
-  if (!res.ok) throw new Error(`Blog fetch ${res.status}`);
-  const html = await res.text();
+  const res = await fetch(FEED_URL, { headers: { 'User-Agent': 'duthaho-about-updater' } });
+  if (!res.ok) throw new Error(`Feed fetch ${res.status}`);
+  const xml = await res.text();
 
-  const cardRe = /<a\s+class="[^"]*\bpost-card\b[^"]*"\s+href="([^"]+)"[\s\S]*?<div class="post-title">([\s\S]*?)<\/div>[\s\S]*?<p class="post-excerpt">([\s\S]*?)<\/p>/g;
+  const itemRe = /<item>([\s\S]*?)<\/item>/g;
+  const field = (block, tag) => block.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`))?.[1];
+
   const out = [];
-  for (const m of html.matchAll(cardRe)) {
+  for (const m of xml.matchAll(itemRe)) {
+    const block = m[1];
+    const title = field(block, 'title');
+    const link = field(block, 'link');
+    const desc = field(block, 'description');
+    if (!title || !link || !desc) {
+      throw new Error('Feed item missing required field (title/link/description)');
+    }
     out.push({
-      title: stripTags(m[2]),
-      excerpt: stripTags(m[3]),
-      url: new URL(m[1], BLOG_URL).href,
+      title: stripTags(title),
+      excerpt: stripTags(desc),
+      url: stripTags(link),
     });
     if (out.length >= ARTICLE_COUNT) break;
   }
-  if (out.length === 0) throw new Error('No post cards parsed — blog template may have changed');
+  if (out.length === 0) throw new Error('No items found in feed');
   return out;
 }
 
