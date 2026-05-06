@@ -3,196 +3,176 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUTHAHO — Solution Architect / A Monograph</title>
-    <meta name="description" content="An architect's monograph. Duong Thanh Hop, Solution Architect.">
+    <title>duthaho — Solution Architect</title>
+    <meta name="description" content="Duong Thanh Hop (@duthaho) — Solution Architect. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox.">
     <link href="favicon.ico" rel="icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Paper grain overlay -->
-    <div class="grain" aria-hidden="true"></div>
-
-    <!-- Decorative grid baseline (architectural drawing reference) -->
-    <div class="baseline" aria-hidden="true">
-        <span class="baseline__tick">N</span>
-        <span class="baseline__rule"></span>
-        <span class="baseline__tick">S</span>
+    <!-- Skeleton loader -->
+    <div id="loading" class="skeleton-loader" aria-hidden="true">
+        <div class="skeleton-loader__sidebar">
+            <div class="skeleton skeleton--avatar"></div>
+            <div class="skeleton skeleton--name"></div>
+            <div class="skeleton skeleton--handle"></div>
+            <div class="skeleton skeleton--line"></div>
+            <div class="skeleton skeleton--line"></div>
+            <div class="skeleton skeleton--block"></div>
+        </div>
+        <div class="skeleton-loader__main">
+            <div class="skeleton skeleton--card"></div>
+            <div class="skeleton skeleton--grid"></div>
+        </div>
     </div>
 
-    <!-- Loading state -->
-    <div id="loading" class="loading" aria-hidden="true">
-        <span class="loading__mark">DTH</span>
-        <span class="loading__text">setting type</span>
-    </div>
-
-    <!-- Masthead / Nav -->
-    <header class="masthead">
-        <div class="masthead__row">
-            <a href="#" class="masthead__seal">
-                <span class="masthead__seal-mark">⌂</span>
-                <span class="masthead__seal-text">Duthaho<span class="masthead__seal-em">·</span>Atelier</span>
+    <!-- Sticky header -->
+    <header class="appbar">
+        <div class="appbar__inner">
+            <a href="#" class="appbar__brand">
+                <span class="appbar__brand-mark">⌂</span>
+                <span class="appbar__brand-name">duthaho</span>
             </a>
-            <span class="masthead__issue">
-                <span>Volume X</span>
-                <span class="masthead__sep">/</span>
-                <span>Issue N<sup>o</sup> 01</span>
-                <span class="masthead__sep">/</span>
-                <span>MMXXVI</span>
-            </span>
-            <nav class="masthead__nav" aria-label="Primary">
-                <a href="#about">About</a>
-                <a href="#practice">Practice</a>
-                <a href="#artifacts">Artifacts</a>
-                <a href="#essays">Essays</a>
+            <nav class="appbar__nav" aria-label="Primary">
+                <a href="#readme">Overview</a>
+                <a href="#pinned">Pinned</a>
+                <a href="#experience">Experience</a>
+                <a href="#writing">Writing</a>
+                <a href="#topics">Topics</a>
             </nav>
+            <a href="https://github.com/duthaho" target="_blank" rel="noopener" class="appbar__cta">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><use href="#icon-github"/></svg>
+                <span>GitHub</span>
+            </a>
         </div>
     </header>
 
-    <!-- Overture / Hero -->
-    <section class="overture" id="top">
-        <div class="overture__inner">
-            <div class="overture__meta">
-                <span class="overture__rule" aria-hidden="true"></span>
-                <span class="overture__meta-text">A Monograph<br>in Four Chapters</span>
-            </div>
+    <!-- Profile layout: sidebar + main -->
+    <div class="profile">
 
-            <article class="overture__essay" id="about">
-                <div class="overture__essay-body" id="about-body"></div>
-            </article>
+        <!-- =========== SIDEBAR =========== -->
+        <aside class="profile-sidebar">
+            <div class="profile-sidebar__inner">
 
-            <div class="overture__plate">
-                <div class="plate">
-                    <div class="plate__head">
-                        <span class="plate__id">SHEET A1·01</span>
-                        <span class="plate__title">Specifications</span>
-                        <span class="plate__scale">scale 1 : 1</span>
-                    </div>
-                    <div class="plate__body">
-                        <div class="plate__row">
-                            <span class="plate__row-label">Discipline</span>
-                            <ul class="plate__skills" id="plate-skills"></ul>
-                        </div>
-                        <div class="plate__row">
-                            <span class="plate__row-label">Principles</span>
-                            <ol class="plate__principles" id="plate-principles"></ol>
-                        </div>
-                        <div class="plate__row">
-                            <span class="plate__row-label">Materials</span>
-                            <ul class="plate__stack" id="plate-stack"></ul>
-                        </div>
-                    </div>
-                    <div class="plate__foot">
-                        <span>drawn · DTH</span>
-                        <span class="plate__foot-sep">·</span>
-                        <span id="plate-foot-loc">Da Nang</span>
-                        <span class="plate__foot-sep">·</span>
-                        <span>rev. 04/26</span>
-                    </div>
+                <!-- Avatar -->
+                <div class="avatar" aria-hidden="true">
+                    <span class="avatar__mark">DTH</span>
                 </div>
-            </div>
 
-        </div>
-    </section>
-
-    <!-- Practice / Experience -->
-    <section id="practice" class="chapter chapter--practice">
-        <div class="chapter__inner">
-            <div class="chapter__head">
-                <span class="chapter__numeral">I</span>
-                <span class="chapter__rule" aria-hidden="true"></span>
-                <span class="chapter__kicker">Chapter</span>
-                <h2 class="chapter__title">A Decade <em>of practice.</em></h2>
-            </div>
-
-            <ol class="ledger" id="practice-ledger"></ol>
-        </div>
-    </section>
-
-    <!-- Artifacts / Projects -->
-    <section id="artifacts" class="chapter chapter--artifacts">
-        <div class="chapter__inner">
-            <div class="chapter__head">
-                <span class="chapter__numeral">II</span>
-                <span class="chapter__rule" aria-hidden="true"></span>
-                <span class="chapter__kicker">Chapter</span>
-                <h2 class="chapter__title">Open <em>artifacts.</em></h2>
-            </div>
-
-            <div class="artifacts" id="artifacts-grid"></div>
-
-            <a href="https://github.com/duthaho?tab=repositories" class="cta-link" target="_blank" rel="noopener">
-                <span>The full archive on GitHub</span>
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M7 17L17 7m0 0H9m8 0v8"/></svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- Essays / Writing -->
-    <section id="essays" class="chapter chapter--essays">
-        <div class="chapter__inner">
-            <div class="chapter__head">
-                <span class="chapter__numeral">III</span>
-                <span class="chapter__rule" aria-hidden="true"></span>
-                <span class="chapter__kicker">Chapter</span>
-                <h2 class="chapter__title">Recent <em>essays.</em></h2>
-            </div>
-
-            <ol class="essays" id="essays-list"></ol>
-
-            <a href="https://duthaho.dev/" class="cta-link" target="_blank" rel="noopener">
-                <span>The complete shelf at duthaho.dev</span>
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M7 17L17 7m0 0H9m8 0v8"/></svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- Correspondence / Connect -->
-    <section id="correspondence" class="chapter chapter--correspondence">
-        <div class="chapter__inner">
-            <div class="chapter__head chapter__head--centered">
-                <span class="chapter__numeral">IV</span>
-                <span class="chapter__kicker">Chapter</span>
-                <h2 class="chapter__title">Correspondence<em>.</em></h2>
-            </div>
-
-            <p class="correspondence__lede">
-                Open to discussing architecture challenges, collaboration,
-                or just <em>geeking out about tech</em>. The door is unlocked.
-            </p>
-            <ul class="correspondence__handles" id="correspondence-handles"></ul>
-        </div>
-    </section>
-
-    <!-- Footer / Library card -->
-    <footer class="colophon">
-        <div class="colophon__card">
-            <div class="colophon__row colophon__row--head">
-                <span class="colophon__head-mark">⌂</span>
-                <span class="colophon__head-text">DUTHAHO &nbsp;·&nbsp; ATELIER</span>
-                <span class="colophon__head-spine">VOL X · N<sup>o</sup>01</span>
-            </div>
-            <div class="colophon__row colophon__row--body">
-                <div class="colophon__col">
-                    <span class="colophon__label">Set in</span>
-                    <span>Fraunces &amp; JetBrains Mono</span>
+                <!-- Identity -->
+                <div class="identity">
+                    <h1 class="identity__name" id="identity-name"></h1>
+                    <p class="identity__handle" id="identity-handle"></p>
+                    <p class="identity__title" id="identity-title"></p>
+                    <p class="identity__bio" id="identity-bio"></p>
                 </div>
-                <div class="colophon__col">
-                    <span class="colophon__label">Drawn from</span>
-                    <span id="colophon-loc">Da Nang, Vietnam</span>
-                </div>
-                <div class="colophon__col">
-                    <span class="colophon__label">Filed under</span>
-                    <span id="colophon-badge">—</span>
-                </div>
-                <div class="colophon__col">
-                    <span class="colophon__label">Imprint</span>
-                    <span id="colophon-copy">© —</span>
-                </div>
+
+                <!-- Contact list -->
+                <ul class="contact" id="sidebar-contact"></ul>
+
+                <!-- Highlights -->
+                <section class="sidebar-block">
+                    <h2 class="sidebar-block__title">Highlights</h2>
+                    <ul class="highlights" id="sidebar-stats"></ul>
+                </section>
+
+                <!-- Achievements -->
+                <section class="sidebar-block">
+                    <h2 class="sidebar-block__title">Achievements</h2>
+                    <ul class="achievements" id="sidebar-achievements"></ul>
+                </section>
+
+                <!-- Most-used languages -->
+                <section class="sidebar-block">
+                    <h2 class="sidebar-block__title">Most-used languages <span class="sidebar-block__hint">approx.</span></h2>
+                    <div class="lang-bar" id="sidebar-languages"></div>
+                </section>
+
+                <!-- Organizations -->
+                <section class="sidebar-block">
+                    <h2 class="sidebar-block__title">Organizations</h2>
+                    <ul class="orgs" id="sidebar-orgs"></ul>
+                </section>
+
             </div>
-        </div>
+        </aside>
+
+        <!-- =========== MAIN =========== -->
+        <main class="profile-main">
+
+            <!-- Profile README -->
+            <section class="readme-card" id="readme">
+                <header class="readme-card__head">
+                    <span class="readme-card__chip">
+                        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><use href="#icon-book"/></svg>
+                        README.md
+                    </span>
+                    <span class="readme-card__path">duthaho / <strong>duthaho</strong></span>
+                </header>
+                <article class="readme-card__body" id="readme-body"></article>
+            </section>
+
+            <!-- Pinned -->
+            <section class="section" id="pinned">
+                <header class="section__head">
+                    <h2 class="section__title">
+                        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" class="section__title-glyph"><use href="#icon-pin"/></svg>
+                        Pinned
+                    </h2>
+                </header>
+                <div class="pinned-grid" id="pinned-grid"></div>
+                <a href="https://github.com/duthaho?tab=repositories" target="_blank" rel="noopener" class="section__more">
+                    The full archive on GitHub
+                    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+                </a>
+            </section>
+
+            <!-- Experience -->
+            <section class="section" id="experience">
+                <header class="section__head">
+                    <h2 class="section__title">
+                        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" class="section__title-glyph"><use href="#icon-history"/></svg>
+                        Experience
+                    </h2>
+                    <span class="section__count" id="experience-count"></span>
+                </header>
+                <ol class="feed" id="experience-feed"></ol>
+            </section>
+
+            <!-- Recent writing -->
+            <section class="section" id="writing">
+                <header class="section__head">
+                    <h2 class="section__title">
+                        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" class="section__title-glyph"><use href="#icon-pencil"/></svg>
+                        Recent writing
+                    </h2>
+                </header>
+                <ol class="writing-feed" id="writing-feed"></ol>
+                <a href="https://duthaho.dev/" target="_blank" rel="noopener" class="section__more">
+                    The complete shelf at duthaho.dev
+                    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+                </a>
+            </section>
+
+            <!-- Topics & interests -->
+            <section class="section" id="topics">
+                <header class="section__head">
+                    <h2 class="section__title">
+                        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" class="section__title-glyph"><use href="#icon-leaf"/></svg>
+                        Topics &amp; interests
+                    </h2>
+                </header>
+                <div class="topics-grid" id="topics-grid"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-foot">
+        <div class="page-foot__inner" id="page-foot"></div>
     </footer>
 
     <!-- SVG icon set -->
@@ -203,6 +183,16 @@
         <symbol id="icon-globe" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></symbol>
         <symbol id="icon-star" viewBox="0 0 16 16"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></symbol>
         <symbol id="icon-fork" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></symbol>
+        <symbol id="icon-repo" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></symbol>
+        <symbol id="icon-book" viewBox="0 0 16 16"><path fill="currentColor" d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"/></symbol>
+        <symbol id="icon-pin" viewBox="0 0 16 16"><path fill="currentColor" d="m11.294.984 3.722 3.722a1.75 1.75 0 0 1-.504 2.826l-1.327.613a3.089 3.089 0 0 0-1.707 2.084l-.584 2.454c-.317 1.332-1.972 1.8-2.94.832L5.75 11.311 1.78 15.28a.749.749 0 1 1-1.06-1.06l3.969-3.97-2.204-2.204c-.968-.968-.5-2.623.832-2.94l2.454-.584a3.089 3.089 0 0 0 2.084-1.707l.613-1.327a1.75 1.75 0 0 1 2.826-.504Z"/></symbol>
+        <symbol id="icon-history" viewBox="0 0 16 16"><path fill="currentColor" d="m.427 1.927 1.215 1.215a8.002 8.002 0 1 1-1.6 5.685.75.75 0 1 1 1.493-.154 6.5 6.5 0 1 0 1.18-4.601L2.6 5.098a.25.25 0 0 1-.177.427H.252a.25.25 0 0 1-.25-.25V2.104a.25.25 0 0 1 .427-.177ZM7.75 4a.75.75 0 0 1 .75.75v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5A.75.75 0 0 1 7.75 4Z"/></symbol>
+        <symbol id="icon-pencil" viewBox="0 0 16 16"><path fill="currentColor" d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.756l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"/></symbol>
+        <symbol id="icon-leaf" viewBox="0 0 16 16"><path fill="currentColor" d="M14.064 0h.186C14.664 0 15 .336 15 .75v6.5a5.75 5.75 0 0 1-11.5 0V.75c0-.414.336-.75.75-.75h.186c.6 0 1.07.49 1.05 1.075-.066 1.852-.265 5.295.5 6.07.6.6 1.6 1 2.764 1V.75a.75.75 0 0 1 1.5 0V8.145c1.164 0 2.164-.4 2.764-1 .764-.775.566-4.218.5-6.07A1.045 1.045 0 0 1 14.064 0Z"/></symbol>
+        <symbol id="icon-pin-loc" viewBox="0 0 16 16"><path fill="currentColor" d="M11.536 3.464a5 5 0 0 1 0 7.072L8 14.07l-3.536-3.535a5 5 0 1 1 7.072-7.072v.001ZM8 8.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></symbol>
+        <symbol id="icon-mail" viewBox="0 0 16 16"><path fill="currentColor" d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></symbol>
+        <symbol id="icon-link" viewBox="0 0 16 16"><path fill="currentColor" d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"/></symbol>
+        <symbol id="icon-check" viewBox="0 0 16 16"><path fill="currentColor" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></symbol>
     </svg>
 
     <script src="app.js"></script>

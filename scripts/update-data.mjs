@@ -58,14 +58,20 @@ async function fetchArticles() {
     const title = field(block, 'title');
     const link = field(block, 'link');
     const desc = field(block, 'description');
+    const pubDate = field(block, 'pubDate');
     if (!title || !link || !desc) {
       throw new Error('Feed item missing required field (title/link/description)');
     }
-    out.push({
+    const item = {
       title: stripTags(title),
       excerpt: stripTags(desc),
       url: stripTags(link),
-    });
+    };
+    if (pubDate) {
+      const d = new Date(stripTags(pubDate));
+      if (!isNaN(d)) item.date = d.toISOString().slice(0, 10);
+    }
+    out.push(item);
     if (out.length >= ARTICLE_COUNT) break;
   }
   if (out.length === 0) throw new Error('No items found in feed');

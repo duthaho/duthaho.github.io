@@ -124,7 +124,7 @@
       "name": "claudekit",
       "description": "The open-source AI dev toolkit for Claude Code. Ship faster with 27+ commands, 7 modes, and 34+ skills. Free forever.",
       "url": "https://github.com/duthaho/claudekit",
-      "stars": 87,
+      "stars": 90,
       "forks": 54
     },
     {
@@ -146,28 +146,41 @@
     {
       "title": "Tôi đọc source code bị leak của Claude Code — và nhận ra mình đang build agent sai từ đầu",
       "excerpt": "Khi Claude Code bị leak, mọi người chú ý đến drama xung quanh vụ leak. Mình chú ý đến harness. Đọc kỹ phần đó, mình thấy mình đang nhìn vào một production agentic system thật sự được vận hành ở scale lớn — và hầu hết những thứ mình tự làm từ trước đến nay đều thiếu những thành phần quan trọng.",
-      "url": "https://duthaho.dev/agentic-patterns.html"
+      "url": "https://duthaho.dev/agentic-patterns.html",
+      "date": "2026-04-25"
     },
     {
       "title": "Karpathy vừa mô tả đúng thứ tôi đã thất bại khi xây — và lý do tôi sẽ thử lại",
       "excerpt": "Andrej Karpathy vừa post một gist về pattern xây personal knowledge base bằng LLM. Đọc xong mình ngồi im một lúc — không phải vì ý tưởng mới, mà vì ông đặt tên đúng cho vấn đề mình đã loay hoay với nó mà không biết gọi là gì.",
-      "url": "https://duthaho.dev/llm-wiki.html"
+      "url": "https://duthaho.dev/llm-wiki.html",
+      "date": "2026-04-16"
     },
     {
       "title": "Claude không đếm tin nhắn — nó đếm token. Và tôi đã dùng sai từ đầu.",
       "excerpt": "Một thread trên X của @0x_kaize về 10 thói quen giúp hết cảnh bị limit giữa chừng. Đọc xong mình nhận ra mình đang lãng phí token theo ít nhất ba cách khác nhau — mỗi ngày, không biết từ bao giờ.",
-      "url": "https://duthaho.dev/claude-token-habits.html"
+      "url": "https://duthaho.dev/claude-token-habits.html",
+      "date": "2026-04-15"
     },
     {
       "title": "Hai dòng code ẩn khiến Claude Code ngốn token gấp 4 lần — và cái kết không ai ngờ",
       "excerpt": "Một người dùng Reddit reverse-engineer minified source code của Claude Code, tìm ra bug caching khiến token drain về đêm, và patch nó bằng đúng hai dòng.",
-      "url": "https://duthaho.dev/claude-code-token-drain.html"
+      "url": "https://duthaho.dev/claude-code-token-drain.html",
+      "date": "2026-04-02"
     },
     {
       "title": "AI không phải phép màu — nhưng bạn đang bị ai đó cố tình làm bạn quên điều đó",
       "excerpt": "Đọc một bài khá nặng tay về hype AI, có chỗ đồng ý, có chỗ không. Viết lại theo góc nhìn của người đang xây sản phẩm thật bằng AI thật.",
-      "url": "https://duthaho.dev/ai-hype.html"
+      "url": "https://duthaho.dev/ai-hype.html",
+      "date": "2026-04-01"
     }
+  ],
+  "interests": [
+    { "name": "Distributed Systems", "icon": "distributed", "summary": "Microservices, queues, eventual consistency." },
+    { "name": "Platform Architecture", "icon": "platform", "summary": "Internal platforms, paved roads, golden paths." },
+    { "name": "AI Tooling", "icon": "ai", "summary": "Agentic systems, harnesses, dev productivity." },
+    { "name": "Open Source", "icon": "opensource", "summary": "claudekit, js-quiz, and the long tail." },
+    { "name": "Mentorship", "icon": "mentorship", "summary": "Growing engineers, writing the playbooks." },
+    { "name": "System Design", "icon": "systemdesign", "summary": "Trade-offs, sketches, and the diagrams behind them." }
   ],
   "social": [
     {
