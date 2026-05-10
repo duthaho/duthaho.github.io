@@ -122,10 +122,10 @@
     },
     {
       "name": "claudekit",
-      "description": "The open-source AI dev toolkit for Claude Code. Ship faster with 27+ commands, 7 modes, and 34+ skills. Free forever.",
+      "description": "A verification-first engineering toolkit for Claude Code. Built for senior ICs and tech leads who already know how to ship production code — and want a workflow that keeps the discipline tight without getting in the way.",
       "url": "https://github.com/duthaho/claudekit",
-      "stars": 90,
-      "forks": 54
+      "stars": 92,
+      "forks": 56
     },
     {
       "name": "bookmark",
@@ -144,6 +144,18 @@
   ],
   "articles": [
     {
+      "title": "Những thứ tôi học được sau 5 năm làm engineer — viết lúc hơi ngà ngà",
+      "excerpt": "Đọc một bài Reddit cũ — một data engineer say rượu viết thật thà về 10 năm đi làm. Bài đó hay đến mức tôi phải ngồi viết lại theo góc nhìn của mình. Không phải tóm tắt, không phải dịch — là phản ứng thật, từ người đang ngồi uống bia một mình và đồng ý với khoảng 80% những gì ông ấy nói.",
+      "url": "https://duthaho.dev/things-ive-learned.html",
+      "date": "2026-05-05"
+    },
+    {
+      "title": "Prompt engineering không khó như bạn nghĩ — và không dễ như người ta nói",
+      "excerpt": "Có hàng trăm bài viết về prompt engineering. Hầu hết đều giải thích lại cùng những khái niệm: zero-shot, few-shot, chain-of-thought. Bài này không cố giải thích khác — mà nói thẳng tại sao hầu hết advice không apply được vào production, và những gì thực sự quan trọng khi bạn không phải đang demo mà đang build.",
+      "url": "https://duthaho.dev/effective-prompt-engineering.html",
+      "date": "2026-05-01"
+    },
+    {
       "title": "Tôi đọc source code bị leak của Claude Code — và nhận ra mình đang build agent sai từ đầu",
       "excerpt": "Khi Claude Code bị leak, mọi người chú ý đến drama xung quanh vụ leak. Mình chú ý đến harness. Đọc kỹ phần đó, mình thấy mình đang nhìn vào một production agentic system thật sự được vận hành ở scale lớn — và hầu hết những thứ mình tự làm từ trước đến nay đều thiếu những thành phần quan trọng.",
       "url": "https://duthaho.dev/agentic-patterns.html",
@@ -160,18 +172,6 @@
       "excerpt": "Một thread trên X của @0x_kaize về 10 thói quen giúp hết cảnh bị limit giữa chừng. Đọc xong mình nhận ra mình đang lãng phí token theo ít nhất ba cách khác nhau — mỗi ngày, không biết từ bao giờ.",
       "url": "https://duthaho.dev/claude-token-habits.html",
       "date": "2026-04-15"
-    },
-    {
-      "title": "Hai dòng code ẩn khiến Claude Code ngốn token gấp 4 lần — và cái kết không ai ngờ",
-      "excerpt": "Một người dùng Reddit reverse-engineer minified source code của Claude Code, tìm ra bug caching khiến token drain về đêm, và patch nó bằng đúng hai dòng.",
-      "url": "https://duthaho.dev/claude-code-token-drain.html",
-      "date": "2026-04-02"
-    },
-    {
-      "title": "AI không phải phép màu — nhưng bạn đang bị ai đó cố tình làm bạn quên điều đó",
-      "excerpt": "Đọc một bài khá nặng tay về hype AI, có chỗ đồng ý, có chỗ không. Viết lại theo góc nhìn của người đang xây sản phẩm thật bằng AI thật.",
-      "url": "https://duthaho.dev/ai-hype.html",
-      "date": "2026-04-01"
     }
   ],
   "interests": [
