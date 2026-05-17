@@ -125,7 +125,7 @@
       "description": "A verification-first engineering toolkit for Claude Code. Built for senior ICs and tech leads who already know how to ship production code — and want a workflow that keeps the discipline tight without getting in the way.",
       "url": "https://github.com/duthaho/claudekit",
       "stars": 92,
-      "forks": 56
+      "forks": 55
     },
     {
       "name": "bookmark",
