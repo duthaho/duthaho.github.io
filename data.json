@@ -124,8 +124,8 @@
       "name": "claudekit",
       "description": "A verification-first engineering toolkit for Claude Code. Built for senior ICs and tech leads who already know how to ship production code — and want a workflow that keeps the discipline tight without getting in the way.",
       "url": "https://github.com/duthaho/claudekit",
-      "stars": 95,
-      "forks": 54
+      "stars": 96,
+      "forks": 55
     },
     {
       "name": "bookmark",
@@ -143,6 +143,12 @@
     }
   ],
   "articles": [
+    {
+      "title": "Hầu hết note của tôi chết trong một cái folder — và tôi đã sửa nhầm vấn đề suốt hai năm",
+      "excerpt": "Đọc một guide về cách xây hệ thống Obsidian thiết kế từ phía ngược lại: không tối ưu cho lúc lưu, mà cho lúc dùng. Đọc xong mình hiểu tại sao cái vault mấy trăm note của mình chưa bao giờ trả lại cái gì.",
+      "url": "https://duthaho.dev/notes-that-get-used.html",
+      "date": "2026-05-29"
+    },
     {
       "title": "Những thứ tôi học được sau 5 năm làm engineer — viết lúc hơi ngà ngà",
       "excerpt": "Đọc một bài Reddit cũ — một data engineer say rượu viết thật thà về 10 năm đi làm. Bài đó hay đến mức tôi phải ngồi viết lại theo góc nhìn của mình. Không phải tóm tắt, không phải dịch — là phản ứng thật, từ người đang ngồi uống bia một mình và đồng ý với khoảng 80% những gì ông ấy nói.",
@@ -166,12 +172,6 @@
       "excerpt": "Andrej Karpathy vừa post một gist về pattern xây personal knowledge base bằng LLM. Đọc xong mình ngồi im một lúc — không phải vì ý tưởng mới, mà vì ông đặt tên đúng cho vấn đề mình đã loay hoay với nó mà không biết gọi là gì.",
       "url": "https://duthaho.dev/llm-wiki.html",
       "date": "2026-04-16"
-    },
-    {
-      "title": "Claude không đếm tin nhắn — nó đếm token. Và tôi đã dùng sai từ đầu.",
-      "excerpt": "Một thread trên X của @0x_kaize về 10 thói quen giúp hết cảnh bị limit giữa chừng. Đọc xong mình nhận ra mình đang lãng phí token theo ít nhất ba cách khác nhau — mỗi ngày, không biết từ bao giờ.",
-      "url": "https://duthaho.dev/claude-token-habits.html",
-      "date": "2026-04-15"
     }
   ],
   "interests": [
