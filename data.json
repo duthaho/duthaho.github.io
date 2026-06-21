@@ -124,8 +124,8 @@
       "name": "claudekit",
       "description": "A verification-first engineering toolkit for Claude Code. Built for senior ICs and tech leads who already know how to ship production code — and want a workflow that keeps the discipline tight without getting in the way.",
       "url": "https://github.com/duthaho/claudekit",
-      "stars": 97,
-      "forks": 55
+      "stars": 98,
+      "forks": 56
     },
     {
       "name": "bookmark",
@@ -144,6 +144,24 @@
   ],
   "articles": [
     {
+      "title": "Chín câu hỏi mình giờ luôn hỏi khi đi phỏng vấn",
+      "excerpt": "Một bài của Louise Deason về chín câu hỏi nên hỏi ngược nhà tuyển dụng — không phải để gây ấn tượng, mà để biết mình sắp bước vào đâu. Đọc xong mình nhận ra suốt mấy năm đi phỏng vấn, mình toàn ngồi sai phía của cái bàn.",
+      "url": "https://duthaho.dev/questions-i-ask-in-interviews.html",
+      "date": "2026-06-16"
+    },
+    {
+      "title": "Claude Code trong codebase lớn: cách nó hoạt động và bắt đầu từ đâu",
+      "excerpt": "Claude Code vận hành trong monorepo nhiều triệu dòng bằng agentic search thay vì index. Bài này tóm tắt cách nó hoạt động, các lớp harness cần dựng để mở rộng, và một lộ trình bắt đầu cụ thể cho codebase lớn.",
+      "url": "https://duthaho.dev/claude-code-large-codebases.html",
+      "date": "2026-06-15"
+    },
+    {
+      "title": "Đừng prompt agent nữa — hãy thiết kế vòng lặp prompt nó",
+      "excerpt": "Một câu của Peter Steinberger đạt 2.2 triệu view khiến cả giới dev cãi nhau cả tuần. Đọc xong mình nhận ra mình vẫn đang kẹt ở thời \"chat\" — và cái giá thật sự không nằm ở token.",
+      "url": "https://duthaho.dev/loop-engineering.html",
+      "date": "2026-06-14"
+    },
+    {
       "title": "Hầu hết note của tôi chết trong một cái folder — và tôi đã sửa nhầm vấn đề suốt hai năm",
       "excerpt": "Đọc một guide về cách xây hệ thống Obsidian thiết kế từ phía ngược lại: không tối ưu cho lúc lưu, mà cho lúc dùng. Đọc xong mình hiểu tại sao cái vault mấy trăm note của mình chưa bao giờ trả lại cái gì.",
       "url": "https://duthaho.dev/notes-that-get-used.html",
@@ -154,24 +172,6 @@
       "excerpt": "Đọc một bài Reddit cũ — một data engineer say rượu viết thật thà về 10 năm đi làm. Bài đó hay đến mức tôi phải ngồi viết lại theo góc nhìn của mình. Không phải tóm tắt, không phải dịch — là phản ứng thật, từ người đang ngồi uống bia một mình và đồng ý với khoảng 80% những gì ông ấy nói.",
       "url": "https://duthaho.dev/things-ive-learned.html",
       "date": "2026-05-05"
-    },
-    {
-      "title": "Prompt engineering không khó như bạn nghĩ — và không dễ như người ta nói",
-      "excerpt": "Có hàng trăm bài viết về prompt engineering. Hầu hết đều giải thích lại cùng những khái niệm: zero-shot, few-shot, chain-of-thought. Bài này không cố giải thích khác — mà nói thẳng tại sao hầu hết advice không apply được vào production, và những gì thực sự quan trọng khi bạn không phải đang demo mà đang build.",
-      "url": "https://duthaho.dev/effective-prompt-engineering.html",
-      "date": "2026-05-01"
-    },
-    {
-      "title": "Tôi đọc source code bị leak của Claude Code — và nhận ra mình đang build agent sai từ đầu",
-      "excerpt": "Khi Claude Code bị leak, mọi người chú ý đến drama xung quanh vụ leak. Mình chú ý đến harness. Đọc kỹ phần đó, mình thấy mình đang nhìn vào một production agentic system thật sự được vận hành ở scale lớn — và hầu hết những thứ mình tự làm từ trước đến nay đều thiếu những thành phần quan trọng.",
-      "url": "https://duthaho.dev/agentic-patterns.html",
-      "date": "2026-04-25"
-    },
-    {
-      "title": "Karpathy vừa mô tả đúng thứ tôi đã thất bại khi xây — và lý do tôi sẽ thử lại",
-      "excerpt": "Andrej Karpathy vừa post một gist về pattern xây personal knowledge base bằng LLM. Đọc xong mình ngồi im một lúc — không phải vì ý tưởng mới, mà vì ông đặt tên đúng cho vấn đề mình đã loay hoay với nó mà không biết gọi là gì.",
-      "url": "https://duthaho.dev/llm-wiki.html",
-      "date": "2026-04-16"
     }
   ],
   "interests": [
