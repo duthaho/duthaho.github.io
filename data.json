@@ -34,8 +34,8 @@
   ],
   "techStack": [
     "Python", "TypeScript", "Django", "FastAPI",
-    "Node.js", "React", "Vue.js", "MongoDB",
-    "MySQL", "Redis", "Docker", "AWS"
+    "Node.js", "Vue.js", "React", "MongoDB",
+    "MySQL", "Redis", "Kubernetes", "Docker", "AWS"
   ],
   "experience": [
     {
@@ -45,13 +45,14 @@
       "period": "2020 - 2025",
       "summary": "Drove architectural decisions for an AI-powered recruitment platform serving the world's leading talent acquisition teams — 1M+ daily requests.",
       "achievements": [
-        "Migrated a legacy <strong>jQuery front-end to Nuxt/Vue.js</strong> across the platform",
-        "Improved system performance with <strong>model caching</strong> on hot data paths",
+        "Architected a URL-shortening service on <strong>DocumentDB</strong> to take hot-path traffic off MySQL — solved <strong>dual-write consistency</strong> and migrated <strong>billions of records</strong> with zero downtime",
+        "Drove the infrastructure migration from <strong>SaltStack to Kubernetes</strong>, unlocking repeatable deploys and elastic scaling",
+        "Established <strong>event-driven architecture and DDD patterns</strong> as paved roads for the platform's services",
         "Led the platform-wide migration from <strong>Python 2 to Python 3</strong> with zero downtime",
-        "Built <strong>performance tracking and profiling</strong> tooling to find bottlenecks before users did",
-        "Designed <strong>CI/CD workflows</strong> and applied design patterns to keep the codebase clean as it grew"
+        "Migrated a legacy <strong>jQuery front-end to Nuxt/Vue.js</strong> across the platform",
+        "Improved performance with <strong>model caching</strong> on hot data paths and built <strong>profiling tooling</strong> to catch bottlenecks before users did"
       ],
-      "stack": ["Python", "Django", "Vue.js", "Nuxt.js", "MySQL", "Redis", "Docker", "AWS"]
+      "stack": ["Python", "Django", "Vue.js", "Nuxt.js", "MySQL", "DocumentDB", "Redis", "Kubernetes", "Docker", "AWS"]
     },
     {
       "title": "Senior Full-Stack Engineer",
