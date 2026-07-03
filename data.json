@@ -10,7 +10,7 @@
       "paragraphs": [
         "I'm a <strong>Solution Architect</strong> who keeps both eyes on the machine and the room. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox, I've designed platforms that handle millions of requests and led the teams that own them long after the diagrams are filed away.",
         "My work tends to live at the intersection of <strong>system design</strong> and <strong>team design</strong> — drawing the architecture, writing the playbooks, and coaching the engineers who'll inherit it. Good systems aren't shipped, they're inherited; I optimize for the engineer reading this code on a bad Wednesday.",
-        "Outside the day job I write essays at <strong>duthaho.dev</strong>, contribute to open-source AI tooling, and treat every codebase as a teaching artifact. The strongest architectures, in my experience, emerge from understanding both the code and the people who write it."
+        "These days I'm building my own products — writing essays at <strong>duthaho.dev</strong>, shipping open-source AI tooling, and treating every codebase as a teaching artifact. The strongest architectures, in my experience, emerge from understanding both the code and the people who write it."
       ],
       "principles": [
         "SOLID over clever",
@@ -24,7 +24,7 @@
   "stats": [
     { "value": "10+", "label": "years in practice" },
     { "value": "1M+", "label": "daily requests served" },
-    { "value": "180+", "label": "open-source stars" }
+    { "value": "250+", "label": "open-source stars" }
   ],
   "coreSkills": [
     { "name": "Distributed Systems", "type": "arch" },
@@ -42,17 +42,16 @@
       "title": "Solution Architect",
       "company": "Paradox",
       "url": "https://paradox.ai/",
-      "period": "2020 - Present",
-      "status": "current",
-      "summary": "Leading architectural decisions for an AI-powered recruitment platform serving the world's leading talent acquisition teams.",
+      "period": "2020 - 2025",
+      "summary": "Drove architectural decisions for an AI-powered recruitment platform serving the world's leading talent acquisition teams — 1M+ daily requests.",
       "achievements": [
-        "Architected microservices serving <strong>1M+ daily candidate conversations</strong>",
-        "Cut API p95 latency by <strong>40%</strong> through query optimization and strategic caching",
-        "Led monolith-to-microservices migration — <strong>60% faster deploys</strong> with isolated blast radius",
-        "Designed <strong>50+ REST endpoints</strong> with OpenAPI specs and contract testing",
-        "Mentored a team of <strong>8+ engineers</strong> on system design, code review, and trade-off thinking"
+        "Migrated a legacy <strong>jQuery front-end to Nuxt/Vue.js</strong> across the platform",
+        "Improved system performance with <strong>model caching</strong> on hot data paths",
+        "Led the platform-wide upgrade from <strong>Python 3.6 to 3.10</strong> with zero downtime",
+        "Built <strong>performance tracking and profiling</strong> tooling to find bottlenecks before users did",
+        "Designed <strong>CI/CD workflows</strong> and applied design patterns to keep the codebase clean as it grew"
       ],
-      "stack": ["Python", "Django", "Vue.js", "MySQL", "Redis", "Docker", "AWS"]
+      "stack": ["Python", "Django", "Vue.js", "Nuxt.js", "MySQL", "Redis", "Docker", "AWS"]
     },
     {
       "title": "Senior Full-Stack Engineer",
@@ -62,8 +61,7 @@
       "summary": "Built a social marketplace platform — product catalog, search, reviews, and the data pipeline behind them.",
       "achievements": [
         "Designed NoSQL schema indexing <strong>100K+ products</strong> with reviews and ratings",
-        "Built REST APIs sustaining <strong>500+ requests/second</strong> at peak traffic",
-        "Integrated Elasticsearch for full-text discovery — <strong>70% faster search</strong>",
+        "Integrated <strong>Elasticsearch</strong> for full-text product discovery",
         "Drove test culture to <strong>95%+ coverage</strong> across the codebase"
       ],
       "stack": ["Node.js", "MongoDB", "React", "Elasticsearch", "Docker"]
@@ -96,19 +94,18 @@
       "stack": [".NET", "C#", "WPF", "React", "SQL Server"]
     },
     {
-      "title": "Game Developer & Team Lead",
+      "title": "Game Developer — Expert & Supervisor",
       "company": "Gameloft",
       "url": "https://www.gameloft.com/en/",
       "period": "2013 - 2017",
       "badge": "Started Here",
-      "summary": "Led development on AAA mobile titles — Asphalt 8, World At Arms, and CityMania — with millions of downloads worldwide.",
+      "summary": "Worked on AAA mobile titles — Asphalt 8, World At Arms, and CityMania — growing from developer to Expert & Supervisor.",
       "achievements": [
-        "Led <strong>8 engineers</strong> across Asphalt 8, World At Arms, and CityMania",
-        "Optimized rendering and physics to a steady <strong>60 FPS</strong> on low-end Android",
-        "Built Python automation tooling — saved <strong>100+ engineer-hours per month</strong>",
-        "Delivered division-wide C++ coaching across active game projects"
+        "Promoted to <strong>Expert & Supervisor</strong> — Gameloft's team-lead track",
+        "Worked across the full game stack: <strong>gameplay, engine, tools, and game servers</strong>",
+        "Contributed to <strong>Asphalt 8: Airborne</strong> — 450M+ downloads worldwide"
       ],
-      "stack": ["C++", "Unity", "Python", "OpenGL", "Game Physics"]
+      "stack": ["C++", "Python", "OpenGL", "Game Physics", "Game Servers"]
     }
   ],
   "projects": [
