@@ -125,6 +125,22 @@ section { scroll-margin-top: 84px; }
 }
 .tbar__nav a span { color: var(--redline); font-weight: 600; margin-right: 2px; }
 .tbar__nav a:hover { color: var(--ink); text-decoration: none; }
+.tbar__resume {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--redline);
+    border: 1px solid var(--redline);
+    padding: 4px 10px;
+    white-space: nowrap;
+}
+.tbar__resume:hover {
+    color: var(--paper);
+    background: var(--redline);
+    text-decoration: none;
+}
 .tbar__social {
     display: flex;
     gap: 4px;
@@ -145,7 +161,7 @@ section { scroll-margin-top: 84px; }
     .tbar__inner { padding: 10px 16px; gap: 12px; }
     .tbar__nav { display: none; }
     .tbar__dwg { display: none; }
-    .tbar__social { margin-left: auto; }
+    .tbar__resume { margin-left: auto; }
 }
 
 /* -------- The sheet (hero cyanotype) -------- */
