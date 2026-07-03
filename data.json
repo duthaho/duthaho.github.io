@@ -47,7 +47,7 @@
       "achievements": [
         "Migrated a legacy <strong>jQuery front-end to Nuxt/Vue.js</strong> across the platform",
         "Improved system performance with <strong>model caching</strong> on hot data paths",
-        "Led the platform-wide upgrade from <strong>Python 3.6 to 3.10</strong> with zero downtime",
+        "Led the platform-wide migration from <strong>Python 2 to Python 3</strong> with zero downtime",
         "Built <strong>performance tracking and profiling</strong> tooling to find bottlenecks before users did",
         "Designed <strong>CI/CD workflows</strong> and applied design patterns to keep the codebase clean as it grew"
       ],
