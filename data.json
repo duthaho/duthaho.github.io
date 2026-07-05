@@ -142,6 +142,24 @@
   ],
   "articles": [
     {
+      "title": "Con Redis không cho không cái gì: cái giá ẩn sau mỗi lớp cache",
+      "excerpt": "Hồi mới đi làm, với mình caching là \"API chậm thì quăng con Redis vào\". Ngồi ôn phỏng vấn architect, mình mới thấy cái \"quăng vào\" đó kéo theo cả một chuỗi bài toán — invalidation, ba kiểu làm database gục, nhất quán cache–DB — và hoá ra nó chính là Dual Write Problem đội lốt. Caching không bao giờ miễn phí; mỗi lớp cache là một dòng nợ về nhất quán.",
+      "url": "https://duthaho.dev/caching-is-never-free.html",
+      "date": "2026-07-01"
+    },
+    {
+      "title": "Từ monolith đến idempotency: một sợi dây, không phải sáu flashcard",
+      "excerpt": "Ngồi ôn phỏng vấn vị trí architect, mình nhận ra lên level không phải viết code giỏi hơn mà thấy được cả hệ thống. Sáu chủ đề từng học vẹt — microservices, 2PC, Saga, CAP, Outbox, idempotency — hoá ra là một sợi dây nhân quả: lời giải này đẻ ra vấn đề kia.",
+      "url": "https://duthaho.dev/from-monolith-to-idempotency.html",
+      "date": "2026-06-30"
+    },
+    {
+      "title": "Hai người thợ trong cỗ máy AI",
+      "excerpt": "Mỗi lần AI trả lời, có hai người thợ tính cách trái ngược thay nhau làm việc — và gần như mọi thủ thuật tăng tốc inference đều sinh ra từ mâu thuẫn giữa họ. Một chuyến đi vào bên trong cỗ máy suy luận: prefill, decode, KV cache, batching, quantization, và vì sao đến lúc phải tự nuôi server.",
+      "url": "https://duthaho.dev/ai-inference-engineering.html",
+      "date": "2026-06-18"
+    },
+    {
       "title": "Chín câu hỏi mình giờ luôn hỏi khi đi phỏng vấn",
       "excerpt": "Một bài của Louise Deason về chín câu hỏi nên hỏi ngược nhà tuyển dụng — không phải để gây ấn tượng, mà để biết mình sắp bước vào đâu. Đọc xong mình nhận ra suốt mấy năm đi phỏng vấn, mình toàn ngồi sai phía của cái bàn.",
       "url": "https://duthaho.dev/questions-i-ask-in-interviews.html",
@@ -152,24 +170,6 @@
       "excerpt": "Claude Code vận hành trong monorepo nhiều triệu dòng bằng agentic search thay vì index. Bài này tóm tắt cách nó hoạt động, các lớp harness cần dựng để mở rộng, và một lộ trình bắt đầu cụ thể cho codebase lớn.",
       "url": "https://duthaho.dev/claude-code-large-codebases.html",
       "date": "2026-06-15"
-    },
-    {
-      "title": "Đừng prompt agent nữa — hãy thiết kế vòng lặp prompt nó",
-      "excerpt": "Một câu của Peter Steinberger đạt 2.2 triệu view khiến cả giới dev cãi nhau cả tuần. Đọc xong mình nhận ra mình vẫn đang kẹt ở thời \"chat\" — và cái giá thật sự không nằm ở token.",
-      "url": "https://duthaho.dev/loop-engineering.html",
-      "date": "2026-06-14"
-    },
-    {
-      "title": "Hầu hết note của tôi chết trong một cái folder — và tôi đã sửa nhầm vấn đề suốt hai năm",
-      "excerpt": "Đọc một guide về cách xây hệ thống Obsidian thiết kế từ phía ngược lại: không tối ưu cho lúc lưu, mà cho lúc dùng. Đọc xong mình hiểu tại sao cái vault mấy trăm note của mình chưa bao giờ trả lại cái gì.",
-      "url": "https://duthaho.dev/notes-that-get-used.html",
-      "date": "2026-05-29"
-    },
-    {
-      "title": "Những thứ tôi học được sau 5 năm làm engineer — viết lúc hơi ngà ngà",
-      "excerpt": "Đọc một bài Reddit cũ — một data engineer say rượu viết thật thà về 10 năm đi làm. Bài đó hay đến mức tôi phải ngồi viết lại theo góc nhìn của mình. Không phải tóm tắt, không phải dịch — là phản ứng thật, từ người đang ngồi uống bia một mình và đồng ý với khoảng 80% những gì ông ấy nói.",
-      "url": "https://duthaho.dev/things-ive-learned.html",
-      "date": "2026-05-05"
     }
   ],
   "interests": [
