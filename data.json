@@ -122,7 +122,7 @@
       "name": "claudekit",
       "description": "A verification-first engineering toolkit for Claude Code. Built for senior ICs and tech leads who already know how to ship production code — and want a workflow that keeps the discipline tight without getting in the way.",
       "url": "https://github.com/duthaho/claudekit",
-      "stars": 100,
+      "stars": 99,
       "forks": 56
     },
     {
@@ -141,6 +141,12 @@
     }
   ],
   "articles": [
+    {
+      "title": "Rate limiter không phải bài toán chọn thuật toán: một buổi phỏng vấn đào mãi không đáy",
+      "excerpt": "Mình vào phỏng vấn architect, được hỏi \"thiết kế một rate limiter\". Mình bắt đầu kể tên thuật toán — và nhận ra người phỏng vấn chẳng quan tâm mình chọn cái nào. Mỗi câu trả lời chỉ mở ra một câu hỏi sâu hơn: chạy trên hai mươi server thì đếm ở đâu, lấy đồng hồ của ai, Redis chết thì cho qua hay chặn, và cuối cùng — rate limiting có phải là tất cả không. Thuật toán là câu trả lời mười phút; phần còn lại mới là buổi phỏng vấn.",
+      "url": "https://duthaho.dev/designing-a-rate-limiter.html",
+      "date": "2026-07-05"
+    },
     {
       "title": "Con Redis không cho không cái gì: cái giá ẩn sau mỗi lớp cache",
       "excerpt": "Hồi mới đi làm, với mình caching là \"API chậm thì quăng con Redis vào\". Ngồi ôn phỏng vấn architect, mình mới thấy cái \"quăng vào\" đó kéo theo cả một chuỗi bài toán — invalidation, ba kiểu làm database gục, nhất quán cache–DB — và hoá ra nó chính là Dual Write Problem đội lốt. Caching không bao giờ miễn phí; mỗi lớp cache là một dòng nợ về nhất quán.",
@@ -164,12 +170,6 @@
       "excerpt": "Một bài của Louise Deason về chín câu hỏi nên hỏi ngược nhà tuyển dụng — không phải để gây ấn tượng, mà để biết mình sắp bước vào đâu. Đọc xong mình nhận ra suốt mấy năm đi phỏng vấn, mình toàn ngồi sai phía của cái bàn.",
       "url": "https://duthaho.dev/questions-i-ask-in-interviews.html",
       "date": "2026-06-16"
-    },
-    {
-      "title": "Claude Code trong codebase lớn: cách nó hoạt động và bắt đầu từ đâu",
-      "excerpt": "Claude Code vận hành trong monorepo nhiều triệu dòng bằng agentic search thay vì index. Bài này tóm tắt cách nó hoạt động, các lớp harness cần dựng để mở rộng, và một lộ trình bắt đầu cụ thể cho codebase lớn.",
-      "url": "https://duthaho.dev/claude-code-large-codebases.html",
-      "date": "2026-06-15"
     }
   ],
   "interests": [
