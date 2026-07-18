@@ -1,18 +1,15 @@
 /**
- * duthaho — career architecture
- * Renders data.json as an engineering drawing: cyanotype sheet hero with a
- * career system diagram, then numbered spec sections (overview, details,
- * open source, field notes). Diagram nodes cross-reference experience
- * details the way callout bubbles reference details on a real drawing.
+ * duthaho — about page
+ * Renders data.json into a modern-minimal / Cobalt layout: a Marquee hero with
+ * a hand-built API-response profile card, an overview, a dark principles band,
+ * an experience list, open-source cards, and field notes. Ships a working ⌘K
+ * command palette and a single composed reveal. No framework.
  */
 (function () {
     'use strict';
 
-    // ----------------------------------------------------------------
-    // Helpers
-    // ----------------------------------------------------------------
-
     const $ = (id) => document.getElementById(id);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function escapeHTML(s) {
         return String(s)
@@ -23,11 +20,8 @@
             .replace(/'/g, '&#39;');
     }
 
-    const drawingDate = (iso) => String(iso || '').replace(/-/g, '.');
-
-    // ----------------------------------------------------------------
-    // Data load
-    // ----------------------------------------------------------------
+    const dotDate = (iso) => String(iso || '').replace(/-/g, '.');
+    const enDash = (s) => String(s).replace(/\s*-\s*/g, '–');
 
     async function loadData() {
         const res = await fetch('data.json');
@@ -35,180 +29,167 @@
         return res.json();
     }
 
+    function iconSvg(id, cls) {
+        return `<svg viewBox="0 0 24 24" aria-hidden="true"${cls ? ` class="${cls}"` : ''}><use href="#icon-${id}"/></svg>`;
+    }
+
     // ----------------------------------------------------------------
-    // Header bar
+    // Hero
     // ----------------------------------------------------------------
 
-    function renderTbar(data) {
-        $('tbar-social').innerHTML = data.social.map(link => `
-            <li><a href="${escapeHTML(link.url)}" target="_blank" rel="noopener" aria-label="${escapeHTML(link.name)}" title="${escapeHTML(link.name)}">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-${escapeHTML(link.icon)}"/></svg>
-            </a></li>
+    function firstYear(experience) {
+        const years = experience
+            .map((j) => (String(j.period).match(/\d{4}/) || [])[0])
+            .filter(Boolean)
+            .map(Number);
+        return years.length ? Math.min(...years) : null;
+    }
+
+    function renderHero(data) {
+        const { personal, stats, social } = data;
+
+        $('hero-eyebrow').textContent = `${personal.title} — ${personal.location}`;
+        $('hero-name').textContent = personal.name;
+        $('hero-lede').innerHTML =
+            'From AAA mobile titles to AI-powered recruitment — designing ' +
+            '<b>systems that scale</b>, and the <b>teams that ship them</b>.';
+
+        $('hero-stats').innerHTML = stats.map((s) => `
+            <div class="hero__stat">
+                <b>${escapeHTML(s.value)}</b>
+                <span>${escapeHTML(s.label)}</span>
+            </div>
         `).join('');
-    }
 
-    // ----------------------------------------------------------------
-    // Sheet (hero)
-    // ----------------------------------------------------------------
-
-    function renderSheet(data) {
-        const { personal, footer } = data;
-
-        $('sheet-eyebrow').textContent =
-            `DWG NO. DTH-001 · CAREER ARCHITECTURE · REV ${footer.year}.07`;
-        $('sheet-name').textContent = personal.name;
-        $('sheet-role').innerHTML =
-            `<span class="role-main">${escapeHTML(personal.title)}</span>` +
-            `<span>${escapeHTML(personal.location)}</span>`;
-        $('sheet-desc').textContent = personal.description;
-    }
-
-    function renderStats(data) {
-        $('sheet-stats').innerHTML = data.stats.map(s => `
-            <li class="dim">
-                <span class="dim__value">${escapeHTML(s.value)}</span>
-                <span class="dim__label">${escapeHTML(s.label)}</span>
-            </li>
-        `).join('');
-    }
-
-    function renderTitleBlock(data) {
-        const { personal, footer } = data;
-        $('sheet-tblock').innerHTML = `
-            <div class="tblock__row">
-                <div class="tblock__cell tblock__cell--title">
-                    <b>Title</b><span>Career architecture — ${escapeHTML(personal.nickname)}</span>
-                </div>
-            </div>
-            <div class="tblock__row">
-                <div class="tblock__cell"><b>Drawn by</b><span>@duthaho</span></div>
-                <div class="tblock__cell"><b>Checked by</b><span>Production</span></div>
-                <div class="tblock__cell"><b>Location</b><span>16.0544°N 108.2022°E</span></div>
-            </div>
-            <div class="tblock__row">
-                <div class="tblock__cell"><b>Scale</b><span>12 yrs : 1 sheet</span></div>
-                <div class="tblock__cell"><b>Rev</b><span>${escapeHTML(String(footer.year))}.07</span></div>
-                <div class="tblock__cell"><b>Sheet</b><span>1 of 1</span></div>
-            </div>
+        const gh = social.find((s) => s.icon === 'github');
+        $('hero-actions').innerHTML = `
+            <a href="resume.html" class="btn btn--primary">Read the résumé ${iconSvg('arrow')}</a>
+            ${gh ? `<a href="${escapeHTML(gh.url)}" target="_blank" rel="noopener" class="btn btn--ghost">${iconSvg('github')} GitHub</a>` : ''}
         `;
+
+        renderHeroCard(data);
     }
 
-    // ----------------------------------------------------------------
-    // Career diagram (SVG system diagram, chronological left → right)
-    // ----------------------------------------------------------------
+    // Hand-built profile-as-API-response card — no fake window chrome (no dots).
+    function renderHeroCard(data) {
+        const { personal } = data;
+        const since = firstYear(data.experience) || 2013;
+        const handle = '@duthaho';
 
-    function renderDiagram(data) {
-        const exp = data.experience;              // reverse-chronological
-        const chron = exp.slice().reverse();      // chronological
-        const n = chron.length;
-        if (n < 2) return;
+        const line = (k, v, comma) =>
+            `  <span class="tok-punct">"</span><span class="tok-key">${escapeHTML(k)}</span><span class="tok-punct">": </span>${v}<span class="tok-punct">${comma ? ',' : ''}</span>`;
+        const str = (v) => `<span class="tok-punct">"</span><span class="tok-str">${escapeHTML(v)}</span><span class="tok-punct">"</span>`;
+        const num = (v) => `<span class="tok-num">${escapeHTML(String(v))}</span>`;
 
-        const W = 960, H = 208;
-        const x0 = 70, x1 = 890, baseY = 118;
-        const xs = chron.map((_, i) => x0 + (x1 - x0) * i / (n - 1));
+        const body =
+            `<span class="req"><b>GET</b> /whoami</span>` +
+            `<span class="tok-punct">{</span>\n` +
+            line('name', str(personal.name), true) + '\n' +
+            line('handle', str(handle), true) + '\n' +
+            line('role', str(personal.title), true) + '\n' +
+            line('based', str(personal.location), true) + '\n' +
+            line('since', num(since), true) + '\n' +
+            line('focus', `<span class="tok-punct">[</span>${str('systems')}<span class="tok-punct">, </span>${str('teams')}<span class="tok-punct">]</span>`, true) + '\n' +
+            `  <span class="tok-punct">"</span><span class="tok-key">status</span><span class="tok-punct">": </span><span class="tok-punct">"</span><span class="tok-str" id="hero-status"></span><span class="caret" id="hero-caret" aria-hidden="true">.</span><span class="tok-punct" id="hero-status-close" hidden>"</span>\n` +
+            `<span class="tok-punct">}</span>`;
 
-        const parts = [];
+        $('hero-card').innerHTML = `
+            <figcaption class="card__bar">
+                <span class="card__file">whoami.json</span>
+                <span class="status">200 OK</span>
+            </figcaption>
+            <div class="card__body">${body}</div>
+        `;
 
-        // baseline
-        parts.push(`<path class="dgm-line" d="M ${x0 - 26} ${baseY} H ${x1 + 26}"/>`);
+        typeStatus('building in the open');
+    }
 
-        // flow arrows between nodes
-        for (let i = 0; i < n - 1; i++) {
-            const mx = (xs[i] + xs[i + 1]) / 2;
-            parts.push(`<polyline class="dgm-arrow" points="${mx - 4},${baseY - 4} ${mx + 3},${baseY} ${mx - 4},${baseY + 4}"/>`);
+    function typeStatus(text) {
+        const el = $('hero-status');
+        const caret = $('hero-caret');
+        const close = $('hero-status-close');
+        if (!el) return;
+
+        if (prefersReduced) {
+            el.textContent = text;
+            if (caret) caret.remove();
+            if (close) close.hidden = false;
+            return;
         }
 
-        // nodes with callout bubbles (D-numbers match experience details)
-        chron.forEach((job, i) => {
-            const x = xs[i];
-            const dNo = n - i; // Paradox (last chronologically) = D1
-            const years = String(job.period).replace(/\s/g, '').replace('-', '–');
-            const delay = 0.35 + i * 0.14;
-            parts.push(`
-                <g class="dgm-node" data-target="detail-${dNo}" style="transition-delay:${delay}s"
-                   tabindex="0" role="link" aria-label="${escapeHTML(job.company)}, ${escapeHTML(job.period)} — jump to detail D${dNo}">
-                    <line class="leader" x1="${x}" y1="${baseY - 12}" x2="${x}" y2="${baseY - 46}"/>
-                    <circle class="bubble" cx="${x}" cy="${baseY - 60}" r="14"/>
-                    <text class="dno" x="${x}" y="${baseY - 56.5}" text-anchor="middle">D${dNo}</text>
-                    <circle class="dot" cx="${x}" cy="${baseY}" r="7"/>
-                    <text class="co" x="${x}" y="${baseY + 36}" text-anchor="middle">${escapeHTML(job.company.toUpperCase())}</text>
-                    <text class="period" x="${x}" y="${baseY + 54}" text-anchor="middle">${escapeHTML(years)}</text>
-                </g>
-            `);
-        });
-
-        $('diagram').innerHTML =
-            `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-hidden="false">${parts.join('')}</svg>`;
-
-        // callout → detail cross-reference
-        $('diagram').querySelectorAll('.dgm-node').forEach(node => {
-            const go = () => {
-                const target = document.getElementById(node.dataset.target);
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            };
-            node.addEventListener('click', go);
-            node.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
-            });
-        });
-
-        // trigger the draw-in
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => $('sheet').classList.add('is-drawn'));
-        });
+        let i = 0;
+        const tick = () => {
+            el.textContent = text.slice(0, i);
+            i += 1;
+            if (i <= text.length) {
+                setTimeout(tick, 45);
+            } else if (close) {
+                close.hidden = false;
+                if (caret) setTimeout(() => caret.remove(), 900);
+            }
+        };
+        setTimeout(tick, 650);
     }
 
     // ----------------------------------------------------------------
-    // 01 Overview
+    // Overview
     // ----------------------------------------------------------------
 
     function renderOverview(data) {
         const { about } = data.personal;
 
+        $('overview-meta').textContent = data.personal.location;
         $('overview-prose').innerHTML =
             `<p class="lede">${escapeHTML(about.intro)}</p>` +
-            about.paragraphs.map(p => `<p>${p}</p>`).join('');
+            about.paragraphs.map((p) => `<p>${p}</p>`).join('');
 
-        $('overview-scope').innerHTML = data.coreSkills
-            .map(s => `<li>${escapeHTML(s.name)}</li>`).join('');
-
-        $('overview-notes').innerHTML = about.principles
-            .map(p => `<li>${escapeHTML(p)}</li>`).join('');
-
+        $('overview-skills').innerHTML = data.coreSkills
+            .map((s) => `<li>${escapeHTML(s.name)}</li>`).join('');
         $('overview-stack').innerHTML = data.techStack
-            .map(t => `<li>${escapeHTML(t)}</li>`).join('');
+            .map((t) => `<li>${escapeHTML(t)}</li>`).join('');
     }
 
     // ----------------------------------------------------------------
-    // 02 Experience (detail views)
+    // Principles — dark band
+    // ----------------------------------------------------------------
+
+    function renderPrinciples(data) {
+        const list = data.personal.about.principles;
+        $('principles-list').innerHTML = list.map((p, i) => `
+            <li class="principle">
+                <span class="principle__no">${String(i + 1).padStart(2, '0')}</span>
+                <span class="principle__text">${escapeHTML(p)}</span>
+            </li>
+        `).join('');
+    }
+
+    // ----------------------------------------------------------------
+    // Experience
     // ----------------------------------------------------------------
 
     function renderExperience(data) {
         const exp = data.experience;
-        $('experience-count').textContent = `${exp.length} details · see dwg callouts D1–D${exp.length}`;
+        const start = firstYear(exp);
+        $('experience-meta').textContent =
+            `${start ? start + ' – 2025 · ' : ''}${exp.length} roles`;
 
-        $('experience-feed').innerHTML = exp.map((job, i) => {
-            const dNo = i + 1;
-            const period = String(job.period).replace('-', '–');
+        $('experience-list').innerHTML = exp.map((job) => {
             const badge = job.badge
-                ? `<span class="detail__badge">${escapeHTML(job.badge)}</span>` : '';
-            const bullets = (job.achievements || []).map(a => `<li>${a}</li>`).join('');
-            const stack = (job.stack || []).map(s => `<li>${escapeHTML(s)}</li>`).join('');
-
+                ? `<span class="xp__badge">${escapeHTML(job.badge)}</span>` : '';
+            const bullets = (job.achievements || []).map((a) => `<li>${a}</li>`).join('');
+            const stack = (job.stack || []).map((s) => `<li>${escapeHTML(s)}</li>`).join('');
             return `
-                <li class="detail" id="detail-${dNo}">
-                    <div class="detail__no">D${dNo}<small>Detail</small></div>
-                    <div class="detail__body">
-                        <div class="detail__head">
-                            <h3 class="detail__role">${escapeHTML(job.title)}</h3>
-                            <a class="detail__co" href="${escapeHTML(job.url)}" target="_blank" rel="noopener">${escapeHTML(job.company)}</a>
-                            ${badge}
-                            <span class="detail__leader" aria-hidden="true"></span>
-                            <span class="detail__period">${escapeHTML(period)}</span>
-                        </div>
-                        <p class="detail__summary">${escapeHTML(job.summary)}</p>
-                        <ul class="detail__bullets">${bullets}</ul>
-                        <ul class="detail__stack">${stack}</ul>
+                <li class="xp__row">
+                    <div class="xp__aside">
+                        <span class="xp__period">${escapeHTML(enDash(job.period))}</span>
+                        <a class="xp__co" href="${escapeHTML(job.url)}" target="_blank" rel="noopener">${escapeHTML(job.company)}</a>
+                        ${badge}
+                    </div>
+                    <div class="xp__body">
+                        <h3 class="xp__role">${escapeHTML(job.title)}</h3>
+                        <p class="xp__summary">${escapeHTML(job.summary)}</p>
+                        <ul class="xp__bullets">${bullets}</ul>
+                        <ul class="xp__stack">${stack}</ul>
                     </div>
                 </li>
             `;
@@ -216,17 +197,21 @@
     }
 
     // ----------------------------------------------------------------
-    // 03 Open source
+    // Open source
     // ----------------------------------------------------------------
 
     function renderRepos(data) {
-        $('repos-grid').innerHTML = data.projects.map(p => {
+        $('oss-meta').textContent = `${data.projects.length} repositories`;
+        $('repos-grid').innerHTML = data.projects.map((p) => {
             const meta = [];
-            if (p.stars) meta.push(`<span><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-star"/></svg>${p.stars}</span>`);
-            if (p.forks) meta.push(`<span><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-fork"/></svg>${p.forks}</span>`);
+            if (p.stars) meta.push(`<span>${iconSvg('star')}${p.stars}</span>`);
+            if (p.forks) meta.push(`<span>${iconSvg('fork')}${p.forks}</span>`);
             return `
                 <article class="repo${p.featured ? ' repo--featured' : ''}">
-                    <a class="repo__name" href="${escapeHTML(p.url)}" target="_blank" rel="noopener">${escapeHTML(p.name)}</a>
+                    <div class="repo__head">
+                        <a class="repo__name" href="${escapeHTML(p.url)}" target="_blank" rel="noopener">${escapeHTML(p.name)}</a>
+                        ${p.featured ? '<span class="repo__tag">Featured</span>' : ''}
+                    </div>
                     <p class="repo__desc">${escapeHTML(p.description)}</p>
                     <footer class="repo__meta">${meta.join('')}</footer>
                 </article>
@@ -235,13 +220,14 @@
     }
 
     // ----------------------------------------------------------------
-    // 04 Field notes
+    // Field notes
     // ----------------------------------------------------------------
 
     function renderWriting(data) {
-        $('writing-feed').innerHTML = data.articles.map(a => `
+        $('writing-meta').textContent = `${data.articles.length} recent`;
+        $('writing-feed').innerHTML = data.articles.map((a) => `
             <li class="note">
-                <span class="note__date">${escapeHTML(drawingDate(a.date))}</span>
+                <span class="note__date">${escapeHTML(dotDate(a.date))}</span>
                 <div class="note__body">
                     <h3 class="note__title">
                         <a href="${escapeHTML(a.url)}" target="_blank" rel="noopener">${escapeHTML(a.title)}</a>
@@ -258,14 +244,175 @@
 
     function renderFooter(data) {
         const { footer, personal, social } = data;
-        const links = social.map(l =>
-            `<a href="${escapeHTML(l.url)}" target="_blank" rel="noopener">${escapeHTML(l.name)}</a>`
-        ).join(' · ');
+        const links = social.map((l) =>
+            `<a href="${escapeHTML(l.url)}" target="_blank" rel="noopener" aria-label="${escapeHTML(l.name)}" title="${escapeHTML(l.name)}">${iconSvg(l.icon)}</a>`
+        ).join('');
         $('page-foot').innerHTML = `
-            <span>© ${footer.year} ${escapeHTML(footer.copyright)}</span>
-            <span>${links}</span>
-            <span class="foot__end">${escapeHTML(personal.location)} · Set in Saira &amp; IBM Plex</span>
+            <span class="foot__mark">duthaho<span class="dot">.</span></span>
+            <span>© ${escapeHTML(String(footer.year))} · ${escapeHTML(personal.name)}</span>
+            <span class="foot__social">${links}</span>
+            <span class="foot__end">${escapeHTML(personal.location)} · Set in Space Grotesk &amp; Inter</span>
         `;
+    }
+
+    // ----------------------------------------------------------------
+    // Reveal — one composed entrance per section, then static
+    // ----------------------------------------------------------------
+
+    function setupReveal() {
+        const targets = ['hero-card', 'overview', 'principles', 'experience', 'oss', 'writing']
+            .map($).filter(Boolean);
+
+        if (prefersReduced || !('IntersectionObserver' in window)) {
+            targets.forEach((t) => t.classList.add('is-in'));
+            return;
+        }
+
+        targets.forEach((t) => t.classList.add('reveal'));
+        const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach((e) => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('is-in');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+        targets.forEach((t) => io.observe(t));
+    }
+
+    // ----------------------------------------------------------------
+    // ⌘K command palette
+    // ----------------------------------------------------------------
+
+    function buildCommands(data) {
+        const cmds = [
+            { group: 'Sections', label: 'Overview', icon: 'hash', hint: '↵', scroll: 'overview' },
+            { group: 'Sections', label: 'Experience', icon: 'hash', hint: '↵', scroll: 'experience' },
+            { group: 'Sections', label: 'Open source', icon: 'hash', hint: '↵', scroll: 'oss' },
+            { group: 'Sections', label: 'Field notes', icon: 'hash', hint: '↵', scroll: 'writing' },
+            { group: 'Links', label: 'Résumé', icon: 'arrow', hint: 'open', href: 'resume.html' },
+        ];
+        data.social.forEach((s) => {
+            cmds.push({ group: 'Links', label: s.name, icon: s.icon, hint: 'open ↗', href: s.url, external: true });
+        });
+        return cmds;
+    }
+
+    function setupPalette(data) {
+        const overlay = $('palette');
+        const opener = $('palette-open');
+        const search = $('palette-search');
+        const list = $('palette-list');
+        if (!overlay || !opener || !search || !list) return;
+
+        overlay.hidden = false; // JS present — CSS keeps it invisible until .is-open
+        const commands = buildCommands(data);
+        let filtered = commands.slice();
+        let active = 0;
+        let lastFocus = null;
+
+        function render() {
+            if (!filtered.length) {
+                list.innerHTML = '<p class="palette__empty">No matches.</p>';
+                return;
+            }
+            let html = '';
+            let group = null;
+            filtered.forEach((c, i) => {
+                if (c.group !== group) {
+                    group = c.group;
+                    html += `<p class="palette__group">${escapeHTML(group)}</p>`;
+                }
+                html += `
+                    <button class="pcmd${i === active ? ' is-active' : ''}" type="button" role="option"
+                            aria-selected="${i === active}" data-i="${i}">
+                        ${iconSvg(c.icon)}
+                        <span>${escapeHTML(c.label)}</span>
+                        <span class="pcmd__hint">${escapeHTML(c.hint)}</span>
+                    </button>`;
+            });
+            list.innerHTML = html;
+        }
+
+        function filter() {
+            const q = search.value.trim().toLowerCase();
+            filtered = q
+                ? commands.filter((c) => c.label.toLowerCase().includes(q) || c.group.toLowerCase().includes(q))
+                : commands.slice();
+            active = 0;
+            render();
+        }
+
+        function open() {
+            lastFocus = document.activeElement;
+            overlay.classList.add('is-open');
+            search.value = '';
+            filter();
+            requestAnimationFrame(() => search.focus());
+            document.body.style.overflow = 'hidden';
+        }
+
+        function close() {
+            overlay.classList.remove('is-open');
+            document.body.style.overflow = '';
+            if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+
+        function run(cmd) {
+            close();
+            if (!cmd) return;
+            if (cmd.scroll) {
+                const target = $(cmd.scroll);
+                if (target) target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+            } else if (cmd.href) {
+                if (cmd.external) window.open(cmd.href, '_blank', 'noopener');
+                else window.location.href = cmd.href;
+            }
+        }
+
+        function move(delta) {
+            if (!filtered.length) return;
+            active = (active + delta + filtered.length) % filtered.length;
+            render();
+            const el = list.querySelector('.is-active');
+            if (el) el.scrollIntoView({ block: 'nearest' });
+        }
+
+        opener.addEventListener('click', open);
+        search.addEventListener('input', filter);
+
+        list.addEventListener('click', (e) => {
+            const btn = e.target.closest('.pcmd');
+            if (btn) run(filtered[Number(btn.dataset.i)]);
+        });
+        list.addEventListener('mousemove', (e) => {
+            const btn = e.target.closest('.pcmd');
+            if (btn) {
+                const i = Number(btn.dataset.i);
+                if (i !== active) { active = i; render(); }
+            }
+        });
+
+        overlay.addEventListener('mousedown', (e) => {
+            if (e.target === overlay) close();
+        });
+
+        search.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+            else if (e.key === 'Enter') { e.preventDefault(); run(filtered[active]); }
+            else if (e.key === 'Escape') { e.preventDefault(); close(); }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+                e.preventDefault();
+                overlay.classList.contains('is-open') ? close() : open();
+            } else if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+                close();
+            }
+        });
     }
 
     // ----------------------------------------------------------------
@@ -277,22 +424,21 @@
             const data = await loadData();
             document.title = `${data.personal.name} (@duthaho) · ${data.personal.title}`;
 
-            renderTbar(data);
-            renderSheet(data);
-            renderStats(data);
-            renderTitleBlock(data);
-            renderDiagram(data);
+            renderHero(data);
             renderOverview(data);
+            renderPrinciples(data);
             renderExperience(data);
             renderRepos(data);
             renderWriting(data);
             renderFooter(data);
+            setupReveal();
+            setupPalette(data);
         } catch (err) {
             console.error('Failed to render page:', err);
             document.querySelector('main').innerHTML = `
                 <div class="load-error">
                     Could not load profile data — check that data.json is reachable.
-                    <a href="javascript:location.reload()">Reload the drawing</a>.
+                    <a href="javascript:location.reload()">Reload</a>.
                 </div>`;
         }
     }

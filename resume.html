@@ -3,228 +3,291 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume — Duong Thanh Hop, Solution Architect</title>
-    <meta name="description" content="Resume of Duong Thanh Hop (@duthaho) — Solution Architect, Da Nang, Vietnam.">
+    <title>Résumé — Duong Thanh Hop, Solution Architect</title>
+    <meta name="description" content="Résumé of Duong Thanh Hop (@duthaho) — Solution Architect, Da Nang, Vietnam.">
     <link href="favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tokens.css">
     <style>
-        :root {
-            --ink: #132a3e;
-            --ink-soft: #41586d;
-            --ink-fade: #7d8fa0;
-            --blue: #1e5fa8;
-            --blue-deep: #14497f;
-            --redline: #d6482f;
-            --hairline: #c3d2dd;
-            --font-display: "Saira Semi Condensed", "Arial Narrow", sans-serif;
-            --font-serif: "IBM Plex Serif", Georgia, serif;
-            --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-        }
+    /* Hallmark · genre: modern-minimal · theme: Cobalt · design-system: tokens.css
+     * page-type: content/résumé (print-first) · shares the about page's system
+     * Hallmark · pre-emit critique: P5 H4 E5 S5 R5 V4
+     */
 
-        * { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; }
-        body {
-            background: #dfe7ec;
-            font-family: var(--font-serif);
-            color: var(--ink);
-            font-size: 10.5pt;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-        a { color: var(--blue); text-decoration: none; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+        background: var(--color-paper-2);
+        font-family: var(--font-body);
+        color: var(--color-ink-2);
+        font-size: 10.5pt;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+    a { color: var(--color-accent-2); text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 3px; }
 
-        /* -------- Toolbar (screen only) -------- */
-        .toolbar {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: #132a3e;
-            color: #eaf4fb;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 10px 20px;
-        }
-        .toolbar a, .toolbar button {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: #eaf4fb;
-            background: transparent;
-            border: 1px solid rgba(234, 244, 251, 0.4);
-            padding: 5px 12px;
-            cursor: pointer;
-        }
-        .toolbar a:hover, .toolbar button:hover { border-color: #eaf4fb; }
-        .toolbar .primary { background: var(--redline); border-color: var(--redline); font-weight: 600; }
-        .toolbar .hint { color: rgba(234, 244, 251, 0.55); margin-left: auto; }
+    /* -------- Toolbar (screen only) -------- */
+    .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: var(--z-nav);
+        background: color-mix(in oklab, var(--color-paper) 85%, transparent);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--color-rule);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.6rem 1.1rem;
+    }
+    .toolbar a, .toolbar button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-body);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 1;
+        color: var(--color-ink);
+        background: var(--color-paper);
+        border: 1px solid var(--color-rule-strong);
+        border-radius: var(--radius-control);
+        padding: 0.5rem 0.8rem;
+        cursor: pointer;
+        transition: border-color var(--dur-short) var(--ease-out),
+                    background-color var(--dur-short) var(--ease-out);
+    }
+    .toolbar a:hover, .toolbar button:hover { border-color: var(--color-ink); }
+    .toolbar .primary {
+        background: var(--color-accent-btn);
+        color: var(--color-accent-ink);
+        border-color: transparent;
+    }
+    .toolbar .primary:hover { background: var(--color-accent-btn-2); border-color: transparent; }
+    .toolbar .hint {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--color-ink-3);
+    }
 
-        /* -------- Sheet -------- */
+    /* -------- Sheet -------- */
+    .page {
+        max-width: 210mm;
+        margin: 24px auto 48px;
+        background: var(--color-paper);
+        border: 1px solid var(--color-rule);
+        border-radius: 4px;
+        box-shadow: 0 8px 40px var(--color-shadow);
+        padding: 16mm 17mm;
+    }
+
+    /* -------- Header -------- */
+    .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--color-rule-strong);
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+    }
+    .head__name {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 25pt;
+        letter-spacing: -0.02em;
+        line-height: 1.02;
+        color: var(--color-ink);
+        margin: 0 0 4px;
+    }
+    .head__role {
+        font-family: var(--font-mono);
+        font-size: 9pt;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin: 0;
+    }
+    .head__contact {
+        text-align: right;
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        color: var(--color-ink-3);
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin: 0;
+    }
+    .head__contact a { color: var(--color-ink-2); }
+    .head__contact a:hover { color: var(--color-accent-2); }
+
+    .head__stats {
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        color: var(--color-ink-3);
+        margin: 0 0 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 18px;
+    }
+    .head__stats b {
+        color: var(--color-ink);
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* -------- Sections -------- */
+    .sec { margin-bottom: 15px; break-inside: auto; }
+    .sec__title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 12pt;
+        letter-spacing: -0.01em;
+        color: var(--color-ink);
+        border-bottom: 1px solid var(--color-rule);
+        padding-bottom: 4px;
+        margin: 0 0 9px;
+        break-after: avoid;
+    }
+    .sec__title::before {
+        content: "";
+        width: 7px; height: 7px;
+        border-radius: 2px;
+        background: var(--color-accent);
+        flex: none;
+    }
+
+    .summary { margin: 0; color: var(--color-ink-2); max-width: 62em; }
+
+    /* Skills */
+    .skills { display: flex; flex-direction: column; gap: 6px; }
+    .skills__row { display: flex; gap: 12px; }
+    .skills__label {
+        font-family: var(--font-mono);
+        font-size: 8pt;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-ink-3);
+        min-width: 92px;
+        padding-top: 2px;
+    }
+    .skills__value { font-size: 10pt; color: var(--color-ink); }
+
+    /* Experience */
+    .job { margin-bottom: 13px; break-inside: avoid; }
+    .job:last-child { margin-bottom: 0; }
+    .job__head {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        break-after: avoid;
+    }
+    .job__role {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 11.5pt;
+        letter-spacing: -0.01em;
+        color: var(--color-ink);
+        margin: 0;
+    }
+    .job__co {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 10.5pt;
+        letter-spacing: -0.01em;
+        color: var(--color-accent);
+    }
+    .job__period {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        color: var(--color-ink-3);
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+    }
+    .job__summary { margin: 3px 0 6px; font-size: 9.8pt; color: var(--color-ink-2); }
+    .job__bullets { margin: 0; padding: 0; list-style: none; }
+    .job__bullets li {
+        font-size: 9.8pt;
+        line-height: 1.45;
+        padding-left: 15px;
+        position: relative;
+        margin-bottom: 3px;
+        color: var(--color-ink-2);
+        break-inside: avoid;
+    }
+    .job__bullets li::before {
+        content: "";
+        position: absolute;
+        left: 0; top: 0.55em;
+        width: 5px; height: 5px;
+        border-radius: 1px;
+        background: var(--color-accent);
+    }
+    .job__bullets strong { color: var(--color-ink); font-weight: 600; }
+    .job__stack {
+        font-family: var(--font-mono);
+        font-size: 8pt;
+        color: var(--color-ink-3);
+        margin: 6px 0 0;
+    }
+
+    /* Open source & writing */
+    .oss { margin: 0; padding: 0; list-style: none; }
+    .oss li { margin-bottom: 6px; break-inside: avoid; }
+    .oss__name { font-family: var(--font-mono); font-weight: 600; font-size: 9.5pt; color: var(--color-ink); }
+    .oss__name:hover { color: var(--color-accent-2); }
+    .oss__meta { font-family: var(--font-mono); font-size: 8pt; color: var(--color-ink-3); margin-left: 8px; font-variant-numeric: tabular-nums; }
+    .oss__desc { color: var(--color-ink-2); font-size: 9.5pt; }
+
+    .writing { margin: 0; color: var(--color-ink-2); font-size: 9.8pt; max-width: 62em; }
+
+    @media (max-width: 480px) {
+        .page { padding: 22px 18px; margin: 14px auto 28px; }
+        .head__contact { text-align: left; }
+        .toolbar .hint { display: none; }
+    }
+
+    /* -------- Print -------- */
+    @page { size: A4; margin: 0; }
+    @media print {
+        body { background: #fff; }
+        .toolbar { display: none; }
         .page {
-            max-width: 210mm;
-            margin: 24px auto 48px;
-            background: #ffffff;
-            box-shadow: 0 2px 24px rgba(19, 42, 62, 0.18);
-            padding: 16mm 17mm;
-        }
-
-        /* -------- Header -------- */
-        .head { border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-bottom: 16px; }
-        .head__name {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 27pt;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            line-height: 1;
-            margin: 0 0 4px;
-        }
-        .head__role {
-            font-family: var(--font-mono);
-            font-size: 10pt;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--redline);
-            margin: 0 0 8px;
-        }
-        .head__contact {
-            font-family: var(--font-mono);
-            font-size: 8.5pt;
-            color: var(--ink-soft);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px 14px;
+            max-width: none;
+            width: 100%;
             margin: 0;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 14mm 16mm;
         }
-        .head__contact a { color: var(--ink-soft); }
-        .head__stats {
-            font-family: var(--font-mono);
-            font-size: 8.5pt;
-            color: var(--ink-fade);
-            margin: 6px 0 0;
-        }
-        .head__stats b { color: var(--ink); font-weight: 600; }
+        a { color: inherit; }
+    }
 
-        /* -------- Sections -------- */
-        .sec { margin-bottom: 14px; }
-        .sec__title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 12.5pt;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--ink);
-            border-bottom: 1px solid var(--hairline);
-            padding-bottom: 3px;
-            margin: 0 0 8px;
-            break-after: avoid;
-        }
-        .sec__title span { color: var(--redline); font-family: var(--font-mono); font-size: 9pt; margin-right: 8px; }
-
-        .summary { margin: 0; color: var(--ink-soft); }
-
-        /* Skills */
-        .skills { display: flex; flex-direction: column; gap: 4px; }
-        .skills__row { display: flex; gap: 10px; }
-        .skills__label {
-            font-family: var(--font-mono);
-            font-size: 8pt;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--ink-fade);
-            min-width: 88px;
-            padding-top: 2px;
-        }
-        .skills__value { font-size: 10pt; }
-
-        /* Experience */
-        .job { margin-bottom: 12px; }
-        .job:last-child { margin-bottom: 0; }
-        .job__head {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            break-after: avoid;
-        }
-        .job__role {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 11.5pt;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            margin: 0;
-        }
-        .job__co {
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 10.5pt;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: var(--blue);
-        }
-        .job__period {
-            margin-left: auto;
-            font-family: var(--font-mono);
-            font-size: 8.5pt;
-            color: var(--ink-soft);
-            white-space: nowrap;
-        }
-        .job__summary { margin: 3px 0 5px; font-size: 9.8pt; color: var(--ink-soft); }
-        .job__bullets { margin: 0; padding: 0; list-style: none; }
-        .job__bullets li {
-            font-size: 9.8pt;
-            line-height: 1.45;
-            padding-left: 14px;
-            position: relative;
-            margin-bottom: 3px;
-            break-inside: avoid;
-        }
-        .job__bullets li::before { content: '—'; position: absolute; left: 0; color: var(--blue); }
-        .job__stack {
-            font-family: var(--font-mono);
-            font-size: 8pt;
-            color: var(--ink-fade);
-            margin: 5px 0 0;
-        }
-
-        /* Open source & writing */
-        .oss { margin: 0; padding: 0; list-style: none; }
-        .oss li { margin-bottom: 5px; break-inside: avoid; }
-        .oss__name { font-family: var(--font-mono); font-weight: 600; font-size: 9.5pt; }
-        .oss__meta { font-family: var(--font-mono); font-size: 8pt; color: var(--ink-fade); margin-left: 6px; }
-        .oss__desc { color: var(--ink-soft); font-size: 9.5pt; }
-
-        .writing { margin: 0; color: var(--ink-soft); font-size: 9.8pt; }
-
-        /* -------- Print -------- */
-        @page { size: A4; margin: 0; }
-        @media print {
-            body { background: #ffffff; }
-            .toolbar { display: none; }
-            .page {
-                max-width: none;
-                width: 100%;
-                margin: 0;
-                box-shadow: none;
-                padding: 14mm 16mm;
-            }
-            a { color: inherit; }
-            .head__role { color: var(--redline); }
-        }
+    @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0ms !important; }
+    }
     </style>
 </head>
 <body>
 
-    <div class="toolbar">
+    <nav class="toolbar" aria-label="Résumé actions">
         <a href="index.html">← Profile</a>
-        <button class="primary" onclick="window.print()">Download PDF</button>
-        <span class="hint">Tip: choose "Save as PDF" in the print dialog</span>
-    </div>
+        <button class="primary" type="button" onclick="window.print()">Download PDF</button>
+        <span class="hint">Tip: choose “Save as PDF” in the print dialog</span>
+    </nav>
 
     <main class="page" id="page"></main>
 
@@ -241,21 +304,25 @@
         }
         const stripTags = (s) => String(s).replace(/<[^>]+>/g, '');
         const bare = (url) => String(url).replace(/^https?:\/\//, '').replace(/\/$/, '');
+        const enDash = (s) => String(s).replace(/\s*-\s*/g, '–');
 
         async function init() {
             const res = await fetch('data.json');
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
             const { personal, stats, coreSkills, techStack, experience, projects, social } = data;
 
-            document.title = `Resume — ${personal.name}, ${personal.title}`;
+            document.title = `Résumé — ${personal.name}, ${personal.title}`;
 
             const contact = [
                 `<span>${escapeHTML(personal.location)}</span>`,
                 `<a href="mailto:${EMAIL}">${EMAIL}</a>`,
-                ...social.map(l => `<a href="${escapeHTML(l.url)}">${escapeHTML(bare(l.url))}</a>`)
+                ...social.map(l => `<a href="${escapeHTML(l.url)}" target="_blank" rel="noopener">${escapeHTML(bare(l.url))}</a>`)
             ].join('');
 
-            const statsLine = stats.map(s => `<b>${escapeHTML(s.value)}</b> ${escapeHTML(s.label)}`).join(' · ');
+            const statsLine = stats
+                .map(s => `<span><b>${escapeHTML(s.value)}</b> ${escapeHTML(s.label)}</span>`)
+                .join('');
 
             const summary = stripTags(personal.about.paragraphs[0]);
 
@@ -264,7 +331,7 @@
                     <div class="job__head">
                         <h3 class="job__role">${escapeHTML(job.title)}</h3>
                         <span class="job__co">${escapeHTML(job.company)}</span>
-                        <span class="job__period">${escapeHTML(String(job.period).replace('-', '–'))}</span>
+                        <span class="job__period">${escapeHTML(enDash(job.period))}</span>
                     </div>
                     <p class="job__summary">${escapeHTML(job.summary)}</p>
                     <ul class="job__bullets">
@@ -274,29 +341,35 @@
                 </article>
             `).join('');
 
-            const oss = projects.slice(0, 3).map(p => `
+            const oss = projects.slice(0, 3).map(p => {
+                const meta = [p.stars ? `${p.stars} stars` : '', p.forks ? `${p.forks} forks` : '']
+                    .filter(Boolean).join(' · ');
+                return `
                 <li>
-                    <a class="oss__name" href="${escapeHTML(p.url)}">${escapeHTML(p.name)}</a>
-                    <span class="oss__meta">★ ${p.stars}${p.forks ? ` · ⑂ ${p.forks}` : ''}</span>
+                    <a class="oss__name" href="${escapeHTML(p.url)}" target="_blank" rel="noopener">${escapeHTML(p.name)}</a>
+                    <span class="oss__meta">${escapeHTML(meta)}</span>
                     <span class="oss__desc">— ${escapeHTML(p.description)}</span>
-                </li>
-            `).join('');
+                </li>`;
+            }).join('');
 
             document.getElementById('page').innerHTML = `
                 <header class="head">
-                    <h1 class="head__name">${escapeHTML(personal.name)}</h1>
-                    <p class="head__role">${escapeHTML(personal.title)}</p>
+                    <div>
+                        <h1 class="head__name">${escapeHTML(personal.name)}</h1>
+                        <p class="head__role">${escapeHTML(personal.title)}</p>
+                    </div>
                     <p class="head__contact">${contact}</p>
-                    <p class="head__stats">${statsLine}</p>
                 </header>
 
+                <p class="head__stats">${statsLine}</p>
+
                 <section class="sec">
-                    <h2 class="sec__title"><span>01</span>Summary</h2>
+                    <h2 class="sec__title">Summary</h2>
                     <p class="summary">${escapeHTML(summary)}</p>
                 </section>
 
                 <section class="sec">
-                    <h2 class="sec__title"><span>02</span>Skills</h2>
+                    <h2 class="sec__title">Skills</h2>
                     <div class="skills">
                         <div class="skills__row">
                             <span class="skills__label">Core</span>
@@ -310,26 +383,32 @@
                 </section>
 
                 <section class="sec">
-                    <h2 class="sec__title"><span>03</span>Experience</h2>
+                    <h2 class="sec__title">Experience</h2>
                     ${jobs}
                 </section>
 
                 <section class="sec">
-                    <h2 class="sec__title"><span>04</span>Open source</h2>
+                    <h2 class="sec__title">Open source</h2>
                     <ul class="oss">${oss}</ul>
                 </section>
 
                 <section class="sec">
-                    <h2 class="sec__title"><span>05</span>Writing</h2>
-                    <p class="writing">Writes about engineering, AI tooling, and the developer craft at <a href="https://duthaho.dev/">duthaho.dev</a>.</p>
+                    <h2 class="sec__title">Writing</h2>
+                    <p class="writing">Writes about engineering, AI tooling, and the developer craft at <a href="https://duthaho.dev/" target="_blank" rel="noopener">duthaho.dev</a>.</p>
                 </section>
             `;
         }
 
+        function fail(err) {
+            console.error('Failed to render résumé:', err);
+            document.getElementById('page').innerHTML =
+                '<p style="font-family:var(--font-mono);font-size:10pt;color:var(--color-ink-2)">Could not load profile data — check that data.json is reachable. <a href="javascript:location.reload()">Reload</a>.</p>';
+        }
+
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
+            document.addEventListener('DOMContentLoaded', () => init().catch(fail));
         } else {
-            init();
+            init().catch(fail);
         }
     })();
     </script>

@@ -4,100 +4,113 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>duthaho — Solution Architect</title>
-    <meta name="description" content="Duong Thanh Hop (@duthaho) — Solution Architect. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox.">
+    <meta name="description" content="Duong Thanh Hop (@duthaho) — Solution Architect. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox. Systems that scale, and the teams that ship them.">
     <link href="favicon.ico" rel="icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Drawing header bar -->
-    <header class="tbar">
-        <div class="tbar__inner">
-            <a href="#top" class="tbar__stamp">DTH</a>
-            <span class="tbar__dwg">DWG NO. DTH-001</span>
-            <nav class="tbar__nav" aria-label="Primary">
-                <a href="#overview"><span>01</span> Overview</a>
-                <a href="#experience"><span>02</span> Experience</a>
-                <a href="#oss"><span>03</span> Open source</a>
-                <a href="#writing"><span>04</span> Writing</a>
+    <!-- Nav: bordered flush bar + working ⌘K palette -->
+    <header class="nav">
+        <div class="nav__inner">
+            <a href="#top" class="nav__mark">duthaho<span class="dot">.</span></a>
+            <nav class="nav__links" aria-label="Primary">
+                <a href="#overview">Overview</a>
+                <a href="#experience">Experience</a>
+                <a href="#oss">Open source</a>
+                <a href="#writing">Field notes</a>
             </nav>
-            <a href="resume.html" class="tbar__resume">Resume / PDF</a>
-            <ul class="tbar__social" id="tbar-social"></ul>
+            <div class="nav__right">
+                <button class="kbtn" id="palette-open" type="button" aria-haspopup="dialog" aria-label="Open command palette">
+                    <span>Jump to…</span><kbd>⌘K</kbd>
+                </button>
+                <a href="resume.html" class="btn btn--ghost">Résumé</a>
+            </div>
         </div>
     </header>
 
+    <!-- ⌘K command palette -->
+    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+        <div class="palette__box">
+            <input class="palette__search" id="palette-search" type="text"
+                   placeholder="Jump to a section, open a link…" autocomplete="off" spellcheck="false"
+                   aria-label="Search commands" aria-controls="palette-list">
+            <div class="palette__list" id="palette-list" role="listbox" aria-label="Commands"></div>
+        </div>
+    </div>
+
     <main id="top">
 
-        <!-- =========== SHEET (hero blueprint) =========== -->
-        <section class="sheet" id="sheet" aria-label="Career drawing">
-            <div class="sheet__inner">
-                <p class="sheet__eyebrow" id="sheet-eyebrow"></p>
-                <h1 class="sheet__name" id="sheet-name"></h1>
-                <p class="sheet__role" id="sheet-role"></p>
-                <p class="sheet__desc" id="sheet-desc"></p>
-
-                <div class="diagram" id="diagram" aria-label="Career timeline diagram"></div>
-
-                <div class="sheet__base">
-                    <ul class="dims" id="sheet-stats"></ul>
-                    <div class="tblock" id="sheet-tblock" role="table" aria-label="Title block"></div>
+        <!-- Hero (Marquee): title-left, code card right -->
+        <section class="hero wrap" aria-label="Introduction">
+            <div class="hero__grid">
+                <div class="hero__intro">
+                    <p class="hero__eyebrow klabel" id="hero-eyebrow"></p>
+                    <h1 class="hero__name" id="hero-name"></h1>
+                    <p class="hero__lede" id="hero-lede"></p>
+                    <div class="hero__stats" id="hero-stats"></div>
+                    <div class="hero__actions" id="hero-actions"></div>
                 </div>
+                <figure class="card" id="hero-card" aria-label="Profile as an API response"></figure>
             </div>
         </section>
 
-        <!-- =========== 01 OVERVIEW =========== -->
-        <section class="sec" id="overview">
+        <!-- Overview -->
+        <section class="sec wrap" id="overview">
             <header class="sec__head">
-                <span class="sec__no">Section 01</span>
                 <h2 class="sec__title">Overview</h2>
+                <span class="sec__meta" id="overview-meta"></span>
             </header>
             <div class="overview">
-                <article class="overview__prose" id="overview-prose"></article>
-                <aside class="overview__aside">
-                    <div class="spec">
-                        <h3 class="spec__label">Scope of work</h3>
-                        <ul class="spec__list" id="overview-scope"></ul>
+                <div class="prose" id="overview-prose"></div>
+                <aside class="aside">
+                    <div class="aside__block">
+                        <p class="aside__label klabel">Works on</p>
+                        <ul class="skills" id="overview-skills"></ul>
                     </div>
-                    <div class="spec">
-                        <h3 class="spec__label">General notes</h3>
-                        <ol class="spec__notes" id="overview-notes"></ol>
-                    </div>
-                    <div class="spec">
-                        <h3 class="spec__label">Materials</h3>
-                        <ul class="spec__chips" id="overview-stack"></ul>
+                    <div class="aside__block">
+                        <p class="aside__label klabel">Stack</p>
+                        <ul class="chips" id="overview-stack"></ul>
                     </div>
                 </aside>
             </div>
         </section>
 
-        <!-- =========== 02 EXPERIENCE =========== -->
-        <section class="sec" id="experience">
-            <header class="sec__head">
-                <span class="sec__no">Section 02</span>
-                <h2 class="sec__title">Experience</h2>
-                <span class="sec__meta" id="experience-count"></span>
-            </header>
-            <ol class="details" id="experience-feed"></ol>
+        <!-- Principles — the one dark graphite band -->
+        <section class="band" id="principles" aria-label="Operating principles">
+            <div class="band__inner">
+                <p class="band__label klabel">How I <span>work</span></p>
+                <ul class="principles" id="principles-list"></ul>
+            </div>
         </section>
 
-        <!-- =========== 03 OPEN SOURCE =========== -->
-        <section class="sec" id="oss">
+        <!-- Experience -->
+        <section class="sec wrap" id="experience">
             <header class="sec__head">
-                <span class="sec__no">Section 03</span>
+                <h2 class="sec__title">Experience</h2>
+                <span class="sec__meta" id="experience-meta"></span>
+            </header>
+            <ol class="xp" id="experience-list"></ol>
+        </section>
+
+        <!-- Open source -->
+        <section class="sec wrap" id="oss">
+            <header class="sec__head">
                 <h2 class="sec__title">Open source</h2>
+                <span class="sec__meta" id="oss-meta"></span>
             </header>
             <div class="repos" id="repos-grid"></div>
             <a href="https://github.com/duthaho?tab=repositories" target="_blank" rel="noopener" class="sec__more">Full archive on GitHub ↗</a>
         </section>
 
-        <!-- =========== 04 WRITING =========== -->
-        <section class="sec" id="writing">
+        <!-- Field notes -->
+        <section class="sec wrap" id="writing">
             <header class="sec__head">
-                <span class="sec__no">Section 04</span>
                 <h2 class="sec__title">Field notes</h2>
+                <span class="sec__meta" id="writing-meta"></span>
             </header>
             <ol class="notes" id="writing-feed"></ol>
             <a href="https://duthaho.dev/" target="_blank" rel="noopener" class="sec__more">The complete shelf at duthaho.dev ↗</a>
@@ -117,6 +130,8 @@
         <symbol id="icon-globe" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></symbol>
         <symbol id="icon-star" viewBox="0 0 16 16"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></symbol>
         <symbol id="icon-fork" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></symbol>
+        <symbol id="icon-arrow" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M3 8h10M9 4l4 4-4 4"/></symbol>
+        <symbol id="icon-hash" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M6 2.5 4.5 13.5M11.5 2.5 10 13.5M2.5 5.5h11M2 10.5h11"/></symbol>
     </svg>
 
     <script src="app.js"></script>
