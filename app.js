@@ -1,9 +1,10 @@
 /**
- * duthaho — about page
- * Renders data.json into a modern-minimal / Cobalt layout: a Marquee hero with
- * a hand-built API-response profile card, an overview, a dark principles band,
- * an experience list, open-source cards, and field notes. Ships a working ⌘K
- * command palette and a single composed reveal. No framework.
+ * duthaho — about page · "The Through-Line"
+ * Renders data.json into a schematic sheet: a hero drawing-title with a drafting
+ * title block, a legend/BOM overview, an inverted general-notes panel, an
+ * experience spine (one node per role), open-source module blocks, and a field-
+ * notes tail. A single minium wire runs the left rail and draws itself on scroll,
+ * lighting a node at each station. Ships a working ⌘K palette. No framework.
  */
 (function () {
     'use strict';
@@ -33,10 +34,6 @@
         return `<svg viewBox="0 0 24 24" aria-hidden="true"${cls ? ` class="${cls}"` : ''}><use href="#icon-${id}"/></svg>`;
     }
 
-    // ----------------------------------------------------------------
-    // Hero
-    // ----------------------------------------------------------------
-
     function firstYear(experience) {
         const years = experience
             .map((j) => (String(j.period).match(/\d{4}/) || [])[0])
@@ -45,14 +42,25 @@
         return years.length ? Math.min(...years) : null;
     }
 
+    function lastYear(experience) {
+        const years = experience
+            .flatMap((j) => (String(j.period).match(/\d{4}/g) || []))
+            .map(Number);
+        return years.length ? Math.max(...years) : null;
+    }
+
+    // ----------------------------------------------------------------
+    // Hero + title block
+    // ----------------------------------------------------------------
+
     function renderHero(data) {
         const { personal, stats, social } = data;
 
-        $('hero-eyebrow').textContent = `${personal.title} — ${personal.location}`;
+        $('hero-eyebrow').textContent = `${personal.title} · ${personal.location}`;
         $('hero-name').textContent = personal.name;
         $('hero-lede').innerHTML =
-            'From AAA mobile titles to AI-powered recruitment — designing ' +
-            '<b>systems that scale</b>, and the <b>teams that ship them</b>.';
+            'From AAA mobile titles to AI-powered recruitment — one wire traced ' +
+            'through <b>systems that scale</b> and the <b>teams that ship them</b>.';
 
         $('hero-stats').innerHTML = stats.map((s) => `
             <div class="hero__stat">
@@ -67,38 +75,36 @@
             ${gh ? `<a href="${escapeHTML(gh.url)}" target="_blank" rel="noopener" class="btn btn--ghost">${iconSvg('github')} GitHub</a>` : ''}
         `;
 
-        renderHeroCard(data);
+        renderTitleBlock(data);
     }
 
-    // Hand-built profile-as-API-response card — no fake window chrome (no dots).
-    function renderHeroCard(data) {
+    // Drafting title block — the metadata box in the corner of every drawing.
+    function renderTitleBlock(data) {
         const { personal } = data;
         const since = firstYear(data.experience) || 2013;
-        const handle = '@duthaho';
+        const rev = `${data.footer.year}.07`;
 
-        const line = (k, v, comma) =>
-            `  <span class="tok-punct">"</span><span class="tok-key">${escapeHTML(k)}</span><span class="tok-punct">": </span>${v}<span class="tok-punct">${comma ? ',' : ''}</span>`;
-        const str = (v) => `<span class="tok-punct">"</span><span class="tok-str">${escapeHTML(v)}</span><span class="tok-punct">"</span>`;
-        const num = (v) => `<span class="tok-num">${escapeHTML(String(v))}</span>`;
+        const cell = (label, value, mod) =>
+            `<div class="tcell${mod ? ' ' + mod : ''}">
+                <dt>${escapeHTML(label)}</dt>
+                <dd>${value}</dd>
+            </div>`;
 
-        const body =
-            `<span class="req"><b>GET</b> /whoami</span>` +
-            `<span class="tok-punct">{</span>\n` +
-            line('name', str(personal.name), true) + '\n' +
-            line('handle', str(handle), true) + '\n' +
-            line('role', str(personal.title), true) + '\n' +
-            line('based', str(personal.location), true) + '\n' +
-            line('since', num(since), true) + '\n' +
-            line('focus', `<span class="tok-punct">[</span>${str('systems')}<span class="tok-punct">, </span>${str('teams')}<span class="tok-punct">]</span>`, true) + '\n' +
-            `  <span class="tok-punct">"</span><span class="tok-key">status</span><span class="tok-punct">": </span><span class="tok-punct">"</span><span class="tok-str" id="hero-status"></span><span class="caret" id="hero-caret" aria-hidden="true">.</span><span class="tok-punct" id="hero-status-close" hidden>"</span>\n` +
-            `<span class="tok-punct">}</span>`;
-
-        $('hero-card').innerHTML = `
-            <figcaption class="card__bar">
-                <span class="card__file">whoami.json</span>
-                <span class="status">200 OK</span>
+        $('hero-block').innerHTML = `
+            <figcaption class="tblock__cap">
+                <span>Title block · whoami</span>
+                <span class="dot" aria-hidden="true"></span>
             </figcaption>
-            <div class="card__body">${body}</div>
+            <dl class="tblock__grid">
+                ${cell('Drawn by', escapeHTML(personal.name))}
+                ${cell('Handle', '@duthaho')}
+                ${cell('Role', escapeHTML(personal.title))}
+                ${cell('Location', escapeHTML(personal.location))}
+                ${cell('Since', String(since))}
+                ${cell('Focus', 'systems · teams')}
+                ${cell('Status', `<span class="tstatus" id="hero-status"></span><span class="caret" id="hero-caret" aria-hidden="true">.</span>`, 'tcell--wide tcell--status')}
+                ${cell('Sheet', `01 — About · rev ${escapeHTML(rev)}`, 'tcell--wide')}
+            </dl>
         `;
 
         typeStatus('building in the open');
@@ -107,13 +113,11 @@
     function typeStatus(text) {
         const el = $('hero-status');
         const caret = $('hero-caret');
-        const close = $('hero-status-close');
         if (!el) return;
 
         if (prefersReduced) {
             el.textContent = text;
             if (caret) caret.remove();
-            if (close) close.hidden = false;
             return;
         }
 
@@ -123,9 +127,8 @@
             i += 1;
             if (i <= text.length) {
                 setTimeout(tick, 45);
-            } else if (close) {
-                close.hidden = false;
-                if (caret) setTimeout(() => caret.remove(), 900);
+            } else if (caret) {
+                setTimeout(() => caret.remove(), 1200);
             }
         };
         setTimeout(tick, 650);
@@ -150,28 +153,29 @@
     }
 
     // ----------------------------------------------------------------
-    // Principles — dark band
+    // General notes — inverted panel
     // ----------------------------------------------------------------
 
     function renderPrinciples(data) {
         const list = data.personal.about.principles;
         $('principles-list').innerHTML = list.map((p, i) => `
-            <li class="principle">
-                <span class="principle__no">${String(i + 1).padStart(2, '0')}</span>
-                <span class="principle__text">${escapeHTML(p)}</span>
+            <li class="note-item">
+                <span class="note-item__no">N.${String(i + 1).padStart(2, '0')}</span>
+                <span class="note-item__text">${escapeHTML(p)}</span>
             </li>
         `).join('');
     }
 
     // ----------------------------------------------------------------
-    // Experience
+    // Experience — spine with a node per role
     // ----------------------------------------------------------------
 
     function renderExperience(data) {
         const exp = data.experience;
         const start = firstYear(exp);
+        const end = lastYear(exp);
         $('experience-meta').textContent =
-            `${start ? start + ' – 2025 · ' : ''}${exp.length} roles`;
+            `${start && end ? start + '–' + end + ' · ' : ''}${exp.length} roles`;
 
         $('experience-list').innerHTML = exp.map((job) => {
             const badge = job.badge
@@ -180,6 +184,7 @@
             const stack = (job.stack || []).map((s) => `<li>${escapeHTML(s)}</li>`).join('');
             return `
                 <li class="xp__row">
+                    <span class="node" aria-hidden="true"></span>
                     <div class="xp__aside">
                         <span class="xp__period">${escapeHTML(enDash(job.period))}</span>
                         <a class="xp__co" href="${escapeHTML(job.url)}" target="_blank" rel="noopener">${escapeHTML(job.company)}</a>
@@ -201,7 +206,7 @@
     // ----------------------------------------------------------------
 
     function renderRepos(data) {
-        $('oss-meta').textContent = `${data.projects.length} repositories`;
+        $('oss-meta').textContent = `${data.projects.length} modules`;
         $('repos-grid').innerHTML = data.projects.map((p) => {
             const meta = [];
             if (p.stars) meta.push(`<span>${iconSvg('star')}${p.stars}</span>`);
@@ -248,19 +253,68 @@
             `<a href="${escapeHTML(l.url)}" target="_blank" rel="noopener" aria-label="${escapeHTML(l.name)}" title="${escapeHTML(l.name)}">${iconSvg(l.icon)}</a>`
         ).join('');
         $('page-foot').innerHTML = `
-            <span class="foot__mark">duthaho<span class="dot">.</span></span>
+            <span class="foot__mark">duthaho<span class="tick">.</span></span>
             <span>© ${escapeHTML(String(footer.year))} · ${escapeHTML(personal.name)}</span>
             <span class="foot__social">${links}</span>
-            <span class="foot__end">${escapeHTML(personal.location)} · Set in Space Grotesk &amp; Inter</span>
+            <span class="foot__end">Sheet 01 of 01 · ${escapeHTML(personal.location)} · Set in Archivo &amp; IBM Plex</span>
         `;
     }
 
     // ----------------------------------------------------------------
-    // Reveal — one composed entrance per section, then static
+    // The wire — scroll-linked trace + node wiring on reveal
+    // ----------------------------------------------------------------
+
+    function setupWire() {
+        const trace = $('spine-trace');
+        const frame = document.querySelector('.frame');
+        const nodes = Array.from(document.querySelectorAll('.sheet__head, .xp__row'));
+
+        if (prefersReduced || !frame) {
+            if (trace) trace.style.setProperty('--progress', '1');
+            nodes.forEach((n) => n.classList.add('is-wired'));
+            return;
+        }
+
+        // Draw the trace proportional to how far the sheet has been read.
+        let ticking = false;
+        const update = () => {
+            ticking = false;
+            const rect = frame.getBoundingClientRect();
+            const vh = window.innerHeight;
+            const span = rect.height - vh * 0.5;
+            const passed = vh * 0.5 - rect.top;
+            const p = span > 0 ? Math.min(1, Math.max(0, passed / span)) : 1;
+            if (trace) trace.style.setProperty('--progress', p.toFixed(4));
+        };
+        const onScroll = () => {
+            if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        update();
+
+        // Light each node as its station passes the trace tip.
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is-wired');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -45% 0px', threshold: 0 });
+            nodes.forEach((n) => io.observe(n));
+        } else {
+            nodes.forEach((n) => n.classList.add('is-wired'));
+        }
+    }
+
+    // ----------------------------------------------------------------
+    // Reveal — one composed entrance per region, then static
     // ----------------------------------------------------------------
 
     function setupReveal() {
-        const targets = ['hero-card', 'overview', 'principles', 'experience', 'oss', 'writing']
+        const targets = ['hero-block', 'overview', 'principles', 'experience', 'oss', 'writing']
             .map($).filter(Boolean);
 
         if (prefersReduced || !('IntersectionObserver' in window)) {
@@ -432,6 +486,7 @@
             renderWriting(data);
             renderFooter(data);
             setupReveal();
+            setupWire();
             setupPalette(data);
         } catch (err) {
             console.error('Failed to render page:', err);

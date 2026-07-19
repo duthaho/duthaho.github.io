@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>duthaho — Solution Architect</title>
-    <meta name="description" content="Duong Thanh Hop (@duthaho) — Solution Architect. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox. Systems that scale, and the teams that ship them.">
+    <meta name="description" content="Duong Thanh Hop (@duthaho) — Solution Architect. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox. One wire, traced through the whole system.">
     <link href="favicon.ico" rel="icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Nav: bordered flush bar + working ⌘K palette -->
+    <!-- Nav: drafting header bar + working ⌘K palette -->
     <header class="nav">
         <div class="nav__inner">
-            <a href="#top" class="nav__mark">duthaho<span class="dot">.</span></a>
+            <a href="#top" class="nav__mark">duthaho<span class="tick">.</span></a>
             <nav class="nav__links" aria-label="Primary">
                 <a href="#overview">Overview</a>
                 <a href="#experience">Experience</a>
@@ -43,79 +43,97 @@
     </div>
 
     <main id="top">
+        <div class="frame">
 
-        <!-- Hero (Marquee): title-left, code card right -->
-        <section class="hero wrap" aria-label="Introduction">
-            <div class="hero__grid">
-                <div class="hero__intro">
-                    <p class="hero__eyebrow klabel" id="hero-eyebrow"></p>
-                    <h1 class="hero__name" id="hero-name"></h1>
-                    <p class="hero__lede" id="hero-lede"></p>
-                    <div class="hero__stats" id="hero-stats"></div>
-                    <div class="hero__actions" id="hero-actions"></div>
-                </div>
-                <figure class="card" id="hero-card" aria-label="Profile as an API response"></figure>
+            <!-- The rail carries the through-line: an ink spine + a signal trace
+                 that draws itself as the sheet is read. Decorative; all meaning
+                 lives in the text to its right. -->
+            <div class="rail" aria-hidden="true">
+                <div class="spine"><span class="spine__trace" id="spine-trace"></span></div>
             </div>
-        </section>
 
-        <!-- Overview -->
-        <section class="sec wrap" id="overview">
-            <header class="sec__head">
-                <h2 class="sec__title">Overview</h2>
-                <span class="sec__meta" id="overview-meta"></span>
-            </header>
-            <div class="overview">
-                <div class="prose" id="overview-prose"></div>
-                <aside class="aside">
-                    <div class="aside__block">
-                        <p class="aside__label klabel">Works on</p>
-                        <ul class="skills" id="overview-skills"></ul>
+            <div class="flow">
+
+                <!-- Hero — the drawing title -->
+                <section class="hero" aria-label="Introduction">
+                    <div class="hero__head">
+                        <p class="hero__eyebrow klabel" id="hero-eyebrow"></p>
+                        <h1 class="hero__name" id="hero-name"></h1>
+                        <p class="hero__lede" id="hero-lede"></p>
+                        <div class="hero__actions" id="hero-actions"></div>
                     </div>
-                    <div class="aside__block">
-                        <p class="aside__label klabel">Stack</p>
-                        <ul class="chips" id="overview-stack"></ul>
+                    <div class="hero__side">
+                        <div class="hero__stats" id="hero-stats"></div>
+                        <figure class="tblock" id="hero-block" aria-label="Title block"></figure>
                     </div>
-                </aside>
+                </section>
+
+                <!-- Overview -->
+                <section class="sheet" id="overview">
+                    <header class="sheet__head">
+                        <span class="sheet__code klabel">A·1</span>
+                        <h2 class="sheet__title">Overview</h2>
+                        <span class="sheet__meta klabel" id="overview-meta"></span>
+                    </header>
+                    <div class="overview">
+                        <div class="prose" id="overview-prose"></div>
+                        <aside class="legend">
+                            <div class="legend__block">
+                                <p class="legend__label klabel">Works on</p>
+                                <ul class="skills" id="overview-skills"></ul>
+                            </div>
+                            <div class="legend__block">
+                                <p class="legend__label klabel">Stack · bill of materials</p>
+                                <ul class="chips" id="overview-stack"></ul>
+                            </div>
+                        </aside>
+                    </div>
+                </section>
+
+                <!-- Principles — inverted "general notes" panel -->
+                <section class="sheet" id="principles">
+                    <header class="sheet__head">
+                        <span class="sheet__code klabel">A·2</span>
+                        <h2 class="sheet__title">General notes</h2>
+                        <span class="sheet__meta klabel">how I work</span>
+                    </header>
+                    <ul class="notes-panel" id="principles-list"></ul>
+                </section>
+
+                <!-- Experience — the spine, one node per role -->
+                <section class="sheet" id="experience">
+                    <header class="sheet__head">
+                        <span class="sheet__code klabel">A·3</span>
+                        <h2 class="sheet__title">Experience</h2>
+                        <span class="sheet__meta klabel" id="experience-meta"></span>
+                    </header>
+                    <ol class="xp" id="experience-list"></ol>
+                </section>
+
+                <!-- Open source — modules off the line -->
+                <section class="sheet" id="oss">
+                    <header class="sheet__head">
+                        <span class="sheet__code klabel">A·4</span>
+                        <h2 class="sheet__title">Open source</h2>
+                        <span class="sheet__meta klabel" id="oss-meta"></span>
+                    </header>
+                    <div class="repos" id="repos-grid"></div>
+                    <a href="https://github.com/duthaho?tab=repositories" target="_blank" rel="noopener" class="sheet__more">Full archive on GitHub <span class="arrow">↗</span></a>
+                </section>
+
+                <!-- Field notes — the tail of the wire -->
+                <section class="sheet" id="writing">
+                    <header class="sheet__head">
+                        <span class="sheet__code klabel">A·5</span>
+                        <h2 class="sheet__title">Field notes</h2>
+                        <span class="sheet__meta klabel" id="writing-meta"></span>
+                    </header>
+                    <ol class="feed" id="writing-feed"></ol>
+                    <a href="https://duthaho.dev/" target="_blank" rel="noopener" class="sheet__more">The complete shelf at duthaho.dev <span class="arrow">↗</span></a>
+                </section>
+
             </div>
-        </section>
-
-        <!-- Principles — the one dark graphite band -->
-        <section class="band" id="principles" aria-label="Operating principles">
-            <div class="band__inner">
-                <p class="band__label klabel">How I <span>work</span></p>
-                <ul class="principles" id="principles-list"></ul>
-            </div>
-        </section>
-
-        <!-- Experience -->
-        <section class="sec wrap" id="experience">
-            <header class="sec__head">
-                <h2 class="sec__title">Experience</h2>
-                <span class="sec__meta" id="experience-meta"></span>
-            </header>
-            <ol class="xp" id="experience-list"></ol>
-        </section>
-
-        <!-- Open source -->
-        <section class="sec wrap" id="oss">
-            <header class="sec__head">
-                <h2 class="sec__title">Open source</h2>
-                <span class="sec__meta" id="oss-meta"></span>
-            </header>
-            <div class="repos" id="repos-grid"></div>
-            <a href="https://github.com/duthaho?tab=repositories" target="_blank" rel="noopener" class="sec__more">Full archive on GitHub ↗</a>
-        </section>
-
-        <!-- Field notes -->
-        <section class="sec wrap" id="writing">
-            <header class="sec__head">
-                <h2 class="sec__title">Field notes</h2>
-                <span class="sec__meta" id="writing-meta"></span>
-            </header>
-            <ol class="notes" id="writing-feed"></ol>
-            <a href="https://duthaho.dev/" target="_blank" rel="noopener" class="sec__more">The complete shelf at duthaho.dev ↗</a>
-        </section>
-
+        </div>
     </main>
 
     <footer class="foot">

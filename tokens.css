@@ -1,48 +1,43 @@
-/* Hallmark · Cobalt tokens — modern-minimal, dev-tool register.
-   Cool engineered near-white ground · one electric cobalt signal · hairlines.
-   Every colour/font/space in styles.css references these by name. */
+/* Through-Line tokens — an architect's schematic sheet.
+   Warm bone drafting paper · graphite ink · ONE minium (red-lead) signal that
+   traces the wire, the nodes, the marks. Every colour/font/space in styles.css
+   references these by name. */
 
 :root {
-    /* ---- Colour: cool near-white paper, cool charcoal ink ---- */
-    --color-paper:        oklch(98.5% 0.004 250);
-    --color-paper-2:      oklch(96.8% 0.005 252);   /* subtle panel */
-    --color-ink:          oklch(24% 0.02 258);      /* headings */
-    --color-ink-2:        oklch(34% 0.018 257);     /* body */
-    --color-ink-3:        oklch(52% 0.014 256);     /* muted / meta */
-    --color-rule:         oklch(90% 0.006 255);     /* hairline on paper */
-    --color-rule-strong:  oklch(82% 0.008 255);     /* emphasised hairline */
+    /* ---- Colour: warm bone paper, warm graphite ink ---- */
+    --paper:      oklch(96.6% 0.006 92);    /* drafting sheet */
+    --paper-2:    oklch(94.2% 0.008 90);    /* title-block cell, panels */
+    --paper-3:    oklch(91.5% 0.010 88);    /* chips, deeper tint */
+    --ink:        oklch(24% 0.014 66);      /* headings, drawn lines */
+    --ink-2:      oklch(39% 0.013 62);      /* body */
+    --ink-3:      oklch(55% 0.011 60);      /* muted / annotation text */
+    --rule:       oklch(87% 0.008 82);      /* hairline */
+    --rule-2:     oklch(78% 0.012 78);      /* dimension line / spine */
 
-    /* one signal — electric cobalt, < 5% of any viewport */
-    --color-accent:       oklch(58% 0.20 256);      /* marks, ticks, status, underlines */
-    --color-accent-btn:   oklch(50% 0.19 256);      /* filled button — AA white text */
-    --color-accent-btn-2: oklch(44% 0.17 256);      /* button hover / pressed */
-    --color-accent-2:     oklch(52% 0.19 256);      /* link hover */
-    --color-accent-ink:   oklch(98.5% 0.004 250);   /* text on accent */
-    --color-accent-soft:  oklch(58% 0.20 256 / 0.10);
-    --color-focus:        oklch(58% 0.20 256);
-    --color-selection:    oklch(58% 0.20 256 / 0.16);
+    /* one signal — minium red-lead, < 8% of any viewport */
+    --signal:      oklch(57% 0.185 36);     /* the wire, nodes, ticks, marks */
+    --signal-2:    oklch(50% 0.176 34);     /* links / AA text on paper */
+    --signal-deep: oklch(45% 0.165 33);     /* pressed / button hover */
+    --signal-ink:  oklch(97% 0.008 90);     /* text on signal fill */
+    --signal-soft: oklch(57% 0.185 36 / 0.12);
+    --focus:       oklch(57% 0.185 36);
+    --selection:   oklch(57% 0.185 36 / 0.18);
 
-    /* shadows — cool ink, tokenised (no inline colour literals) */
-    --color-shadow:       oklch(24% 0.02 258 / 0.22);
-    --color-shadow-weak:  oklch(24% 0.02 258 / 0.06);
+    /* shadows — warm ink, tokenised */
+    --shadow:      oklch(24% 0.014 66 / 0.18);
+    --shadow-weak: oklch(24% 0.014 66 / 0.06);
 
-    /* graphite — the code card + the one dark band */
-    --color-graphite:     oklch(22% 0.016 260);
-    --color-graphite-2:   oklch(18.5% 0.016 260);
-    --color-graphite-ink: oklch(91% 0.01 258);
-    --color-graphite-mut: oklch(64% 0.012 258);
-    --color-rule-dark:    oklch(31% 0.014 260);
-
-    /* syntax tokens (on graphite) — cobalt is the one signal */
-    --tok-key:     oklch(70% 0.15 256);
-    --tok-str:     oklch(82% 0.06 205);
-    --tok-num:     oklch(84% 0.05 90);
-    --tok-punct:   oklch(60% 0.012 258);
+    /* graphite — the one inverted "general notes" panel */
+    --graphite:     oklch(25% 0.014 68);
+    --graphite-2:   oklch(21% 0.014 68);
+    --graphite-ink: oklch(92% 0.007 86);
+    --graphite-mut: oklch(66% 0.011 80);
+    --graphite-rule:oklch(35% 0.013 68);
 
     /* ---- Type ---- */
-    --font-display: "Space Grotesk", system-ui, "Segoe UI", sans-serif;
-    --font-body:    "Inter", system-ui, "Segoe UI", sans-serif;
-    --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --font-display: "Archivo", system-ui, "Segoe UI", sans-serif;
+    --font-body:    "IBM Plex Sans", system-ui, "Segoe UI", sans-serif;
+    --font-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
     /* ---- Type scale ---- */
     --text-xs:   0.75rem;
@@ -53,7 +48,7 @@
     --text-xl:   1.5rem;
     --text-2xl:  1.9375rem;
     --text-display-s: clamp(2rem, 4vw + 0.5rem, 3rem);
-    --text-display:   clamp(2.75rem, 6vw + 0.5rem, 4.75rem);
+    --text-display:   clamp(2.6rem, 6vw + 0.5rem, 4.6rem);
 
     /* ---- Spacing (4pt) ---- */
     --space-3xs: 0.25rem;
@@ -66,17 +61,22 @@
     --space-2xl: 4.5rem;
     --space-3xl: 7rem;
 
-    /* ---- Radii — drawn with a ruler ---- */
-    --radius-control: 6px;
-    --radius-card:    10px;
-    --radius-chip:    5px;
+    /* ---- Rail / spine geometry ---- */
+    --rail:      64px;      /* rail column width on desktop */
+    --flow-pad:  clamp(1.5rem, 3.5vw, 2.75rem);  /* gap from spine to content */
+    --node:      9px;       /* diamond node edge */
+
+    /* ---- Radii — drawn with a set square, mostly sharp ---- */
+    --radius-control: 4px;
+    --radius-card:    3px;
+    --radius-chip:    2px;
 
     /* ---- Motion ---- */
     --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
     --dur-short:   200ms;
     --dur-mid:     380ms;
-    --dur-reveal:  600ms;
+    --dur-reveal:  620ms;
 
     /* ---- Z scale ---- */
     --z-nav:     50;

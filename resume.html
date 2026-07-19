@@ -8,40 +8,46 @@
     <link href="favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tokens.css">
     <style>
-    /* Hallmark · genre: modern-minimal · theme: Cobalt · design-system: tokens.css
-     * page-type: content/résumé (print-first) · shares the about page's system
-     * Hallmark · pre-emit critique: P5 H4 E5 S5 R5 V4
+    /* Through-Line · Sheet 02 — the résumé, cut from the same drawing set as the
+     * about page: warm bone paper, graphite ink, one minium signal, diamond nodes.
+     * Print-first (A4) and ATS-plain — every date/role/company is real text in
+     * source order; the rail, nodes and section codes are decorative only.
      */
 
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-        background: var(--color-paper-2);
+        background-color: var(--paper-2);
+        /* faint graph-paper backdrop — screen only, echoes the sheet */
+        background-image:
+            linear-gradient(to right, color-mix(in oklab, var(--rule) 40%, transparent) 1px, transparent 1px),
+            linear-gradient(to bottom, color-mix(in oklab, var(--rule) 40%, transparent) 1px, transparent 1px);
+        background-size: 30px 30px;
         font-family: var(--font-body);
-        color: var(--color-ink-2);
+        color: var(--ink-2);
         font-size: 10.5pt;
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
-        /* keep the one cobalt signal (ticks, rail nodes) when saved to PDF */
+        /* keep the one minium signal (ticks, nodes) when saved to PDF */
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
-    a { color: var(--color-accent-2); text-decoration: none; }
-    :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 3px; }
+    a { color: var(--signal-2); text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px; }
 
     /* -------- Toolbar (screen only) -------- */
     .toolbar {
         position: sticky;
         top: 0;
         z-index: var(--z-nav);
-        background: color-mix(in oklab, var(--color-paper) 85%, transparent);
+        background: color-mix(in oklab, var(--paper) 86%, transparent);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        border-bottom: 1px solid var(--color-rule);
+        border-bottom: 1px solid var(--rule-2);
         display: flex;
         align-items: center;
         gap: 0.6rem;
@@ -55,93 +61,120 @@
         font-size: 0.8125rem;
         font-weight: 500;
         line-height: 1;
-        color: var(--color-ink);
-        background: var(--color-paper);
-        border: 1px solid var(--color-rule-strong);
+        color: var(--ink);
+        background: var(--paper);
+        border: 1px solid var(--rule-2);
         border-radius: var(--radius-control);
         padding: 0.5rem 0.8rem;
         cursor: pointer;
         transition: border-color var(--dur-short) var(--ease-out),
                     background-color var(--dur-short) var(--ease-out);
     }
-    .toolbar a:hover, .toolbar button:hover { border-color: var(--color-ink); }
+    .toolbar a:hover, .toolbar button:hover { border-color: var(--ink); }
     .toolbar .primary {
-        background: var(--color-accent-btn);
-        color: var(--color-accent-ink);
+        background: var(--signal-2);
+        color: var(--signal-ink);
         border-color: transparent;
     }
-    .toolbar .primary:hover { background: var(--color-accent-btn-2); border-color: transparent; }
+    .toolbar .primary:hover { background: var(--signal-deep); border-color: transparent; }
     .toolbar .hint {
         margin-left: auto;
         font-family: var(--font-mono);
         font-size: 0.72rem;
-        color: var(--color-ink-3);
+        color: var(--ink-3);
     }
 
     /* -------- Sheet -------- */
     .page {
         max-width: 210mm;
         margin: 24px auto 48px;
-        background: var(--color-paper);
-        border: 1px solid var(--color-rule);
-        border-radius: 4px;
-        box-shadow: 0 8px 40px var(--color-shadow);
+        background: var(--paper);
+        border: 1px solid var(--rule-2);
+        border-radius: var(--radius-card);
+        box-shadow: 0 8px 40px var(--shadow);
         padding: 16mm 17mm;
+        counter-reset: sec;
     }
 
-    /* -------- Header -------- */
+    /* -------- Header — title block -------- */
     .head {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        gap: 16px;
+        gap: 16px 24px;
         flex-wrap: wrap;
-        border-bottom: 1px solid var(--color-rule-strong);
+        border-bottom: 1.5px solid var(--ink);
         padding-bottom: 12px;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
     }
     .head__name {
         font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 25pt;
-        letter-spacing: -0.02em;
-        line-height: 1.02;
-        color: var(--color-ink);
-        margin: 0 0 4px;
+        font-weight: 700;
+        font-size: 27pt;
+        letter-spacing: -0.03em;
+        line-height: 1.0;
+        color: var(--ink);
+        margin: 0 0 6px;
     }
     .head__role {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
         font-family: var(--font-mono);
         font-size: 9pt;
         font-weight: 500;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--color-accent);
+        color: var(--signal-2);
+        margin: 0 0 6px;
+    }
+    .head__role::before {
+        content: "";
+        width: 7px; height: 7px;
+        transform: rotate(45deg);
+        background: var(--signal);
+        flex: none;
+    }
+    .head__sheet {
+        font-family: var(--font-mono);
+        font-size: 8pt;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-3);
         margin: 0;
     }
     .head__contact {
         text-align: right;
         font-family: var(--font-mono);
         font-size: 8.5pt;
-        color: var(--color-ink-3);
+        color: var(--ink-3);
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 3px;
         margin: 0;
     }
-    .head__contact a { color: var(--color-ink-2); }
-    .head__contact a:hover { color: var(--color-accent-2); }
+    .head__contact a { color: var(--ink-2); }
+    .head__contact a:hover { color: var(--signal-2); }
 
     .head__stats {
         font-family: var(--font-mono);
         font-size: 8.5pt;
-        color: var(--color-ink-3);
+        color: var(--ink-3);
         margin: 0 0 18px;
         display: flex;
         flex-wrap: wrap;
-        gap: 4px 18px;
+        gap: 4px 16px;
+    }
+    .head__stats span { display: inline-flex; align-items: center; gap: 6px; }
+    .head__stats span::before {
+        content: "";
+        width: 5px; height: 5px;
+        transform: rotate(45deg);
+        background: var(--signal);
+        flex: none;
     }
     .head__stats b {
-        color: var(--color-ink);
+        color: var(--ink);
         font-weight: 600;
         font-variant-numeric: tabular-nums;
     }
@@ -149,28 +182,31 @@
     /* -------- Sections -------- */
     .sec { margin-bottom: 15px; break-inside: auto; }
     .sec__title {
+        counter-increment: sec;
         display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        align-items: baseline;
+        gap: 0.55rem;
         font-family: var(--font-display);
-        font-weight: 600;
-        font-size: 12pt;
-        letter-spacing: -0.01em;
-        color: var(--color-ink);
-        border-bottom: 1px solid var(--color-rule);
+        font-weight: 700;
+        font-size: 12.5pt;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        border-bottom: 1px solid var(--rule-2);
         padding-bottom: 4px;
         margin: 0 0 9px;
         break-after: avoid;
     }
     .sec__title::before {
-        content: "";
-        width: 7px; height: 7px;
-        border-radius: 2px;
-        background: var(--color-accent);
+        content: "B·" counter(sec);
+        font-family: var(--font-mono);
+        font-size: 8pt;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--signal-2);
         flex: none;
     }
 
-    .summary { margin: 0; color: var(--color-ink-2); max-width: 62em; }
+    .summary { margin: 0; color: var(--ink-2); max-width: 64em; }
 
     /* Skills */
     .skills { display: flex; flex-direction: column; gap: 6px; }
@@ -181,27 +217,25 @@
         font-weight: 500;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--color-ink-3);
-        min-width: 92px;
+        color: var(--ink-3);
+        min-width: 96px;
         padding-top: 2px;
     }
-    .skills__value { font-size: 10pt; color: var(--color-ink); }
+    .skills__value { font-size: 10pt; color: var(--ink); }
 
-    /* Experience — hairline timeline rail with a cobalt node per role.
-       The rail + nodes are decorative; every date/role/company is real text,
-       so screen readers and ATS parsers read the list in plain source order. */
+    /* Experience — hairline rail with a minium diamond node per role. */
     .exp {
         position: relative;
-        padding-left: 20px;
+        padding-left: 22px;
     }
     .exp::before {
         content: "";
         position: absolute;
         left: 3px;
-        top: 5px;
-        bottom: 5px;
+        top: 6px;
+        bottom: 6px;
         width: 1px;
-        background: var(--color-rule-strong);
+        background: var(--rule-2);
     }
     .job {
         position: relative;
@@ -212,13 +246,13 @@
     .job::before {
         content: "";
         position: absolute;
-        left: -20px;
-        top: 0.42em;
+        left: -22px;
+        top: 0.34em;
         width: 8px;
         height: 8px;
-        border-radius: 2px;
-        background: var(--color-accent);
-        box-shadow: 0 0 0 2.5px var(--color-paper);
+        transform: rotate(45deg);
+        background: var(--signal);
+        box-shadow: 0 0 0 2.5px var(--paper);
     }
     .job__head {
         display: flex;
@@ -230,26 +264,26 @@
         font-family: var(--font-display);
         font-weight: 600;
         font-size: 11.5pt;
-        letter-spacing: -0.01em;
-        color: var(--color-ink);
+        letter-spacing: -0.02em;
+        color: var(--ink);
         margin: 0;
     }
     .job__co {
         font-family: var(--font-display);
-        font-weight: 600;
+        font-weight: 700;
         font-size: 10.5pt;
-        letter-spacing: -0.01em;
-        color: var(--color-accent);
+        letter-spacing: -0.02em;
+        color: var(--signal-2);
     }
     .job__period {
         margin-left: auto;
         font-family: var(--font-mono);
         font-size: 8.5pt;
-        color: var(--color-ink-3);
+        color: var(--ink-3);
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
     }
-    .job__summary { margin: 3px 0 6px; font-size: 9.8pt; color: var(--color-ink-2); }
+    .job__summary { margin: 3px 0 6px; font-size: 9.8pt; color: var(--ink-2); }
     .job__bullets { margin: 0; padding: 0; list-style: none; }
     .job__bullets li {
         font-size: 9.8pt;
@@ -257,32 +291,33 @@
         padding-left: 15px;
         position: relative;
         margin-bottom: 3px;
-        color: var(--color-ink-2);
+        color: var(--ink-2);
         break-inside: avoid;
     }
     .job__bullets li::before {
         content: "";
         position: absolute;
-        left: 0; top: 0.55em;
+        left: 0; top: 0.5em;
         width: 5px; height: 5px;
-        border-radius: 1px;
-        background: var(--color-accent);
+        transform: rotate(45deg);
+        background: var(--signal);
     }
-    .job__bullets strong { color: var(--color-ink); font-weight: 600; }
+    .job__bullets strong { color: var(--ink); font-weight: 600; }
     .job__stack {
         font-family: var(--font-mono);
         font-size: 8pt;
-        color: var(--color-ink-3);
+        color: var(--ink-3);
         margin: 6px 0 0;
     }
 
     /* Open source & writing */
     .oss { margin: 0; padding: 0; list-style: none; }
     .oss li { margin-bottom: 6px; break-inside: avoid; }
-    .oss__name { font-family: var(--font-mono); font-weight: 600; font-size: 9.5pt; color: var(--color-ink); }
-    .oss__name:hover { color: var(--color-accent-2); }
-    .oss__meta { font-family: var(--font-mono); font-size: 8pt; color: var(--color-ink-3); margin-left: 8px; font-variant-numeric: tabular-nums; }
-    .oss__desc { color: var(--color-ink-2); font-size: 9.5pt; }
+    .oss__name { font-family: var(--font-mono); font-weight: 500; font-size: 9.5pt; color: var(--ink); }
+    .oss__name::before { content: "› "; color: var(--signal); }
+    .oss__name:hover { color: var(--signal-2); }
+    .oss__meta { font-family: var(--font-mono); font-size: 8pt; color: var(--ink-3); margin-left: 8px; font-variant-numeric: tabular-nums; }
+    .oss__desc { color: var(--ink-2); font-size: 9.5pt; }
 
     /* Selected writing — real articles from data.json, most recent first */
     .writing { margin: 0; padding: 0; list-style: none; }
@@ -296,16 +331,16 @@
     .writing li:last-child { margin-bottom: 0; }
     .writing__title {
         flex: 1 1 auto;
-        color: var(--color-ink);
+        color: var(--ink);
         font-size: 9.6pt;
         line-height: 1.4;
     }
-    .writing__title:hover { color: var(--color-accent-2); }
+    .writing__title:hover { color: var(--signal-2); }
     .writing__date {
         flex: none;
         font-family: var(--font-mono);
         font-size: 8pt;
-        color: var(--color-ink-3);
+        color: var(--ink-3);
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
         padding-top: 1px;
@@ -313,11 +348,12 @@
     .writing__note {
         margin: 8px 0 0;
         font-size: 9pt;
-        color: var(--color-ink-3);
+        color: var(--ink-3);
     }
 
     @media (max-width: 480px) {
         .page { padding: 22px 18px; margin: 14px auto 28px; }
+        .head { align-items: flex-start; }
         .head__contact { text-align: left; }
         .toolbar .hint { display: none; }
     }
@@ -325,7 +361,7 @@
     /* -------- Print -------- */
     @page { size: A4; margin: 0; }
     @media print {
-        body { background: #fff; }
+        body { background: #fff; background-image: none; }
         .toolbar { display: none; }
         .page {
             max-width: none;
@@ -378,9 +414,11 @@
             const res = await fetch('data.json');
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
-            const { personal, stats, coreSkills, techStack, experience, projects, articles = [], social } = data;
+            const { personal, stats, coreSkills, techStack, experience, projects, articles = [], social, footer = {} } = data;
 
             document.title = `Résumé — ${personal.name}, ${personal.title}`;
+
+            const rev = `${footer.year || new Date().getFullYear()}.07`;
 
             const contact = [
                 `<span>${escapeHTML(personal.location)}</span>`,
@@ -431,6 +469,7 @@
                     <div>
                         <h1 class="head__name">${escapeHTML(personal.name)}</h1>
                         <p class="head__role">${escapeHTML(personal.title)}</p>
+                        <p class="head__sheet">Sheet 02 · Résumé — rev ${escapeHTML(rev)}</p>
                     </div>
                     <p class="head__contact">${contact}</p>
                 </header>
@@ -477,7 +516,7 @@
         function fail(err) {
             console.error('Failed to render résumé:', err);
             document.getElementById('page').innerHTML =
-                '<p style="font-family:var(--font-mono);font-size:10pt;color:var(--color-ink-2)">Could not load profile data — check that data.json is reachable. <a href="javascript:location.reload()">Reload</a>.</p>';
+                '<p style="font-family:var(--font-mono);font-size:10pt;color:var(--ink-2)">Could not load profile data — check that data.json is reachable. <a href="javascript:location.reload()">Reload</a>.</p>';
         }
 
         if (document.readyState === 'loading') {
