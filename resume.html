@@ -26,6 +26,9 @@
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
+        /* keep the one cobalt signal (ticks, rail nodes) when saved to PDF */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
     a { color: var(--color-accent-2); text-decoration: none; }
     :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 3px; }
@@ -184,9 +187,39 @@
     }
     .skills__value { font-size: 10pt; color: var(--color-ink); }
 
-    /* Experience */
-    .job { margin-bottom: 13px; break-inside: avoid; }
+    /* Experience — hairline timeline rail with a cobalt node per role.
+       The rail + nodes are decorative; every date/role/company is real text,
+       so screen readers and ATS parsers read the list in plain source order. */
+    .exp {
+        position: relative;
+        padding-left: 20px;
+    }
+    .exp::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 5px;
+        bottom: 5px;
+        width: 1px;
+        background: var(--color-rule-strong);
+    }
+    .job {
+        position: relative;
+        margin-bottom: 14px;
+        break-inside: avoid;
+    }
     .job:last-child { margin-bottom: 0; }
+    .job::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 0.42em;
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        background: var(--color-accent);
+        box-shadow: 0 0 0 2.5px var(--color-paper);
+    }
     .job__head {
         display: flex;
         align-items: baseline;
@@ -251,7 +284,37 @@
     .oss__meta { font-family: var(--font-mono); font-size: 8pt; color: var(--color-ink-3); margin-left: 8px; font-variant-numeric: tabular-nums; }
     .oss__desc { color: var(--color-ink-2); font-size: 9.5pt; }
 
-    .writing { margin: 0; color: var(--color-ink-2); font-size: 9.8pt; max-width: 62em; }
+    /* Selected writing — real articles from data.json, most recent first */
+    .writing { margin: 0; padding: 0; list-style: none; }
+    .writing li {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 5px;
+        break-inside: avoid;
+    }
+    .writing li:last-child { margin-bottom: 0; }
+    .writing__title {
+        flex: 1 1 auto;
+        color: var(--color-ink);
+        font-size: 9.6pt;
+        line-height: 1.4;
+    }
+    .writing__title:hover { color: var(--color-accent-2); }
+    .writing__date {
+        flex: none;
+        font-family: var(--font-mono);
+        font-size: 8pt;
+        color: var(--color-ink-3);
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+        padding-top: 1px;
+    }
+    .writing__note {
+        margin: 8px 0 0;
+        font-size: 9pt;
+        color: var(--color-ink-3);
+    }
 
     @media (max-width: 480px) {
         .page { padding: 22px 18px; margin: 14px auto 28px; }
@@ -305,12 +368,17 @@
         const stripTags = (s) => String(s).replace(/<[^>]+>/g, '');
         const bare = (url) => String(url).replace(/^https?:\/\//, '').replace(/\/$/, '');
         const enDash = (s) => String(s).replace(/\s*-\s*/g, '–');
+        const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        function monthYear(iso) {
+            const d = new Date(iso);
+            return Number.isNaN(d.getTime()) ? '' : `${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+        }
 
         async function init() {
             const res = await fetch('data.json');
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
-            const { personal, stats, coreSkills, techStack, experience, projects, social } = data;
+            const { personal, stats, coreSkills, techStack, experience, projects, articles = [], social } = data;
 
             document.title = `Résumé — ${personal.name}, ${personal.title}`;
 
@@ -352,6 +420,12 @@
                 </li>`;
             }).join('');
 
+            const writing = articles.slice(0, 3).map(a => `
+                <li>
+                    <a class="writing__title" href="${escapeHTML(a.url)}" target="_blank" rel="noopener">${escapeHTML(a.title)}</a>
+                    <span class="writing__date">${escapeHTML(monthYear(a.date))}</span>
+                </li>`).join('');
+
             document.getElementById('page').innerHTML = `
                 <header class="head">
                     <div>
@@ -384,7 +458,7 @@
 
                 <section class="sec">
                     <h2 class="sec__title">Experience</h2>
-                    ${jobs}
+                    <div class="exp">${jobs}</div>
                 </section>
 
                 <section class="sec">
@@ -393,8 +467,9 @@
                 </section>
 
                 <section class="sec">
-                    <h2 class="sec__title">Writing</h2>
-                    <p class="writing">Writes about engineering, AI tooling, and the developer craft at <a href="https://duthaho.dev/" target="_blank" rel="noopener">duthaho.dev</a>.</p>
+                    <h2 class="sec__title">Selected writing</h2>
+                    <ul class="writing">${writing}</ul>
+                    <p class="writing__note">Essays on system design, AI tooling, and the developer craft — full archive at <a href="https://duthaho.dev/" target="_blank" rel="noopener">duthaho.dev</a>.</p>
                 </section>
             `;
         }
