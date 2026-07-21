@@ -1,39 +1,45 @@
-/* Monochrome Editorial tokens — a clean single-column architect's letter.
-   Near-white paper · near-black neutral ink · ONE restrained cool accent
-   used < 5% of any viewport. DNA studied from datht.com (public reference,
-   structure only — no copy, no imagery). Every colour/font/space in
-   styles.css references these by name. Token NAMES are shared with
+/* Terminal · dark-technical tokens — a systems engineer's console.
+   Near-black cool paper · soft-white ink · ONE phosphor cyan-teal accent used
+   < 5% of any viewport (nodes, caret, focus, small marks, glow). Mono-forward:
+   labels, prompts, meta and stats are set in Geist Mono. Every colour/font/space
+   in styles.css references these by name. Token NAMES are shared with
    resume.html; changing a name here changes it there. */
 
 :root {
-    /* ---- Colour: near-white paper, near-black neutral ink ---- */
-    --paper:      oklch(99% 0.002 100);   /* page */
-    --paper-2:    oklch(97.2% 0.003 100); /* cards, hover fill */
-    --paper-3:    oklch(94.6% 0.004 100); /* chips, deeper tint */
-    --ink:        oklch(23% 0.006 265);   /* headings */
-    --ink-2:      oklch(39% 0.006 265);   /* body */
-    --ink-3:      oklch(57% 0.006 265);   /* muted / labels / dates */
-    --rule:       oklch(91.5% 0.003 265); /* hairline */
-    --rule-2:     oklch(85% 0.005 265);   /* stronger divider */
+    /* ---- Colour: near-black cool paper, soft-white ink ---- */
+    --paper:      oklch(17.5% 0.008 255);  /* page / console */
+    --paper-2:    oklch(21% 0.010 255);    /* cards, panels */
+    --paper-3:    oklch(25.5% 0.012 255);  /* chips, hover fill, deeper tint */
+    --ink:        oklch(96% 0.004 250);    /* headings — soft white */
+    --ink-2:      oklch(80% 0.006 250);    /* body */
+    --ink-3:      oklch(62% 0.008 250);    /* muted / labels / dates */
+    --rule:       oklch(30% 0.010 255);    /* hairline */
+    --rule-2:     oklch(38% 0.012 255);    /* stronger divider */
 
-    /* one restrained accent — cool ink-blue: links, focus, small marks (< 5%) */
-    --signal:      oklch(51% 0.132 250);
-    --signal-2:    oklch(46% 0.132 250);  /* AA link text on paper */
-    --signal-deep: oklch(40% 0.120 250);  /* pressed / hover-deep */
-    --signal-ink:  oklch(99% 0.003 250);  /* text on accent fill */
-    --signal-soft: oklch(51% 0.132 250 / 0.10);
-    --focus:       oklch(51% 0.132 250);
-    --selection:   oklch(51% 0.132 250 / 0.16);
+    /* one restrained accent — phosphor cyan-teal: links, focus, nodes, marks (< 5%) */
+    --signal:      oklch(80% 0.128 195);   /* bright mark / node / caret */
+    --signal-2:    oklch(83% 0.120 195);   /* AA link text on dark paper */
+    --signal-deep: oklch(70% 0.120 195);   /* pressed / hover-deep */
+    --signal-ink:  oklch(18% 0.020 195);   /* text on accent fill */
+    --signal-soft: oklch(80% 0.128 195 / 0.12);
+    --signal-line: oklch(80% 0.128 195 / 0.35);
+    --glow:        oklch(80% 0.128 195 / 0.35); /* phosphor bloom around marks */
+    --glow-soft:   oklch(80% 0.128 195 / 0.14);
+    --focus:       oklch(83% 0.120 195);
+    --selection:   oklch(80% 0.128 195 / 0.22);
 
     /* live status — availability dot only */
-    --live:      oklch(66% 0.16 150);
-    --live-soft: oklch(66% 0.16 150 / 0.18);
+    --live:      oklch(78% 0.17 150);
+    --live-soft: oklch(78% 0.17 150 / 0.22);
 
-    /* shadows — neutral ink, tokenised */
-    --shadow:      oklch(23% 0.006 265 / 0.10);
-    --shadow-weak: oklch(23% 0.006 265 / 0.05);
+    /* faint console grid — screen only */
+    --grid:      oklch(100% 0 0 / 0.028);
 
-    /* ---- Type — Geist superfamily, weight-split ---- */
+    /* shadows — pure black, tokenised (dark UI reads depth by black, not ink) */
+    --shadow:      oklch(0% 0 0 / 0.45);
+    --shadow-weak: oklch(0% 0 0 / 0.28);
+
+    /* ---- Type — Geist superfamily, mono-forward ---- */
     --font-display: "Geist", system-ui, "Segoe UI", sans-serif;
     --font-body:    "Geist", system-ui, "Segoe UI", sans-serif;
     --font-mono:    "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -79,4 +85,32 @@
     /* ---- Z scale ---- */
     --z-nav:     50;
     --z-overlay: 80;
+}
+
+/* honour a user who explicitly asks for a light UI: flip to the archival
+   light palette (same token names) so nothing downstream needs to change. */
+@media (prefers-color-scheme: light) {
+    :root.auto-theme {
+        --paper:      oklch(99% 0.002 100);
+        --paper-2:    oklch(97.2% 0.003 100);
+        --paper-3:    oklch(94.6% 0.004 100);
+        --ink:        oklch(23% 0.006 265);
+        --ink-2:      oklch(39% 0.006 265);
+        --ink-3:      oklch(57% 0.006 265);
+        --rule:       oklch(91.5% 0.003 265);
+        --rule-2:     oklch(85% 0.005 265);
+        --signal:      oklch(55% 0.132 220);
+        --signal-2:    oklch(48% 0.132 220);
+        --signal-deep: oklch(42% 0.120 220);
+        --signal-ink:  oklch(99% 0.003 220);
+        --signal-soft: oklch(55% 0.132 220 / 0.10);
+        --signal-line: oklch(55% 0.132 220 / 0.30);
+        --glow:        oklch(55% 0.132 220 / 0.16);
+        --glow-soft:   oklch(55% 0.132 220 / 0.08);
+        --focus:       oklch(55% 0.132 220);
+        --selection:   oklch(55% 0.132 220 / 0.16);
+        --grid:        oklch(0% 0 0 / 0.03);
+        --shadow:      oklch(23% 0.006 265 / 0.10);
+        --shadow-weak: oklch(23% 0.006 265 / 0.05);
+    }
 }

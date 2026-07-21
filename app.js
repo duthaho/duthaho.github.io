@@ -1,10 +1,11 @@
 /**
- * duthaho — about page · "The Letter"
- * Renders data.json into a clean single-column editorial document: a Letter
- * hero, an opening prose block, numbered beliefs, a career timeline, a focus
- * grid, open-source cards, recent writing, and a closing pull-quote. Monochrome,
- * minimal, one restrained accent. No framework, no palette, no scroll wire —
- * just the content and its rhythm. DNA studied from datht.com (structure only).
+ * duthaho — about page · "The Console"
+ * Renders data.json into a dark-technical, terminal-flavoured single-column
+ * document: a prompt hero with a live stats strip, an opening prose block,
+ * numbered beliefs, a career timeline with glowing nodes, a focus grid,
+ * open-source cards, recent writing, and a closing pull-quote. Near-black paper,
+ * mono-forward, one restrained phosphor accent. No framework, no scroll wire —
+ * just the content, its rhythm, and a quiet glow. Print/light users are honoured.
  */
 (function () {
     'use strict';
@@ -57,19 +58,28 @@
 
     // ---------------------------------------------------------------- Hero
     function renderHero(data) {
-        const { personal, social } = data;
+        const { personal, social, stats = [] } = data;
 
+        // terminal prompt line: `whoami ▸ Solution Architect / Da Nang`
         $('hero-eyebrow').innerHTML =
+            `<span class="prompt" aria-hidden="true">whoami ▸</span>` +
             `${escapeHTML(personal.title)}<span class="sep" aria-hidden="true">/</span>${escapeHTML(personal.location)}`;
-        $('hero-name').textContent = personal.name;
+
+        $('hero-name').innerHTML =
+            `${escapeHTML(personal.name)}<span class="hero__caret" aria-hidden="true"></span>`;
+
         $('hero-lede').innerHTML =
             'From AAA mobile titles to AI-powered recruitment — designing ' +
             '<b>systems that scale</b> and the <b>teams that ship them</b>.';
 
+        $('hero-stats').innerHTML = stats
+            .map((s) => `<li><b>${escapeHTML(s.value)}</b> ${escapeHTML(s.label)}</li>`)
+            .join('');
+
         const gh = social.find((s) => s.icon === 'github');
         const li = social.find((s) => s.icon === 'linkedin');
         const links = [
-            `<a href="resume.html" class="hlink">Read the résumé <span class="arrow" aria-hidden="true">→</span></a>`,
+            `<a href="resume.html" class="hlink hlink--primary">Read the résumé <span class="arrow" aria-hidden="true">→</span></a>`,
         ];
         if (gh) links.push(`<a href="${escapeHTML(gh.url)}" target="_blank" rel="noopener" class="hlink">${iconSvg('github')} GitHub</a>`);
         if (li) links.push(`<a href="${escapeHTML(li.url)}" target="_blank" rel="noopener" class="hlink">${iconSvg('linkedin')} LinkedIn</a>`);
