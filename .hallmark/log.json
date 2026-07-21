@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2026-07-21",
+    "page": "index.html",
+    "macrostructure": "Long Document",
+    "theme": "studied-DNA (source: https://datht.com/)",
+    "genre": "modern-minimal",
+    "enrichment": "none (monochrome, typography only)",
+    "nav": "N9 minimal edge (status + social + résumé)",
+    "footer": "Ft1 minimal",
+    "design-system": "tokens.css (Geist · near-white paper · cool ink-blue accent)",
+    "brief": "duthaho about page — cloned datht.com DNA: clean monochrome single-column editorial letter"
+  },
+  {
+    "date": "2026-07-18",
+    "page": "resume.html",
+    "macrostructure": "Document (content page)",
+    "theme": "Cobalt",
+    "genre": "modern-minimal",
+    "enrichment": "none (print-first, typography only)",
+    "design-system": "tokens.css (shared with about page)",
+    "brief": "duthaho résumé redesign — same Cobalt system, print-first document"
+  },
+  {
+    "date": "2026-07-18",
+    "page": "index.html",
+    "macrostructure": "Marquee Hero",
+    "theme": "Cobalt",
+    "genre": "modern-minimal",
+    "enrichment": "Tier-A code card (whoami.json response)",
+    "nav": "bordered + ⌘K palette",
+    "footer": "Ft2 inline",
+    "brief": "duthaho — Solution Architect personal about page redesign"
+  }
+]

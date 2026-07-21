@@ -3,137 +3,100 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>duthaho — Solution Architect</title>
-    <meta name="description" content="Duong Thanh Hop (@duthaho) — Solution Architect. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox. One wire, traced through the whole system.">
+    <title>Duong Thanh Hop — Solution Architect</title>
+    <meta name="description" content="Duong Thanh Hop (@duthaho) — Solution Architect. From AAA mobile titles at Gameloft to AI-powered recruitment at Paradox. Designing systems that scale and the teams that ship them.">
     <link href="favicon.ico" rel="icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="top">
 
-    <!-- Nav: drafting header bar + working ⌘K palette -->
-    <header class="nav">
-        <div class="nav__inner">
-            <a href="#top" class="nav__mark">duthaho<span class="tick">.</span></a>
-            <nav class="nav__links" aria-label="Primary">
-                <a href="#overview">Overview</a>
-                <a href="#experience">Experience</a>
-                <a href="#oss">Open source</a>
-                <a href="#writing">Field notes</a>
+    <!-- Nav — minimal: wordmark left, status + social + résumé right -->
+    <header class="site">
+        <div class="site__inner">
+            <a href="#top" class="site__mark">Duong&nbsp;Thanh&nbsp;Hop<span class="site__tick">.</span></a>
+            <nav class="site__nav" aria-label="Primary">
+                <span class="avail" title="Open to new work">
+                    <span class="avail__dot" aria-hidden="true"></span>Available
+                </span>
+                <span class="site__social" id="nav-social"></span>
+                <a href="resume.html" class="site__resume">Résumé <span class="arrow" aria-hidden="true">↗</span></a>
             </nav>
-            <div class="nav__right">
-                <button class="kbtn" id="palette-open" type="button" aria-haspopup="dialog" aria-label="Open command palette">
-                    <span>Jump to…</span><kbd>⌘K</kbd>
-                </button>
-                <a href="resume.html" class="btn btn--ghost">Résumé</a>
-            </div>
         </div>
     </header>
 
-    <!-- ⌘K command palette -->
-    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
-        <div class="palette__box">
-            <input class="palette__search" id="palette-search" type="text"
-                   placeholder="Jump to a section, open a link…" autocomplete="off" spellcheck="false"
-                   aria-label="Search commands" aria-controls="palette-list">
-            <div class="palette__list" id="palette-list" role="listbox" aria-label="Commands"></div>
-        </div>
-    </div>
+    <main class="doc">
 
-    <main id="top">
-        <div class="frame">
+        <!-- Hero — the letter -->
+        <section class="hero" aria-label="Introduction">
+            <p class="hero__eyebrow" id="hero-eyebrow"></p>
+            <h1 class="hero__name" id="hero-name"></h1>
+            <p class="hero__lede" id="hero-lede"></p>
+            <div class="hero__links" id="hero-actions"></div>
+        </section>
 
-            <!-- The rail carries the through-line: an ink spine + a signal trace
-                 that draws itself as the sheet is read. Decorative; all meaning
-                 lives in the text to its right. -->
-            <div class="rail" aria-hidden="true">
-                <div class="spine"><span class="spine__trace" id="spine-trace"></span></div>
-            </div>
+        <!-- Opening prose -->
+        <section class="block block--intro" id="intro" aria-label="About">
+            <div class="prose" id="intro-prose"></div>
+        </section>
 
-            <div class="flow">
+        <!-- Philosophy — numbered beliefs -->
+        <section class="block" id="philosophy" aria-labelledby="philosophy-h">
+            <header class="shead">
+                <span class="shead__label">Philosophy</span>
+                <h2 class="shead__title" id="philosophy-h">What I hold to</h2>
+            </header>
+            <ol class="beliefs" id="philosophy-list"></ol>
+        </section>
 
-                <!-- Hero — the drawing title -->
-                <section class="hero" aria-label="Introduction">
-                    <div class="hero__head">
-                        <p class="hero__eyebrow klabel" id="hero-eyebrow"></p>
-                        <h1 class="hero__name" id="hero-name"></h1>
-                        <p class="hero__lede" id="hero-lede"></p>
-                        <div class="hero__actions" id="hero-actions"></div>
-                    </div>
-                    <div class="hero__side">
-                        <div class="hero__stats" id="hero-stats"></div>
-                        <figure class="tblock" id="hero-block" aria-label="Title block"></figure>
-                    </div>
-                </section>
+        <!-- Journey — the career timeline -->
+        <section class="block" id="journey" aria-labelledby="journey-h">
+            <header class="shead">
+                <span class="shead__label">Journey</span>
+                <h2 class="shead__title" id="journey-h">Where I've built</h2>
+                <span class="shead__meta" id="journey-meta"></span>
+            </header>
+            <ol class="timeline" id="journey-list"></ol>
+        </section>
 
-                <!-- Overview -->
-                <section class="sheet" id="overview">
-                    <header class="sheet__head">
-                        <span class="sheet__code klabel">A·1</span>
-                        <h2 class="sheet__title">Overview</h2>
-                        <span class="sheet__meta klabel" id="overview-meta"></span>
-                    </header>
-                    <div class="overview">
-                        <div class="prose" id="overview-prose"></div>
-                        <aside class="legend">
-                            <div class="legend__block">
-                                <p class="legend__label klabel">Works on</p>
-                                <ul class="skills" id="overview-skills"></ul>
-                            </div>
-                            <div class="legend__block">
-                                <p class="legend__label klabel">Stack · bill of materials</p>
-                                <ul class="chips" id="overview-stack"></ul>
-                            </div>
-                        </aside>
-                    </div>
-                </section>
+        <!-- Focus — toolkit + interests (honest, from data) -->
+        <section class="block" id="focus" aria-labelledby="focus-h">
+            <header class="shead">
+                <span class="shead__label">Focus</span>
+                <h2 class="shead__title" id="focus-h">What I work on</h2>
+            </header>
+            <div class="focus" id="focus-body"></div>
+        </section>
 
-                <!-- Principles — inverted "general notes" panel -->
-                <section class="sheet" id="principles">
-                    <header class="sheet__head">
-                        <span class="sheet__code klabel">A·2</span>
-                        <h2 class="sheet__title">General notes</h2>
-                        <span class="sheet__meta klabel">how I work</span>
-                    </header>
-                    <ul class="notes-panel" id="principles-list"></ul>
-                </section>
+        <!-- Building — side projects -->
+        <section class="block" id="building" aria-labelledby="building-h">
+            <header class="shead">
+                <span class="shead__label">Building</span>
+                <h2 class="shead__title" id="building-h">Open source</h2>
+                <span class="shead__meta" id="building-meta"></span>
+            </header>
+            <div class="builds" id="building-list"></div>
+            <a href="https://github.com/duthaho?tab=repositories" target="_blank" rel="noopener" class="block__more">Full archive on GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+        </section>
 
-                <!-- Experience — the spine, one node per role -->
-                <section class="sheet" id="experience">
-                    <header class="sheet__head">
-                        <span class="sheet__code klabel">A·3</span>
-                        <h2 class="sheet__title">Experience</h2>
-                        <span class="sheet__meta klabel" id="experience-meta"></span>
-                    </header>
-                    <ol class="xp" id="experience-list"></ol>
-                </section>
+        <!-- Writing — recent articles -->
+        <section class="block" id="writing" aria-labelledby="writing-h">
+            <header class="shead">
+                <span class="shead__label">Writing</span>
+                <h2 class="shead__title" id="writing-h">Recent field notes</h2>
+                <span class="shead__meta" id="writing-meta"></span>
+            </header>
+            <ol class="notes" id="writing-list"></ol>
+            <a href="https://duthaho.dev/" target="_blank" rel="noopener" class="block__more">The full shelf at duthaho.dev <span class="arrow" aria-hidden="true">↗</span></a>
+        </section>
 
-                <!-- Open source — modules off the line -->
-                <section class="sheet" id="oss">
-                    <header class="sheet__head">
-                        <span class="sheet__code klabel">A·4</span>
-                        <h2 class="sheet__title">Open source</h2>
-                        <span class="sheet__meta klabel" id="oss-meta"></span>
-                    </header>
-                    <div class="repos" id="repos-grid"></div>
-                    <a href="https://github.com/duthaho?tab=repositories" target="_blank" rel="noopener" class="sheet__more">Full archive on GitHub <span class="arrow">↗</span></a>
-                </section>
+        <!-- Quote — a line, in their own words -->
+        <section class="pullquote" aria-label="In closing">
+            <blockquote id="pull-quote"></blockquote>
+        </section>
 
-                <!-- Field notes — the tail of the wire -->
-                <section class="sheet" id="writing">
-                    <header class="sheet__head">
-                        <span class="sheet__code klabel">A·5</span>
-                        <h2 class="sheet__title">Field notes</h2>
-                        <span class="sheet__meta klabel" id="writing-meta"></span>
-                    </header>
-                    <ol class="feed" id="writing-feed"></ol>
-                    <a href="https://duthaho.dev/" target="_blank" rel="noopener" class="sheet__more">The complete shelf at duthaho.dev <span class="arrow">↗</span></a>
-                </section>
-
-            </div>
-        </div>
     </main>
 
     <footer class="foot">
@@ -149,7 +112,6 @@
         <symbol id="icon-star" viewBox="0 0 16 16"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></symbol>
         <symbol id="icon-fork" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></symbol>
         <symbol id="icon-arrow" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M3 8h10M9 4l4 4-4 4"/></symbol>
-        <symbol id="icon-hash" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M6 2.5 4.5 13.5M11.5 2.5 10 13.5M2.5 5.5h11M2 10.5h11"/></symbol>
     </svg>
 
     <script src="app.js"></script>
