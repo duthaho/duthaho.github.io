@@ -1,7 +1,8 @@
-/* Hallmark · macrostructure: Long Document · tone: dark technical / terminal · anchor hue: phosphor cyan-teal 195
- * theme: dark-console · paper oklch(17.5% 0.008 255) · accent oklch(80% 0.128 195)
- * display: Geist (grotesque) · body: Geist · label + prompt + stats: Geist Mono · mono-forward
- * genre: dark-technical-terminal · nav: N-terminal bar · footer: Ft-console · glow < 5%, respects reduced-motion
+/* Hallmark · macrostructure: Long Document · tone: blueprint "as-built" terminal · anchor: blueprint-blue #0d3050
+ * theme: blueprint-console · paper #0d3050 · ink #eaf4fb · interactive accent #7fb3d9 · registration accent (vermilion) #d6482f < 5%
+ * display: Geist (grotesque) · body: Geist · labels + prompt + fetch panel: Geist Mono · mono-forward
+ * signature: neofetch fetch panel (ASCII art + dotted-leader fields) in a drawing frame — echoes the GitHub profile card (DWG DTH-001)
+ * genre: blueprint-technical-terminal · nav: terminal bar · footer: console · respects reduced-motion
  */
 
 @import "tokens.css";
@@ -189,23 +190,30 @@ svg { display: inline-block; vertical-align: middle; }
 /* section head — mono code label above title */
 .shead { margin-bottom: var(--space-lg); }
 .shead__label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     font-family: var(--font-mono);
     font-size: var(--text-xs);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--signal-2);
+    color: var(--mark-2);
     margin-bottom: var(--space-sm);
 }
 .shead__label::before {
-    content: "";
-    width: 6px; height: 6px;
-    transform: rotate(45deg);
-    background: var(--signal);
-    box-shadow: 0 0 8px var(--glow);
+    content: "▎";
+    color: var(--mark);
     flex: none;
+    font-size: 1.1em;
+    line-height: 1;
+}
+/* dotted registration rule trailing the label — a drawing callout */
+.shead__label::after {
+    content: "";
+    flex: 1;
+    height: 0;
+    border-top: 1px dotted var(--leader);
+    margin-left: 0.3rem;
 }
 .shead__title {
     font-size: var(--text-2xl);
@@ -273,8 +281,8 @@ svg { display: inline-block; vertical-align: middle; }
     width: 0.5ch;
     height: 0.92em;
     margin-left: 0.12em;
-    background: var(--signal);
-    box-shadow: 0 0 12px var(--glow);
+    background: var(--mark);
+    box-shadow: 0 0 12px var(--mark-soft);
     transform: translateY(0.06em);
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -356,6 +364,118 @@ svg { display: inline-block; vertical-align: middle; }
     background: var(--signal-soft);
     border-color: var(--signal-line);
     color: var(--signal-2);
+}
+
+/* ============================================================
+   Fetch panel — the signature: an "as-built" drawing frame with
+   terminal ASCII art + neofetch-style dotted-leader fields.
+   Mirrors the GitHub profile card so site and profile read as one set.
+   ============================================================ */
+.fetch {
+    position: relative;
+    margin: var(--space-xl) 0 0;
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+    border: 1px solid var(--rule-2);
+    background: color-mix(in oklab, var(--paper-2) 45%, transparent);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: clamp(var(--space-lg), 4vw, var(--space-2xl));
+    row-gap: var(--space-md);
+    align-items: center;
+}
+/* corner registration ticks — the drafting crop marks */
+.fetch::before,
+.fetch::after {
+    content: "";
+    position: absolute;
+    width: 10px; height: 10px;
+    border: solid var(--mark);
+    opacity: 0.9;
+}
+.fetch::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.fetch::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.fetch__stamp {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.4rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: var(--space-xs);
+}
+.fetch__stamp i { font-style: normal; color: var(--mark); margin-right: 0.5em; }
+
+.fetch__art {
+    margin: 0;
+    align-self: center;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    white-space: pre;
+    color: var(--signal);
+    overflow: hidden;
+}
+.fetch__art b { color: var(--ink); font-weight: 400; }
+
+.fetch__info {
+    margin: 0;
+    align-self: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    min-width: 0;
+}
+.fetch__head {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 0.7ch;
+    color: var(--mark-2);
+    font-weight: 600;
+    margin-top: 0.7em;
+}
+.fetch__info > .fetch__head:first-child { margin-top: 0; }
+.fetch__head::after {
+    content: "";
+    flex: 1;
+    height: 0;
+    border-top: 1px solid var(--mark-line);
+    opacity: 0.55;
+}
+.fetch__row {
+    display: grid;
+    grid-template-columns: max-content minmax(1.5ch, 1fr) auto;
+    align-items: baseline;
+    column-gap: 0.7ch;
+    padding-block: 0.5px;
+}
+.fetch__row dt { color: var(--ink-3); white-space: nowrap; }
+.fetch__lead {
+    border-bottom: 1px dotted var(--leader);
+    transform: translateY(-0.3em);
+    height: 0;
+}
+.fetch__row dd { margin: 0; color: var(--ink); }
+.fetch__row dd a {
+    color: var(--signal-2);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-short) var(--ease-out);
+}
+.fetch__row dd a:hover { border-color: var(--signal-line); }
+
+@media (max-width: 640px) {
+    .fetch { grid-template-columns: 1fr; padding: var(--space-md) var(--space-md) var(--space-lg); }
+    .fetch__art { font-size: 0.76rem; justify-self: start; }
+    .fetch__row { grid-template-columns: max-content 1fr; }
+    .fetch__lead { display: none; }
+    .fetch__row dd { grid-column: 1 / -1; padding-left: 0; color: var(--ink); }
 }
 
 /* ============================================================

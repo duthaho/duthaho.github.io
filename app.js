@@ -1,11 +1,12 @@
 /**
- * duthaho — about page · "The Console"
- * Renders data.json into a dark-technical, terminal-flavoured single-column
- * document: a prompt hero with a live stats strip, an opening prose block,
- * numbered beliefs, a career timeline with glowing nodes, a focus grid,
- * open-source cards, recent writing, and a closing pull-quote. Near-black paper,
- * mono-forward, one restrained phosphor accent. No framework, no scroll wire —
- * just the content, its rhythm, and a quiet glow. Print/light users are honoured.
+ * duthaho — about page · "As Built" (Sheet 01)
+ * Renders data.json into a blueprint-terminal single-column document: a prompt
+ * hero whose signature is a live neofetch panel (ASCII terminal art + dotted-
+ * leader fields in a drawing frame, echoing the GitHub profile card), an opening
+ * prose block, numbered beliefs, a career timeline with nodes, a focus grid,
+ * open-source cards, recent writing, and a closing pull-quote. Blueprint-blue
+ * paper, mono-forward, one restrained vermilion registration accent. No
+ * framework, no scroll wire. Print/light users are honoured.
  */
 (function () {
     'use strict';
@@ -57,13 +58,39 @@
     }
 
     // ---------------------------------------------------------------- Hero
-    function renderHero(data) {
-        const { personal, social, stats = [] } = data;
+    // Terminal ASCII art for the fetch panel — pure ASCII so the monospace
+    // frame always aligns. Highlighted lines (index 4, 9) render bright.
+    function buildArt() {
+        const IW = 16;
+        const frame = (t) => '|' + (' ' + t).padEnd(IW) + '|';
+        const lines = [
+            '.' + '-'.repeat(IW) + '.',
+            frame('o  o  o'),
+            '|' + '-'.repeat(IW) + '|',
+            frame('~ $ whoami'),
+            frame('> duthaho'),
+            frame(''),
+            frame('~ $ ./ship.sh'),
+            frame('[#######--] 92%'),
+            frame(''),
+            frame('~ $ _'),
+            "'" + '-'.repeat(IW) + "'",
+        ];
+        const hi = new Set([4, 9]);
+        return lines
+            .map((ln, i) => (hi.has(i) ? `<b>${escapeHTML(ln)}</b>` : escapeHTML(ln)))
+            .join('\n');
+    }
 
-        // terminal prompt line: `whoami ▸ Solution Architect / Da Nang`
+    function renderHero(data) {
+        const { personal, social, stats = [], footer = {} } = data;
+        const urlOf = (icon) => (social.find((s) => s.icon === icon) || {}).url || '#';
+        const bare = (u) => String(u).replace(/^https?:\/\//, '').replace(/\/$/, '');
+        const rev = `${footer.year || new Date().getFullYear()}.07`;
+
+        // prompt line reads `~/duthaho $ neofetch` (the "~/duthaho" is CSS ::before)
         $('hero-eyebrow').innerHTML =
-            `<span class="prompt" aria-hidden="true">whoami ▸</span>` +
-            `${escapeHTML(personal.title)}<span class="sep" aria-hidden="true">/</span>${escapeHTML(personal.location)}`;
+            `<span class="prompt" aria-hidden="true">$ neofetch</span>`;
 
         $('hero-name').innerHTML =
             `${escapeHTML(personal.name)}<span class="hero__caret" aria-hidden="true"></span>`;
@@ -71,6 +98,47 @@
         $('hero-lede').innerHTML =
             'From AAA mobile titles to AI-powered recruitment — designing ' +
             '<b>systems that scale</b> and the <b>teams that ship them</b>.';
+
+        // --- the signature: neofetch panel (art + dotted-leader fields) ---
+        const rowT = (k, v) => `<div class="fetch__row"><dt>${escapeHTML(k)}</dt><span class="fetch__lead" aria-hidden="true"></span><dd>${escapeHTML(v)}</dd></div>`;
+        const rowH = (k, v) => `<div class="fetch__row"><dt>${escapeHTML(k)}</dt><span class="fetch__lead" aria-hidden="true"></span><dd>${v}</dd></div>`;
+        const head = (t) => `<div class="fetch__head">${escapeHTML(t)}</div>`;
+        const link = (u, label) => `<a href="${escapeHTML(u)}" target="_blank" rel="noopener">${escapeHTML(label)}</a>`;
+        const uptime = stats[0] ? `${stats[0].value} ${stats[0].label}` : '10+ years in production';
+
+        const info = [
+            head(`${(personal.nickname || 'duthaho').toLowerCase()}@architect`),
+            rowT('OS', 'Distributed Systems · Linux · K8s'),
+            rowT('Host', 'Paradox · ex-Gameloft'),
+            rowT('Uptime', uptime),
+            rowT('Kernel', 'Event-driven + DDD @ 1M+ req/day'),
+            rowT('IDE', 'VS Code · Claude Code'),
+            rowT('Location', personal.location),
+            head('Stack'),
+            rowT('Languages', 'Python · TypeScript · Node.js'),
+            rowT('Frameworks', 'Django · FastAPI · Vue'),
+            rowT('Data', 'MySQL · MongoDB · Redis'),
+            rowT('Infra', 'Kubernetes · Docker · AWS'),
+            rowT('Spoken', 'Vietnamese · English'),
+            head('Contact'),
+            rowH('Résumé', `<a href="resume.html">resume.html →</a>`),
+            rowH('GitHub', link(urlOf('github'), '@duthaho')),
+            rowH('LinkedIn', link(urlOf('linkedin'), 'in/duthaho')),
+            rowH('Blog', link(urlOf('globe'), bare(urlOf('globe')))),
+        ].join('');
+
+        const fig = document.createElement('figure');
+        fig.className = 'fetch';
+        fig.innerHTML =
+            `<figcaption class="fetch__stamp">` +
+                `<span>Profile — as built · @${escapeHTML(personal.nickname || 'DUTHAHO')}</span>` +
+                `<span><i aria-hidden="true">▎</i>DWG NO. DTH-001 · REV ${escapeHTML(rev)}</span>` +
+            `</figcaption>` +
+            `<pre class="fetch__art" aria-hidden="true">${buildArt()}</pre>` +
+            `<dl class="fetch__info">${info}</dl>`;
+
+        const statsEl = $('hero-stats');
+        statsEl.parentNode.insertBefore(fig, statsEl);
 
         $('hero-stats').innerHTML = stats
             .map((s) => `<li><b>${escapeHTML(s.value)}</b> ${escapeHTML(s.label)}</li>`)

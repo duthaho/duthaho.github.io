@@ -1,39 +1,51 @@
-/* Terminal · dark-technical tokens — a systems engineer's console.
-   Near-black cool paper · soft-white ink · ONE phosphor cyan-teal accent used
-   < 5% of any viewport (nodes, caret, focus, small marks, glow). Mono-forward:
-   labels, prompts, meta and stats are set in Geist Mono. Every colour/font/space
-   in styles.css references these by name. Token NAMES are shared with
+/* Blueprint "as-built" tokens — matches the GitHub profile neofetch card.
+   Blueprint-blue paper · bright cyan-blue ink · a bright-blue interactive accent
+   (links, nodes, focus) · ONE vermilion registration accent used < 5% of any
+   viewport (DWG stamps, section codes, ticks, caret). Mono-forward: labels,
+   prompts, the fetch panel and stats are set in Geist Mono. Every colour/font/
+   space in styles.css references these by name. Token NAMES are shared with
    resume.html; changing a name here changes it there. */
 
 :root {
-    /* ---- Colour: near-black cool paper, soft-white ink ---- */
-    --paper:      oklch(17.5% 0.008 255);  /* page / console */
-    --paper-2:    oklch(21% 0.010 255);    /* cards, panels */
-    --paper-3:    oklch(25.5% 0.012 255);  /* chips, hover fill, deeper tint */
-    --ink:        oklch(96% 0.004 250);    /* headings — soft white */
-    --ink-2:      oklch(80% 0.006 250);    /* body */
-    --ink-3:      oklch(62% 0.008 250);    /* muted / labels / dates */
-    --rule:       oklch(30% 0.010 255);    /* hairline */
-    --rule-2:     oklch(38% 0.012 255);    /* stronger divider */
+    /* ---- Colour: blueprint "as-built" — matches the GitHub neofetch card ----
+       Blueprint-blue paper, bright cyan-blue ink, ONE vermilion registration
+       accent (stamps, section codes, ticks) used < 5% of any viewport. */
+    --paper:      #0d3050;  /* page / drawing field */
+    --paper-2:    #103a5e;  /* cards, panels */
+    --paper-3:    #16456e;  /* chips, hover fill, deeper tint */
+    --ink:        #eaf4fb;  /* headings — bright */
+    --ink-2:      #b7d4e8;  /* body */
+    --ink-3:      #8fb8d9;  /* muted / labels / dates */
+    --rule:       rgba(127, 179, 217, 0.20);  /* hairline */
+    --rule-2:     rgba(127, 179, 217, 0.38);  /* stronger divider */
 
-    /* one restrained accent — phosphor cyan-teal: links, focus, nodes, marks (< 5%) */
-    --signal:      oklch(80% 0.128 195);   /* bright mark / node / caret */
-    --signal-2:    oklch(83% 0.120 195);   /* AA link text on dark paper */
-    --signal-deep: oklch(70% 0.120 195);   /* pressed / hover-deep */
-    --signal-ink:  oklch(18% 0.020 195);   /* text on accent fill */
-    --signal-soft: oklch(80% 0.128 195 / 0.12);
-    --signal-line: oklch(80% 0.128 195 / 0.35);
-    --glow:        oklch(80% 0.128 195 / 0.35); /* phosphor bloom around marks */
-    --glow-soft:   oklch(80% 0.128 195 / 0.14);
-    --focus:       oklch(83% 0.120 195);
-    --selection:   oklch(80% 0.128 195 / 0.22);
+    /* interactive accent — bright cyan-blue: links, focus, nodes, marks */
+    --signal:      #7fb3d9;   /* bright mark / node */
+    --signal-2:    #a9cfee;   /* AA link text on blueprint paper */
+    --signal-deep: #6aa6d0;   /* pressed / hover-deep */
+    --signal-ink:  #0a2742;   /* text on accent fill */
+    --signal-soft: rgba(127, 179, 217, 0.14);
+    --signal-line: rgba(127, 179, 217, 0.40);
+    --glow:        rgba(127, 179, 217, 0.30); /* soft bloom around marks */
+    --glow-soft:   rgba(127, 179, 217, 0.14);
+    --focus:       #a9cfee;
+    --selection:   rgba(127, 179, 217, 0.24);
+
+    /* registration accent — vermilion: DWG stamps, section codes, caret (< 5%) */
+    --mark:      #d6482f;
+    --mark-2:    #e5694f;   /* small red text, kept legible on blueprint */
+    --mark-soft: rgba(214, 72, 47, 0.14);
+    --mark-line: rgba(214, 72, 47, 0.42);
+
+    /* dotted leader — the neofetch key·····value fill */
+    --leader:    rgba(143, 184, 217, 0.34);
 
     /* live status — availability dot only */
-    --live:      oklch(78% 0.17 150);
-    --live-soft: oklch(78% 0.17 150 / 0.22);
+    --live:      #37c26b;
+    --live-soft: rgba(55, 194, 107, 0.22);
 
-    /* faint console grid — screen only */
-    --grid:      oklch(100% 0 0 / 0.028);
+    /* faint blueprint grid — screen only */
+    --grid:      rgba(127, 179, 217, 0.09);
 
     /* shadows — pure black, tokenised (dark UI reads depth by black, not ink) */
     --shadow:      oklch(0% 0 0 / 0.45);
@@ -91,26 +103,31 @@
    light palette (same token names) so nothing downstream needs to change. */
 @media (prefers-color-scheme: light) {
     :root.auto-theme {
-        --paper:      oklch(99% 0.002 100);
-        --paper-2:    oklch(97.2% 0.003 100);
-        --paper-3:    oklch(94.6% 0.004 100);
-        --ink:        oklch(23% 0.006 265);
-        --ink-2:      oklch(39% 0.006 265);
-        --ink-3:      oklch(57% 0.006 265);
-        --rule:       oklch(91.5% 0.003 265);
-        --rule-2:     oklch(85% 0.005 265);
-        --signal:      oklch(55% 0.132 220);
-        --signal-2:    oklch(48% 0.132 220);
-        --signal-deep: oklch(42% 0.120 220);
-        --signal-ink:  oklch(99% 0.003 220);
-        --signal-soft: oklch(55% 0.132 220 / 0.10);
-        --signal-line: oklch(55% 0.132 220 / 0.30);
-        --glow:        oklch(55% 0.132 220 / 0.16);
-        --glow-soft:   oklch(55% 0.132 220 / 0.08);
-        --focus:       oklch(55% 0.132 220);
-        --selection:   oklch(55% 0.132 220 / 0.16);
-        --grid:        oklch(0% 0 0 / 0.03);
-        --shadow:      oklch(23% 0.006 265 / 0.10);
-        --shadow-weak: oklch(23% 0.006 265 / 0.05);
+        --paper:      #f4f7fb;  /* white drawing paper (cyanotype negative) */
+        --paper-2:    #ffffff;
+        --paper-3:    #e7eef7;
+        --ink:        #0d2b47;
+        --ink-2:      #2e5069;
+        --ink-3:      #5c7d97;
+        --rule:       rgba(13, 48, 80, 0.14);
+        --rule-2:     rgba(13, 48, 80, 0.26);
+        --signal:      #1e5fa8;
+        --signal-2:    #17538f;
+        --signal-deep: #113f6e;
+        --signal-ink:  #ffffff;
+        --signal-soft: rgba(30, 95, 168, 0.10);
+        --signal-line: rgba(30, 95, 168, 0.30);
+        --glow:        rgba(30, 95, 168, 0.14);
+        --glow-soft:   rgba(30, 95, 168, 0.07);
+        --focus:       #1e5fa8;
+        --selection:   rgba(30, 95, 168, 0.16);
+        --mark:        #c23a22;
+        --mark-2:      #a82f19;
+        --mark-soft:   rgba(194, 58, 34, 0.10);
+        --mark-line:   rgba(194, 58, 34, 0.32);
+        --leader:      rgba(13, 48, 80, 0.24);
+        --grid:        rgba(13, 48, 80, 0.05);
+        --shadow:      rgba(13, 43, 71, 0.12);
+        --shadow-weak: rgba(13, 43, 71, 0.06);
     }
 }
