@@ -278,7 +278,7 @@
             <span class="foot__mark">duthaho<span class="tick">.</span></span>
             <span>© ${escapeHTML(String(footer.year))} · ${escapeHTML(personal.name)}</span>
             <span class="foot__social">${links}</span>
-            <span class="foot__end">${escapeHTML(personal.location)} · Set in Geist · Built by hand</span>
+            <span class="foot__end">${escapeHTML(personal.location)} · Set in Geist Mono · Built by hand</span>
         `;
     }
 

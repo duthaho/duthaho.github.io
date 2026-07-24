@@ -1,71 +1,75 @@
-/* Blueprint "as-built" tokens — matches the GitHub profile neofetch card.
-   Blueprint-blue paper · bright cyan-blue ink · a bright-blue interactive accent
-   (links, nodes, focus) · ONE vermilion registration accent used < 5% of any
-   viewport (DWG stamps, section codes, ticks, caret). Mono-forward: labels,
-   prompts, the fetch panel and stats are set in Geist Mono. Every colour/font/
-   space in styles.css references these by name. Token NAMES are shared with
+/* release.bar "terminal" tokens — studied DNA from release.bar/steipete.
+   Near-black paper with a faint green cast · phosphor-green primary ink
+   (numbers, links, nodes, status) · ONE amber registration accent used
+   < 5% of any viewport (ticks, caret, section codes) · a cool blue kept
+   in reserve for numeric variety (stats/languages). Mono-forward: the
+   whole set is Geist Mono — display, body, and labels — the way release.bar
+   sets everything in one monospace face. Every colour/font/space in
+   styles.css references these by name. Token NAMES are shared with
    resume.html; changing a name here changes it there. */
 
 :root {
-    /* ---- Colour: blueprint "as-built" — matches the GitHub neofetch card ----
-       Blueprint-blue paper, bright cyan-blue ink, ONE vermilion registration
-       accent (stamps, section codes, ticks) used < 5% of any viewport. */
-    --paper:      #0d3050;  /* page / drawing field */
-    --paper-2:    #103a5e;  /* cards, panels */
-    --paper-3:    #16456e;  /* chips, hover fill, deeper tint */
-    --ink:        #eaf4fb;  /* headings — bright */
-    --ink-2:      #b7d4e8;  /* body */
-    --ink-3:      #8fb8d9;  /* muted / labels / dates */
-    --rule:       rgba(127, 179, 217, 0.20);  /* hairline */
-    --rule-2:     rgba(127, 179, 217, 0.38);  /* stronger divider */
+    /* ---- Colour: release.bar terminal — near-black green-cast paper ---- */
+    --paper:      #0a0e0c;  /* page / console field */
+    --paper-2:    #121714;  /* cards, panels */
+    --paper-3:    #1b221e;  /* chips, hover fill, deeper tint */
+    --ink:        #e7ede9;  /* headings — bright */
+    --ink-2:      #aab4ad;  /* body */
+    --ink-3:      #778579;  /* muted / labels / dates */
+    --rule:       rgba(155, 178, 165, 0.12);  /* hairline */
+    --rule-2:     rgba(155, 178, 165, 0.24);  /* stronger divider */
 
-    /* interactive accent — bright cyan-blue: links, focus, nodes, marks */
-    --signal:      #7fb3d9;   /* bright mark / node */
-    --signal-2:    #a9cfee;   /* AA link text on blueprint paper */
-    --signal-deep: #6aa6d0;   /* pressed / hover-deep */
-    --signal-ink:  #0a2742;   /* text on accent fill */
-    --signal-soft: rgba(127, 179, 217, 0.14);
-    --signal-line: rgba(127, 179, 217, 0.40);
-    --glow:        rgba(127, 179, 217, 0.30); /* soft bloom around marks */
-    --glow-soft:   rgba(127, 179, 217, 0.14);
-    --focus:       #a9cfee;
-    --selection:   rgba(127, 179, 217, 0.24);
+    /* interactive accent — phosphor green: links, focus, nodes, numbers */
+    --signal:      #7ee787;   /* bright mark / node / KPI number */
+    --signal-2:    #a6f0ac;   /* AA link text on near-black paper */
+    --signal-deep: #64d873;   /* pressed / hover-deep */
+    --signal-ink:  #07130a;   /* text on green fill */
+    --signal-soft: rgba(126, 231, 135, 0.12);
+    --signal-line: rgba(126, 231, 135, 0.40);
+    --glow:        rgba(126, 231, 135, 0.30); /* soft bloom around marks */
+    --glow-soft:   rgba(126, 231, 135, 0.13);
+    --focus:       #a6f0ac;
+    --selection:   rgba(126, 231, 135, 0.24);
 
-    /* registration accent — vermilion: DWG stamps, section codes, caret (< 5%) */
-    --mark:      #d6482f;
-    --mark-2:    #e5694f;   /* small red text, kept legible on blueprint */
-    --mark-soft: rgba(214, 72, 47, 0.14);
-    --mark-line: rgba(214, 72, 47, 0.42);
+    /* registration accent — amber: ticks, caret, section codes (< 5%) */
+    --mark:      #f2b544;
+    --mark-2:    #f5c264;   /* small amber text, legible on near-black */
+    --mark-soft: rgba(242, 181, 68, 0.15);
+    --mark-line: rgba(242, 181, 68, 0.42);
+
+    /* reserve cool accent — blue: numeric variety (stats, star counts) */
+    --info:      #8ab4f8;
+    --info-soft: rgba(138, 180, 248, 0.14);
 
     /* dotted leader — the neofetch key·····value fill */
-    --leader:    rgba(143, 184, 217, 0.34);
+    --leader:    rgba(170, 190, 180, 0.30);
 
-    /* live status — availability dot only */
-    --live:      #37c26b;
-    --live-soft: rgba(55, 194, 107, 0.22);
+    /* live status — availability dot (green, same family as signal) */
+    --live:      #7ee787;
+    --live-soft: rgba(126, 231, 135, 0.22);
 
-    /* faint blueprint grid — screen only */
-    --grid:      rgba(127, 179, 217, 0.09);
+    /* faint console grid — screen only */
+    --grid:      rgba(155, 178, 165, 0.05);
 
     /* shadows — pure black, tokenised (dark UI reads depth by black, not ink) */
-    --shadow:      oklch(0% 0 0 / 0.45);
-    --shadow-weak: oklch(0% 0 0 / 0.28);
+    --shadow:      oklch(0% 0 0 / 0.50);
+    --shadow-weak: oklch(0% 0 0 / 0.30);
 
-    /* ---- Type — Geist superfamily, mono-forward ---- */
-    --font-display: "Geist", system-ui, "Segoe UI", sans-serif;
-    --font-body:    "Geist", system-ui, "Segoe UI", sans-serif;
+    /* ---- Type — Geist Mono throughout (single-font, terminal) ---- */
+    --font-display: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --font-body:    "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --font-mono:    "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
     /* ---- Type scale ---- */
     --text-xs:   0.75rem;
     --text-sm:   0.8125rem;
-    --text-base: 1rem;
-    --text-md:   1.0625rem;
-    --text-lg:   1.1875rem;
-    --text-xl:   1.4rem;
-    --text-2xl:  1.85rem;
-    --text-display-s: clamp(1.85rem, 3.5vw + 0.5rem, 2.6rem);
-    --text-display:   clamp(2.4rem, 5vw + 0.5rem, 3.85rem);
+    --text-base: 0.9375rem;
+    --text-md:   1rem;
+    --text-lg:   1.125rem;
+    --text-xl:   1.35rem;
+    --text-2xl:  1.75rem;
+    --text-display-s: clamp(1.75rem, 3.4vw + 0.5rem, 2.5rem);
+    --text-display:   clamp(2.2rem, 4.6vw + 0.5rem, 3.5rem);
 
     /* ---- Spacing (4pt) ---- */
     --space-3xs: 0.25rem;
@@ -79,7 +83,7 @@
     --space-3xl: 7rem;
 
     /* ---- Measure / layout ---- */
-    --measure:   42rem;                       /* single-column reading width */
+    --measure:   44rem;                       /* single-column reading width */
     --page-pad:  clamp(1.25rem, 5vw, 2.5rem); /* gutter */
 
     /* ---- Radii — soft, minimal ---- */
@@ -99,35 +103,37 @@
     --z-overlay: 80;
 }
 
-/* honour a user who explicitly asks for a light UI: flip to the archival
-   light palette (same token names) so nothing downstream needs to change. */
+/* honour a user who explicitly asks for a light UI: flip to a light
+   terminal palette (same token names) so nothing downstream needs to change. */
 @media (prefers-color-scheme: light) {
     :root.auto-theme {
-        --paper:      #f4f7fb;  /* white drawing paper (cyanotype negative) */
+        --paper:      #f6f8f6;  /* near-white console paper */
         --paper-2:    #ffffff;
-        --paper-3:    #e7eef7;
-        --ink:        #0d2b47;
-        --ink-2:      #2e5069;
-        --ink-3:      #5c7d97;
-        --rule:       rgba(13, 48, 80, 0.14);
-        --rule-2:     rgba(13, 48, 80, 0.26);
-        --signal:      #1e5fa8;
-        --signal-2:    #17538f;
-        --signal-deep: #113f6e;
+        --paper-3:    #eef2ee;
+        --ink:        #14201a;
+        --ink-2:      #3b463f;
+        --ink-3:      #6b766f;
+        --rule:       rgba(20, 32, 26, 0.12);
+        --rule-2:     rgba(20, 32, 26, 0.24);
+        --signal:      #1f8a3d;
+        --signal-2:    #197233;
+        --signal-deep: #135c28;
         --signal-ink:  #ffffff;
-        --signal-soft: rgba(30, 95, 168, 0.10);
-        --signal-line: rgba(30, 95, 168, 0.30);
-        --glow:        rgba(30, 95, 168, 0.14);
-        --glow-soft:   rgba(30, 95, 168, 0.07);
-        --focus:       #1e5fa8;
-        --selection:   rgba(30, 95, 168, 0.16);
-        --mark:        #c23a22;
-        --mark-2:      #a82f19;
-        --mark-soft:   rgba(194, 58, 34, 0.10);
-        --mark-line:   rgba(194, 58, 34, 0.32);
-        --leader:      rgba(13, 48, 80, 0.24);
-        --grid:        rgba(13, 48, 80, 0.05);
-        --shadow:      rgba(13, 43, 71, 0.12);
-        --shadow-weak: rgba(13, 43, 71, 0.06);
+        --signal-soft: rgba(31, 138, 61, 0.10);
+        --signal-line: rgba(31, 138, 61, 0.30);
+        --glow:        rgba(31, 138, 61, 0.14);
+        --glow-soft:   rgba(31, 138, 61, 0.07);
+        --focus:       #1f8a3d;
+        --selection:   rgba(31, 138, 61, 0.16);
+        --mark:        #b9791a;
+        --mark-2:      #9c6413;
+        --mark-soft:   rgba(185, 121, 26, 0.12);
+        --mark-line:   rgba(185, 121, 26, 0.34);
+        --info:        #2f6fd6;
+        --info-soft:   rgba(47, 111, 214, 0.12);
+        --leader:      rgba(20, 32, 26, 0.24);
+        --grid:        rgba(20, 32, 26, 0.05);
+        --shadow:      rgba(20, 32, 26, 0.12);
+        --shadow-weak: rgba(20, 32, 26, 0.06);
     }
 }

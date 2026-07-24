@@ -1,8 +1,8 @@
-/* Hallmark · macrostructure: Long Document · tone: blueprint "as-built" terminal · anchor: blueprint-blue #0d3050
- * theme: blueprint-console · paper #0d3050 · ink #eaf4fb · interactive accent #7fb3d9 · registration accent (vermilion) #d6482f < 5%
- * display: Geist (grotesque) · body: Geist · labels + prompt + fetch panel: Geist Mono · mono-forward
- * signature: neofetch fetch panel (ASCII art + dotted-leader fields) in a drawing frame — echoes the GitHub profile card (DWG DTH-001)
- * genre: blueprint-technical-terminal · nav: terminal bar · footer: console · respects reduced-motion
+/* Hallmark · macrostructure: Long Document · tone: release.bar terminal dashboard · anchor: phosphor-green #7ee787
+ * theme: studied-DNA (source: https://release.bar/steipete) · paper #0a0e0c · ink #e7ede9 · interactive accent #7ee787 · registration accent (amber) #f2b544 < 5%
+ * display: Geist Mono · body: Geist Mono · labels + prompt + stats: Geist Mono · mono-forward (single-font terminal)
+ * signature: near-black console field, phosphor-green KPI numbers + nodes, amber ticks/caret, hairline cards & chips
+ * genre: modern-minimal (dark terminal) · nav: terminal bar · footer: console · respects reduced-motion
  */
 
 @import "tokens.css";
@@ -45,8 +45,8 @@ h1, h2, h3 {
     font-family: var(--font-display);
     font-style: normal;
     color: var(--ink);
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    letter-spacing: -0.01em;  /* mono: keep tracking gentle so glyphs don't collide */
     margin: 0;
     overflow-wrap: anywhere;
     min-width: 0;
@@ -269,8 +269,8 @@ svg { display: inline-block; vertical-align: middle; }
 .hero__eyebrow .sep { color: var(--rule-2); }
 .hero__name {
     font-size: var(--text-display);
-    font-weight: 600;
-    letter-spacing: -0.035em;
+    font-weight: 700;
+    letter-spacing: -0.02em;  /* mono display — tight but not colliding */
     margin-bottom: var(--space-md);
     display: inline-flex;
     align-items: baseline;
@@ -326,8 +326,9 @@ svg { display: inline-block; vertical-align: middle; }
     box-shadow: 0 0 6px var(--glow);
 }
 .hero__stats b {
-    color: var(--ink);
-    font-weight: 600;
+    color: var(--signal);
+    text-shadow: 0 0 12px var(--glow-soft);
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
 }

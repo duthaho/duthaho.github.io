@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-07-24",
+    "page": "index.html + resume.html + duthaho profile README",
+    "macrostructure": "Long Document (about) / Document (resume) — kept",
+    "theme": "studied-DNA (source: https://release.bar/steipete)",
+    "genre": "modern-minimal (dark terminal)",
+    "enrichment": "none (mono-forward, phosphor-green KPI numbers, hairline cards)",
+    "nav": "N9 minimal edge — kept",
+    "footer": "Ft1 minimal — kept",
+    "design-system": "tokens.css repainted — near-black #0a0e0c paper · phosphor-green #7ee787 · amber #f2b544 registration · blue #8ab4f8 reserve · Geist Mono throughout",
+    "brief": "reskin about + résumé + GitHub profile card to release.bar/steipete terminal DNA — dark, monospace, green accents, hairline card/table layouts. Content, routes and structure preserved; only the visual/token layer replaced."
+  },
+  {
     "date": "2026-07-21",
     "page": "index.html",
     "macrostructure": "Long Document",

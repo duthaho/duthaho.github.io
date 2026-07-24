@@ -8,12 +8,12 @@
     <link href="favicon.ico" rel="icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="tokens.css">
     <style>
-    /* Blueprint · Sheet 02 (DWG DTH-002) — the résumé, cut from the same drawing
-     * set as the about page and the GitHub card: blueprint-blue paper, bright ink,
-     * vermilion registration codes, diamond nodes. Blueprint on screen, but
+    /* release.bar terminal — the résumé, cut from the same token set as the
+     * about page and the GitHub card: near-black paper, phosphor-green nodes,
+     * amber section codes, Geist Mono throughout. Terminal on screen, but
      * PRINT-FIRST (A4) and ATS-plain — the print palette flips to clean
      * black-on-white and every date/role/company is real text in source order;
      * the rail, nodes and section codes are decorative only.
@@ -32,7 +32,7 @@
         background-attachment: fixed;
         font-family: var(--font-body);
         color: var(--ink-2);
-        font-size: 10.5pt;
+        font-size: 10pt;  /* mono runs wider than sans — trim a touch for A4 density */
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
@@ -114,9 +114,9 @@
     .head__name {
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: 27pt;
-        letter-spacing: -0.03em;
-        line-height: 1.0;
+        font-size: 25pt;
+        letter-spacing: -0.02em;  /* mono display — gentle tracking */
+        line-height: 1.02;
         color: var(--ink);
         margin: 0 0 6px;
     }
@@ -203,7 +203,7 @@
         break-after: avoid;
     }
     .sec__title::before {
-        content: "B·" counter(sec);
+        content: counter(sec, decimal-leading-zero);
         font-family: var(--font-mono);
         font-size: 8pt;
         font-weight: 500;
@@ -376,11 +376,11 @@
             --ink-3:      #63676d;
             --rule:       #dddfe3;
             --rule-2:     #b9bcc2;
-            --signal:      #0e6e78;  /* printable teal — decorative diamonds */
-            --signal-2:    #0b5a63;  /* link text, dark enough to read on white */
-            --signal-deep: #094a52;
-            --signal-soft: rgba(14, 110, 120, 0.10);
-            --signal-line: rgba(14, 110, 120, 0.30);
+            --signal:      #1f8a3d;  /* printable green — decorative diamonds */
+            --signal-2:    #15682d;  /* link text, dark enough to read on white */
+            --signal-deep: #0f5223;
+            --signal-soft: rgba(31, 138, 61, 0.10);
+            --signal-line: rgba(31, 138, 61, 0.30);
             --glow:        transparent;
             --glow-soft:   transparent;
             --shadow:      transparent;
@@ -503,7 +503,7 @@
                     <div>
                         <h1 class="head__name">${escapeHTML(personal.name)}</h1>
                         <p class="head__role">${escapeHTML(personal.title)}</p>
-                        <p class="head__sheet">DWG NO. DTH-002 · Sheet 02 — Résumé · REV ${escapeHTML(rev)}</p>
+                        <p class="head__sheet">Résumé · REV ${escapeHTML(rev)}</p>
                     </div>
                     <p class="head__contact">${contact}</p>
                 </header>
