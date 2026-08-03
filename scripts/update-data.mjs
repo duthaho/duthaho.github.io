@@ -3,7 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 const USER = process.env.GITHUB_USER || 'duthaho';
 const BLOG_URL = process.env.BLOG_URL || 'https://duthaho.dev/';
-const FEED_URL = new URL('feed.xml', BLOG_URL).href;
+const FEED_URL = new URL('rss.xml', BLOG_URL).href;
 const TOKEN = process.env.GITHUB_TOKEN;
 const DATA_PATH = new URL('../data.json', import.meta.url);
 

@@ -114,7 +114,7 @@
       "name": "js-quiz",
       "description": "The javascript quiz for learning",
       "url": "https://github.com/duthaho/js-quiz",
-      "stars": 115,
+      "stars": 116,
       "forks": 11,
       "featured": true
     },
@@ -123,7 +123,7 @@
       "description": "A verification-first engineering toolkit for Claude Code. Built for senior ICs and tech leads who already know how to ship production code — and want a workflow that keeps the discipline tight without getting in the way.",
       "url": "https://github.com/duthaho/claudekit",
       "stars": 98,
-      "forks": 55
+      "forks": 56
     },
     {
       "name": "bookmark",
@@ -136,40 +136,40 @@
       "name": "nongdocon",
       "description": "Theo nghị định 000 biết của CP, tool dùng để đo nồng độ cồn cho các bợm nhậu",
       "url": "https://github.com/duthaho/nongdocon",
-      "stars": 12,
+      "stars": 11,
       "forks": 6
     }
   ],
   "articles": [
     {
-      "title": "Rate limiter không phải bài toán chọn thuật toán: một buổi phỏng vấn đào mãi không đáy",
-      "excerpt": "Mình vào phỏng vấn architect, được hỏi \"thiết kế một rate limiter\". Mình bắt đầu kể tên thuật toán — và nhận ra người phỏng vấn chẳng quan tâm mình chọn cái nào. Mỗi câu trả lời chỉ mở ra một câu hỏi sâu hơn: chạy trên hai mươi server thì đếm ở đâu, lấy đồng hồ của ai, Redis chết thì cho qua hay chặn, và cuối cùng — rate limiting có phải là tất cả không. Thuật toán là câu trả lời mười phút; phần còn lại mới là buổi phỏng vấn.",
-      "url": "https://duthaho.dev/designing-a-rate-limiter.html",
+      "title": "We picked Redis Streams over Kafka: and what the docs don't tell you upfront",
+      "excerpt": "Two services needed to talk to each other, and the team's first reflex was \"just stand up Kafka, do it properly.\" But we had no Kafka, nobody had ever run it, and Redis was already in the stack. This is the story of choosing Redis Streams in the spirit of YAGNI — and an honest accounting of the costs the marketing docs never mention: everything lives in RAM, eviction wipes whole streams, failover can eat acked writes, and the day I knew we'd have to go back to Kafka.",
+      "url": "https://duthaho.dev/redis-streams-over-kafka/",
+      "date": "2026-07-12"
+    },
+    {
+      "title": "A rate limiter isn't an algorithm-picking problem: an interview that just kept digging deeper",
+      "excerpt": "I walked into an architect interview and got asked to \"design a rate limiter.\" I started reciting algorithm names — and realized the interviewer didn't care which one I picked. Every answer only opened a deeper question: with twenty servers, where does the count live; whose clock do you trust; if Redis dies, do you let requests through or block them; and finally — is rate limiting even the whole story. The algorithm is the ten-minute answer; the rest of it was the interview.",
+      "url": "https://duthaho.dev/designing-a-rate-limiter/",
       "date": "2026-07-05"
     },
     {
-      "title": "Con Redis không cho không cái gì: cái giá ẩn sau mỗi lớp cache",
-      "excerpt": "Hồi mới đi làm, với mình caching là \"API chậm thì quăng con Redis vào\". Ngồi ôn phỏng vấn architect, mình mới thấy cái \"quăng vào\" đó kéo theo cả một chuỗi bài toán — invalidation, ba kiểu làm database gục, nhất quán cache–DB — và hoá ra nó chính là Dual Write Problem đội lốt. Caching không bao giờ miễn phí; mỗi lớp cache là một dòng nợ về nhất quán.",
-      "url": "https://duthaho.dev/caching-is-never-free.html",
+      "title": "Redis never gives you anything for free: the hidden price behind every layer of cache",
+      "excerpt": "When I started out, caching meant one thing to me: \"API slow? Throw Redis at it.\" Cramming for an architect interview, I finally saw what that \"throw it in\" really dragged along — invalidation, three distinct ways to crush a database, cache–DB consistency — and that it was really the Dual Write Problem wearing a disguise. Caching is never free; every layer of cache is a line of debt against consistency.",
+      "url": "https://duthaho.dev/caching-is-never-free/",
       "date": "2026-07-01"
     },
     {
-      "title": "Từ monolith đến idempotency: một sợi dây, không phải sáu flashcard",
-      "excerpt": "Ngồi ôn phỏng vấn vị trí architect, mình nhận ra lên level không phải viết code giỏi hơn mà thấy được cả hệ thống. Sáu chủ đề từng học vẹt — microservices, 2PC, Saga, CAP, Outbox, idempotency — hoá ra là một sợi dây nhân quả: lời giải này đẻ ra vấn đề kia.",
-      "url": "https://duthaho.dev/from-monolith-to-idempotency.html",
+      "title": "From monolith to idempotency:: one thread, not six flashcards",
+      "excerpt": "Prepping for an architect interview, I realized leveling up isn't about writing better code — it's about seeing the whole system. Six topics I'd once memorized by rote — microservices, 2PC, Saga, CAP, Outbox, idempotency — turned out to be a single causal thread: each solution births the next problem.",
+      "url": "https://duthaho.dev/from-monolith-to-idempotency/",
       "date": "2026-06-30"
     },
     {
-      "title": "Hai người thợ trong cỗ máy AI",
-      "excerpt": "Mỗi lần AI trả lời, có hai người thợ tính cách trái ngược thay nhau làm việc — và gần như mọi thủ thuật tăng tốc inference đều sinh ra từ mâu thuẫn giữa họ. Một chuyến đi vào bên trong cỗ máy suy luận: prefill, decode, KV cache, batching, quantization, và vì sao đến lúc phải tự nuôi server.",
-      "url": "https://duthaho.dev/ai-inference-engineering.html",
+      "title": "Two workers: inside the AI machine",
+      "excerpt": "Every time an AI answers, two workers with opposite temperaments take turns at the bench — and nearly every trick for speeding up inference is born from the tension between them. A trip inside the reasoning machine: prefill, decode, KV cache, batching, quantization, and why the day eventually comes to run your own servers.",
+      "url": "https://duthaho.dev/ai-inference-engineering/",
       "date": "2026-06-18"
-    },
-    {
-      "title": "Chín câu hỏi mình giờ luôn hỏi khi đi phỏng vấn",
-      "excerpt": "Một bài của Louise Deason về chín câu hỏi nên hỏi ngược nhà tuyển dụng — không phải để gây ấn tượng, mà để biết mình sắp bước vào đâu. Đọc xong mình nhận ra suốt mấy năm đi phỏng vấn, mình toàn ngồi sai phía của cái bàn.",
-      "url": "https://duthaho.dev/questions-i-ask-in-interviews.html",
-      "date": "2026-06-16"
     }
   ],
   "interests": [
