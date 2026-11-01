@@ -142,6 +142,12 @@
   ],
   "articles": [
     {
+      "title": "Reverse engineering used to require years of expertise: Opus 5.5 collapsed that gap in one tool",
+      "excerpt": "REA bridges Opus 5.5 to your disassembler and turns sealed binaries into clean, annotated code you can understand and rebuild. The technique is 11 steps. The hard part isn't any of them.",
+      "url": "https://duthaho.dev/reverse-engineering-opus/",
+      "date": "2026-10-30"
+    },
+    {
       "title": "We picked Redis Streams over Kafka: and what the docs don't tell you upfront",
       "excerpt": "Two services needed to talk to each other, and the team's first reflex was \"just stand up Kafka, do it properly.\" But we had no Kafka, nobody had ever run it, and Redis was already in the stack. This is the story of choosing Redis Streams in the spirit of YAGNI — and an honest accounting of the costs the marketing docs never mention: everything lives in RAM, eviction wipes whole streams, failover can eat acked writes, and the day I knew we'd have to go back to Kafka.",
       "url": "https://duthaho.dev/redis-streams-over-kafka/",
@@ -164,12 +170,6 @@
       "excerpt": "Prepping for an architect interview, I realized leveling up isn't about writing better code — it's about seeing the whole system. Six topics I'd once memorized by rote — microservices, 2PC, Saga, CAP, Outbox, idempotency — turned out to be a single causal thread: each solution births the next problem.",
       "url": "https://duthaho.dev/from-monolith-to-idempotency/",
       "date": "2026-06-30"
-    },
-    {
-      "title": "Two workers: inside the AI machine",
-      "excerpt": "Every time an AI answers, two workers with opposite temperaments take turns at the bench — and nearly every trick for speeding up inference is born from the tension between them. A trip inside the reasoning machine: prefill, decode, KV cache, batching, quantization, and why the day eventually comes to run your own servers.",
-      "url": "https://duthaho.dev/ai-inference-engineering/",
-      "date": "2026-06-18"
     }
   ],
   "interests": [
